@@ -1,0 +1,350 @@
+<section class="section paper-section" id="motivation"><div class="container site-width"><header class="section-intro"><p class="eyebrow" aria-hidden="true"></p><h2>Introduction</h2><p>Generating visual questions requires checking that their answers can be recovered from the images. The program that draws an image knows the answer from the scene it constructed, even when the rendered image does not contain enough information to answer the question. Occlusion, resolution, and other rendering effects can remove information needed to answer the question.</p></header><div class="motivation-body"><p>Using a vision-language model to judge whether a question is answerable makes the check depend on that model’s capabilities. PixelProof instead asks a coding agent to write two programs: one computes the answer from the scene specification, and the other answers from the image alone.</p><p>The verifier checks that the two answers agree on 72 scenes. We assess whether the questions are clear to people and useful for training in separate experiments.</p></div></div></section>
+<section class="section paper-section" id="method">
+  <div class="container site-width">
+    <header class="section-intro">
+      <p class="eyebrow" aria-hidden="true"></p>
+      <h2>Method</h2>
+      <p>PixelProof uses coding agents to generate visual questions and test whether their answers can be recovered from the images. For each question, the agent writes a sampler, a renderer, a forward program that answers from the scene specification, and an inverse program that answers from the rendered image. Before a world is accepted, the verifier runs the final checks, including forward–inverse agreement on 72 scenes.</p>
+    </header>
+    <div class="definition-grid">
+      <div>
+        <h3>Question worlds and instances</h3>
+        <p>
+          A <strong>question world</strong> (world) is a visual question with a
+          sampler, a renderer, a forward program, and an inverse program. The
+          sampler draws a scene specification; the renderer turns it into an
+          image. An <strong>instance</strong> is one scene specification, its
+          rendered image, and the world’s question.
+        </p>
+      </div>
+      <div>
+        <h3>Forward and inverse programs</h3>
+        <p>
+          The <strong>scene specification</strong> describes the objects and
+          their relationships. The <strong>forward program</strong> answers from
+          this specification. The <strong>inverse program</strong> answers from
+          the image alone.
+        </p>
+      </div>
+    </div>
+    {{teaser-tabs}}
+    <div id="teaser-panel-0" role="tabpanel" aria-labelledby="teaser-tab-0">
+    <figure
+      class="verification-map method-laboratory"
+      aria-labelledby="verification-map-title"
+    >
+      <div class="lab-heading">
+        <div>
+          <span class="lab-kicker">FORWARD AND INVERSE PROGRAMS</span>
+          <h3 id="verification-map-title">How many strings are visible?</h3>
+          <p>
+            The forward program reads the specified string count. The inverse program counts strings in the image.
+          </p>
+        </div>
+        <div
+          class="map-instances"
+          role="group"
+          aria-label="Method example instance"
+        >
+          <button type="button" data-method-sample="0" aria-label="Recorded guitar instance 1" aria-pressed="true"><img src="static/questions/profile-guitar-string-count/sample-1.png" alt=""><span>01</span></button
+          ><button type="button" data-method-sample="1" aria-label="Recorded guitar instance 2" aria-pressed="false"><img src="static/questions/profile-guitar-string-count/sample-2.png" alt=""><span>02</span></button
+          ><button type="button" data-method-sample="2" aria-label="Recorded guitar instance 3" aria-pressed="false"><img src="static/questions/profile-guitar-string-count/sample-3.png" alt=""><span>03</span></button>
+        </div>
+      </div>
+      <div class="lab-workbench">
+        <svg class="lab-wire-layer" aria-hidden="true">
+          <defs>
+            <marker
+              id="scene-arrowhead"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="5"
+              markerHeight="5"
+              orient="auto"
+            >
+              <path d="M0 0L10 5 0 10" fill="#e5a46f" />
+            </marker>
+            <marker
+              id="pixel-arrowhead"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="5"
+              markerHeight="5"
+              orient="auto"
+            >
+              <path d="M0 0L10 5 0 10" fill="#79acfa" />
+            </marker>
+          </defs>
+          <path
+            id="scene-wire"
+            stroke="#e5a46f"
+            marker-end="url(#scene-arrowhead)"
+          />
+          <path
+            id="pixel-wire"
+            stroke="#79acfa"
+            marker-end="url(#pixel-arrowhead)"
+          />
+        </svg>
+        <div class="lab-source answer-panel answer-panel-forward">
+          <header class="arm-title forward-title"><span>Forward program</span><h4>Scene → answer</h4></header><p class="arm-input-label">READ THE SCENE SPECIFICATION</p>
+          <div class="lab-json">
+
+            <p>
+              <span>string_count:</span> <strong data-method-count>6</strong>
+            </p>
+            <p><span>string_span:</span> <b id="method-span">36</b></p>
+            <p><span>offset_x:</span> <b id="method-offset">−23</b></p>
+            <p class="json-secondary">…and other scene properties</p>
+
+          </div>
+          <div class="lab-branch"><span>↓ compute the decision</span></div>
+          <div class="lab-forward">
+            <h4>The count is specified directly</h4>
+            <code>return scene["string_count"]</code>
+            <p>For this question, the forward computation is a single lookup.</p>
+            <div class="lab-output">
+              <span>Forward answer</span><strong data-method-count>6</strong>
+            </div>
+          </div>
+        </div>
+        <div class="lab-render renderer-panel">
+          <header class="render-title"><span>Rendered image</span><h4>The renderer draws the scene</h4><p class="renderer-description">String count, spacing, and position become the visible guitar.</p></header>
+          <div class="lab-connection">
+            <span>scene</span><span aria-hidden="true">→</span
+            ><strong>renderer</strong><span aria-hidden="true">→</span
+            ><span>pixels</span>
+          </div>
+          <div class="guitar-viewport">
+            <img
+              id="method-image"
+              src="static/questions/profile-guitar-string-count/sample-1.png"
+              alt="Recorded guitar instance with six visible strings"
+              loading="lazy"
+            /><svg viewBox="0 0 512 512" aria-hidden="true">
+              <rect
+                id="method-bridge-box"
+                x="172"
+                y="390"
+                width="122"
+                height="46"
+                fill="none"
+                stroke="#346ed8"
+                stroke-width="3"
+              />
+              <path
+                id="method-bridge-leader"
+                d="M294 413H505"
+                stroke="#346ed8"
+                stroke-width="2"
+                stroke-dasharray="6 5"
+              />
+            </svg>
+          </div>
+          <div class="pixel-boundary">
+            <span class="boundary-lock" aria-hidden="true">↳</span>
+            <p>
+              <strong>The inverse program receives only the image.</strong><br />The inverse
+              does not receive the scene specification.
+            </p>
+          </div>
+        </div>
+        <div class="lab-inverse answer-panel answer-panel-inverse">
+          <header class="arm-title inverse-title"><span>Inverse program</span><h4>Image → answer</h4></header>
+          <p class="arm-definition">READ ONLY THE IMAGE PIXELS</p>
+          <p class="lab-instruction">
+            <b>1. Locate the bridge</b> and inspect its pixels.
+          </p>
+          <div class="bridge-zoom">
+            <svg
+              id="method-crop"
+              viewBox="172 390 122 46"
+              role="img"
+              aria-label="Magnified original pixels around the guitar bridge"
+            >
+              <image
+                id="method-crop-image"
+                href="static/questions/profile-guitar-string-count/sample-1.png"
+                width="512"
+                height="512"
+              /></svg
+            ><span>Original pixels · magnified detail</span>
+          </div>
+          <p class="lab-instruction">
+            <b>2. Count dark runs.</b> Each dip is a string.
+          </p>
+          <svg
+            id="method-profile"
+            viewBox="0 0 344 112"
+            role="img"
+            aria-label="Brightness across the bridge row"
+          >
+            <line
+              x1="0"
+              x2="344"
+              y1="67.06"
+              y2="67.06"
+              stroke="#7595c5"
+              stroke-dasharray="4 5"
+            />
+            <polyline
+              id="method-profile-line"
+              points=""
+              fill="none"
+              stroke="#77aeff"
+              stroke-width="2"
+            />
+            <text
+              x="342"
+              y="62"
+              text-anchor="end"
+              fill="#9fb5d7"
+              font-size="10"
+            >
+              105 / 255
+            </text>
+            <text x="0" y="109" fill="#9fb5d7" font-size="9">
+              left → right across the bridge
+            </text>
+          </svg>
+          <div
+            id="method-runs"
+            class="measured-runs"
+            aria-label="Six dark runs"
+          >
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="row-agreement">
+            <span>Check 3 neighboring rows</span
+            ><strong id="method-row-counts">6 · 6 · 6</strong>
+          </div>
+          <div class="lab-output">
+            <span>Inverse answer</span><strong data-method-count>6</strong>
+          </div>
+        </div>
+      </div>
+      <div class="lab-comparison">
+        <svg
+          viewBox="0 0 1000 48"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M100 0V16Q100 24 112 24H480L500 42" stroke="#e5a46f" />
+          <path d="M900 0V16Q900 24 888 24H520L500 42" stroke="#79acfa" />
+        </svg>
+        <div>
+          <span class="comparison-mark" aria-hidden="true">=</span>
+          <h4><span class="verifier-label">VERIFIER</span> Compare the answers</h4>
+          <p>
+            <span class="agreement-equation"><span>Forward <strong data-comparison-count>6</strong></span><span aria-label="equals">=</span><span>Inverse <strong data-comparison-count>6</strong></span></span>
+            <span class="agreement-explanation">The verifier repeats this check on 72 scenes from three fixed seeds.</span>
+          </p>
+          <a href="programs.html#verification"
+            >Image-replacement test →</a
+          >
+        </div>
+      </div>
+      <figcaption>
+        Brightness traces use the original image pixels. The enlarged regions and rows are chosen for display; the inverse program finds the bridge from the pixels on its own.
+        <a href="programs.html#programs">Read the original question and full source.</a>
+      </figcaption>
+    </figure>
+    </div>
+    {{teaser-panels}}
+    <section class="method-components" aria-labelledby="components-title"><header class="components-intro"><p class="eyebrow">Reading the diagram</p><h3 id="components-title">Components of a Question World</h3><p>The sampler and renderer create an instance. The forward and inverse programs answer the same question from different inputs. The verifier checks their agreement.</p></header><ol class="component-reading-list"><li class="component-note note-sampler"><span class="note-number" aria-hidden="true">01</span><div class="note-description"><h4>Sampler</h4><p><strong>Choose what to draw.</strong> The sampler uses a random seed to produce a <strong>scene specification</strong>: the objects in one instance and their properties.</p></div><aside class="note-example" aria-label="Sampler: guitar example"><span class="example-label">In this example</span><p>Choose six strings, their spacing, and the guitar’s position.</p><div class="note-flow"><span>Random seed</span><span aria-hidden="true">→</span><strong>Scene specification</strong></div></aside></li><li class="component-note note-renderer"><span class="note-number" aria-hidden="true">02</span><div class="note-description"><h4>Renderer</h4><p><strong>Draw the chosen scene.</strong> The renderer turns the scene specification into an image. This makes the chosen properties visible as pixels.</p></div><aside class="note-example" aria-label="Renderer: guitar example"><span class="example-label">In this example</span><p>Draw the guitar with six strings crossing a pale bridge.</p><div class="note-flow"><span>Scene specification</span><span aria-hidden="true">→</span><strong>Image</strong></div></aside></li><li class="component-note note-forward"><span class="note-number" aria-hidden="true">03</span><div class="note-description"><h4>Forward program</h4><p><strong>Answer using the scene data.</strong> The forward program computes the decision from the scene specification. Here that is a lookup; other questions may require geometry, connectivity, or simulation.</p></div><aside class="note-example" aria-label="Forward program: guitar example"><span class="example-label">In this example</span><p>Read <code>string_count = 6</code>. No pixel measurements are needed.</p><div class="note-flow"><span>Scene specification</span><span aria-hidden="true">→</span><strong>Decision: 6</strong></div></aside></li><li class="component-note note-inverse"><span class="note-number" aria-hidden="true">04</span><div class="note-description"><h4>Inverse program</h4><p><strong>Answer using only the image.</strong> The inverse program recovers the decision from visible pixels. It can know the world’s visual conventions, but does not receive this instance’s scene specification.</p></div><aside class="note-example" aria-label="Inverse program: guitar example"><span class="example-label">In this example</span><p>Locate the pale bridge, count six dark runs, and check that three neighboring rows agree.</p><div class="note-flow"><span>Image pixels</span><span aria-hidden="true">→</span><strong>Decision: 6</strong></div></aside></li><li class="component-note note-verifier"><span class="note-number" aria-hidden="true">05</span><div class="note-description"><h4>Verifier</h4><p><strong>Check that the two answers agree.</strong> After submission, the verifier runs the final checks: both answers must be valid and equal on 72 scenes from three fixed seeds, except scenes excluded by a declared ambiguity rule.</p></div><aside class="note-example" aria-label="Verifier: guitar example"><span class="example-label">In this example</span><p>Compare the answers from scene data and pixels on each of the 72 scenes, and check that generation is reproducible and the answer varies across scenes.</p><div class="note-flow"><span>Two computed answers</span><span aria-hidden="true">→</span><strong>Agreement check</strong></div></aside></li></ol><p class="method-evidence-note"><strong>What verification establishes.</strong> Passing shows agreement on the tested instances. It does not by itself establish that people will find the question clear or interpret it as intended. <a href="programs.html#verification">See the image-replacement test →</a></p></section>
+    <h3 class="subsection-title">Generation Loop</h3>
+    <p class="section-lead">
+      A <strong>controller</strong> prepares each attempt and carries results
+      forward. An <strong>episode</strong> is one fresh agent session followed
+      by verification. A <strong>campaign</strong> is a sequence of episodes
+      with the same coding-agent configuration and generation instructions.
+    </p>
+    <ol class="campaign-flow">
+      <li>
+        <span class="step-index">1</span>
+        <h4>Controller prepares inputs</h4>
+        <p>
+          Instructions, three implementation demonstrations, accepted code, and
+          the latest rejection report.
+        </p>
+      </li>
+      <li>
+        <span class="step-index">2</span>
+        <h4>Agent writes and tests</h4>
+        <p>
+          The agent runs available self-checks, repairs failures, and finalizes
+          one submission within its time limit.
+        </p>
+      </li>
+      <li>
+        <span class="step-index">3</span>
+        <h4>Verifier runs the final checks</h4>
+        <p>
+          The final checks run after submission in a clean, offline container.
+          They are the same checks the agent could run during its session, but
+          the agent can no longer change its code.
+        </p>
+      </li>
+      <li>
+        <span class="step-index">4</span>
+        <h4>Controller updates the record</h4>
+        <p>
+          A world is kept only if it passes the final checks, the agent finalized its submission, and its question text and images do not exactly copy an earlier world. The next agent receives accepted code and the latest rejection report.
+        </p>
+      </li>
+    </ol>
+    <p class="loop-return">↶ Repeat with a fresh coding-agent session</p>
+    <details class="paper-details">
+      <summary>What does verification require?</summary>
+      <p>
+        Both programs must produce valid, matching answers on each tested scene
+        that is not excluded. Checks also require reproducible generation and at least two different answers across scenes.
+      </p>
+      <p>
+        An agent may declare an <strong>ambiguity rule</strong>: a deterministic
+        rule that identifies scenes near a decision threshold. The verifier
+        recomputes it and excludes those scenes from agreement testing. The
+        current protocol does not cap the excluded fraction. Passing these
+        checks establishes answer recovery on tested instances; it does not
+        establish human clarity, novelty, or difficulty.
+      </p>
+      <p>
+        The three implementation demonstrations cover circle contact, angle
+        acuteness, and counting with distractors. They are distinct from the
+        generated examples selected below.
+      </p>
+    </details>
+  </div>
+</section>
+<section class="section paper-section" id="results"><div class="container site-width"><header class="section-intro"><p class="eyebrow" aria-hidden="true"></p><h2>Experiments and Results</h2><p>We study collection growth, requests about spatial patterns, model performance, model feedback, human review, and fine-tuning. The summaries below follow the paper’s order; full tables and additional analyses are on the results page.</p></header><nav class="results-nav" aria-label="Results sections"><a href="#generation">Collection growth</a><a href="#steering">Spatial patterns</a><a href="#human-review">Human review</a><a href="#evaluation">Model difficulty</a><a href="#feedback">Model feedback</a><a href="#training">Training and transfer</a></nav>
+<article class="result-study" id="generation"><p class="eyebrow">1 · Profile-steered generation</p><h3>Coding agents repeatedly grow the question collection with PixelProof</h3><p>A <strong>discovery profile</strong> is a set of generation instructions that defines a family of questions by the computation they require, with five text-only examples. Five coding-agent configurations ran on nine profiles, for 45 campaigns with six hours of cumulative agent-session time each. Individual sessions were capped at 20 minutes. The coding agents are GPT-5.6 Sol at high and maximum reasoning effort (Sol (high), Sol (max)) and GPT-5.6 Luna, all run through Codex; Claude Opus 5 in Claude Code; and DeepSeek V4 Flash (DS-V4-Flash) in OpenCode.</p><div class="stat-row"><div><strong>45 / 45</strong><span>campaigns produced accepted worlds</span></div><div><strong>1,331</strong><span>accepted worlds</span></div><div><strong>1,301</strong><span>worlds passed later 200-scene replay</span></div></div><p>Throughput was 4.95 accepted worlds per episode-hour. Episode-hours count agent-session time, including time spent waiting for model responses, but not verification. Throughput did not drop over the six hours: in the second half it rose for three configurations, held steady for Sol (high) (7.37 vs. 7.33 per hour), and fell only for Opus 5 (4.30 to 3.83). Of the accepted worlds, 19 failed replay and 11 were not replayed.</p>{{generation-profile}}<a class="study-detail-link" href="results.html#generation">Full generation results →</a>{{inverse-catch-home}}</article>
+<article class="result-study" id="steering"><p class="eyebrow">2 · Spatially-steered generation</p><h3>Agents can control which parts of an image a question depends on</h3><p>Each request asks for one of nine <strong>spatial patterns</strong> for where the answer’s evidence should lie: three scales—focal, regional, distributed—combined with three shapes—compact, pathlike, multipart. The measured pattern comes from masking regions and checking whether the inverse answer changes or the program raises an error.</p>{{steering-atlas}}<div class="stat-row"><div><strong>835 / 874</strong><span>measurable replay-verified worlds matched the request</span></div><div><strong>6.38 vs. 4.26</strong><span>spatial patterns represented in equal-count samples, with versus without steering</span></div></div><p>In random samples of ten worlds per campaign, steered campaigns covered 6.38 of the nine patterns on average, compared with 4.26 for unsteered campaigns with the same coding agent and profile (35 matched campaign pairs).</p><a class="study-detail-link" href="steering.html">Spatial patterns and examples →</a> <a class="study-detail-link" href="results.html#steering">Full steering results →</a></article>
+<article class="result-study" id="human-review"><p class="eyebrow">3 · Human review</p><h3>Most generated questions are clear and answerable to human reviewers</h3><p>Two reviewers independently answered and reviewed the same 800 instances across the three generation experiments.</p>{{human}}<p>Neither reviewer flagged 733 instances (91.6%), one flagged 54, and both flagged 13. The two reviewers agreed on whether an instance was valid for 746 of 800 instances (93.25%).</p><a class="study-detail-link" href="results.html#human-review">Review procedure and outcomes →</a></article>
+<article class="result-study" id="evaluation"><p class="eyebrow">4 · Model evaluation</p><h3>Generated questions challenge open models more than frontier models</h3><p>We test six <strong>vision–language models (VLMs)</strong>, which answer questions about images; we call them <strong>VLM evaluators</strong>. Three are frontier models (Sol (high), Opus 5, and Gemini 3.7 Flash) and three are open-weight models (Gemma 4 12B, Gemma 4 31B, and Qwen 3.8 27B).</p><p>Each VLM evaluator answers five fixed instances per world. Profile-steered evaluation covers 1,298 worlds; spatially-steered evaluation covers 874. The table reports accuracy over scored responses. Errors, refusals, and unparseable responses are accounted for separately.</p>{{evaluation-summary}}<p>Declared-transform questions were the hardest profile for each frontier evaluator. Different collection compositions prevent a causal comparison of difficulty.</p><a class="study-detail-link" href="results.html#evaluation">Full model-evaluation results →</a></article>
+<article class="result-study" id="feedback"><p class="eyebrow">5 · Model-feedback-steered generation</p><h3>PixelProof can incorporate model feedback to generate harder questions</h3><p>Agents receive example worlds and frontier-model errors, then generate new worlds. A world is <strong>hard for frontier models</strong> when at least two of the three frontier models get two or more of its five instances wrong, with all 15 responses present.</p><div class="stat-row"><div><strong>264</strong><span>worlds passed later replay</span></div><div><strong>21 / 252</strong><span>worlds with complete frontier evaluations were hard for frontier models</span></div><div><strong>5</strong><span>worlds challenged all three frontier evaluators</span></div></div><p>All 21 of these worlds passed replay. Verification remained independent of model predictions. Without a matched no-feedback control, the experiment demonstrates generation under feedback but does not isolate its causal effect.</p><a class="study-detail-link" href="results.html#feedback">Campaign setup and all feedback evaluation results →</a></article>
+<article class="result-study" id="training"><p class="eyebrow">6 · Training and external transfer</p><h3>Fine-tuning VLMs on PixelProof images improves accuracy on held-out benchmarks</h3><p><strong>Supervised fine-tuning (SFT)</strong> trains models on image–question pairs and short answer labels. Training uses 748 profile-steered worlds. Four fine-tuned checkpoints per model are evaluated on 1,260 instances from 252 separate model-feedback-steered worlds. The table reports their mean accuracy and standard deviation.</p>{{transfer}}<p>All three models improve on these worlds, by an average of +5.3 percentage points (pp): mean accuracy rises from 30.7% to 36.0%. The training and evaluation sets contain different worlds, but may still contain similar questions.</p><div id="external" class="external-summary"><h4>Transfer to external benchmarks</h4><p>Averaged over four training splits, three models, and 16 external benchmarks, accuracy rises by +1.9 points. Six benchmarks improve for all three models: VLMsAreBlind, PuzzleVQA, VLMsAreBiased, AlgoPuzzleVQA, PGM, and NaturalBench. The others are mixed, and RAVEN declines slightly for all three, by less than its variation across splits.</p></div><a class="study-detail-link" href="results.html#training">Training recipe and additional studies →</a> <a class="study-detail-link" href="results.html#external">All external benchmarks and base/SFT comparisons →</a></article>
+</div></section>
+<section class="section paper-section tinted" id="limitations">
+  <div class="container reading-width">
+    <h2>Limitations</h2>
+    <p>
+      Agreement between two generated programs can preserve a shared mistake.
+      Verification tests selected scenes and does not cap ambiguity-rule
+      exclusions. Some accepted worlds fail later replay. Human review therefore
+      remains a separate check of meaning and clarity.
+    </p>
+    <p>
+      Checking for exact copies does not show that a world is novel. Steering and feedback
+      experiments support descriptive findings without matched causal controls.
+      Training gains vary by model and benchmark. The campaigns lasted hours, so
+      long-term diversity remains untested. Prior exposure to similar questions
+      in closed models’ training data cannot be ruled out.
+    </p>
+    <p>
+      <a href="#questions">Return to the questions ↑</a> ·
+      <a href="programs.html#programs">Explore the program examples</a>
+    </p>
+  </div>
+</section>

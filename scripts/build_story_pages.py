@@ -1,0 +1,35 @@
+"""Build dedicated reading pages from shared, source-bound paper content."""
+import re
+
+def build_story_pages(root, detailed):
+    pieces=re.split(r'(?=<section class="section paper-section)',detailed)
+    sections={re.search(r'id="([^"]+)"',p).group(1):p for p in pieces if p.strip()}
+    index=(root/'index.html').read_text()
+    head=index[:index.index('</head>')]
+    head=re.sub(r'<script[^>]*src="static/js/(questions|site)\.js(?:\?[^"]*)?"[^>]*></script>','',head)
+    # Program links open the existing gallery; dedicated pages do not need a second quiz UI.
+    nav='''<nav class="site-nav" aria-label="Main navigation"><a class="wordmark" href="index.html">PixelProof</a><div class="nav-links"><a href="index.html#method">Overview</a><a href="questions.html">Questions</a><a href="programs.html">Programs</a><a href="steering.html">Spatial patterns</a><a href="results.html">Results</a></div></nav>'''
+    def write(name,title,lead,body,extra=''):
+        h=re.sub(r'<title>.*?</title>',f'<title>{title} · PixelProof</title>',head,flags=re.S)
+        body=re.sub(r'href="#world=', 'href="questions.html#world=',body)
+        body=body.replace('href="#method"','href="index.html#method"')
+        body=re.sub(r'^[ \t]+$', '', body, flags=re.M)
+        contents = ''
+        if name == 'programs.html':
+            contents='<nav class="page-contents" aria-label="On this page"><a href="#programs">Program examples</a><a href="#inverse-catch">Why the inverse program matters</a><a href="#verification">Image-replacement test</a><a href="#source-analysis">Source analysis</a><a href="#inverse-walkthroughs">Step-by-step walkthroughs</a></nav>'
+        else:
+            body=re.sub(r'(<article class="result-study"[^>]*>.*?<p class="eyebrow">.*?</p>\s*)<h3>(.*?)</h3>',r'\1<h2>\2</h2>',body,flags=re.S)
+
+        (root/name).write_text(h+extra+'</head><body class="reading-page"><a class="skip-link" href="#main">Skip to content</a>'+nav+f'<main id="main"><header class="reading-page-intro"><div class="container site-width"><a href="index.html">← Project overview</a><h1>{title}</h1><p>{lead}</p>{contents}</div></header>'+body+'</main><footer class="reading-footer"><a href="index.html">Project overview</a> · <a href="THIRD_PARTY_NOTICES.md">Third-party notices</a></footer></body></html>')
+    results=''.join(sections[k] for k in ['results','human-review','training','external'])
+    results=re.sub(r'<header class="section-intro">.*?</header>', '', results, count=1, flags=re.S)
+    write('results.html','Experiments and results','This page reports the full experimental results, including sample counts, scoring rules, and additional analyses.',results)
+    inverse=(root/'inverse-programs.html').read_text()
+    inverse=inverse[inverse.index('<div class="inverse-pipeline"'):inverse.index('<footer class="inverse-foot"')]
+    program=sections['programs']+sections['inverse-catch']+sections['verification']+sections['source-analysis']
+    program=program.replace('href="inverse-programs.html"','href="#inverse-walkthroughs"')
+    program+='<section class="section" id="inverse-walkthroughs"><div class="container site-width inverse-wrap">'+inverse+'</div></section>'
+    write('programs.html','Programs and verification','This page shows forward and inverse program examples, a real error caught by an inverse program, an image-replacement test, and five explanations of how inverse programs compute their answers.',program,'<link rel="stylesheet" href="static/css/inverse.css">')
+
+    from sync_navigation import sync
+    sync(root)

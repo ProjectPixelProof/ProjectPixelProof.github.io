@@ -1,0 +1,137 @@
+{
+  "sourceHashes": {
+    "iclr2027_conference.tex": "85065f1e94298738b214e4266dc927b5d9a1595635cd6ba9e5efc02c7604a3cc",
+    "appendix.tex": "3ca22565b9c6c37dfb1057868aba8984e00734d4e3e5f1538f906923d8f59817"
+  },
+  "excerptsAndImages": [
+    {
+      "world": "profile-guitar-string-count",
+      "path": "static/questions/profile-guitar-string-count/generator.py.txt",
+      "sha256": "51ce5b41c6e58371192ba561ed9222a862228368a5bb774bfe9c54ff0c5e5b72",
+      "startLine": 118,
+      "endLine": 119,
+      "text": "def analytic_gold(scene: dict) -> str:\n    return str(int(scene[\"string_count\"]))"
+    },
+    {
+      "world": "profile-guitar-string-count",
+      "path": "static/questions/profile-guitar-string-count/inverse.py.txt",
+      "sha256": "ab210a36f2e1820c6b779a1e7425671c64ca5746bc736f157567acea88bf11f2",
+      "startLine": 46,
+      "endLine": 58,
+      "text": "    # Take a three-row vote. Each qualifying string is a narrow dark run wholly\n    # inside the recovered bridge extent; body edges and sound hole lie outside.\n    counts = []\n    for y in range(y0 - 1, y0 + 2):\n        strip = rgb[y, xlo:xhi+1]\n        dark = strip.mean(axis=1) < 105\n        runs = [(a, b) for a, b in _runs(dark) if 1 <= b-a <= 7 and a > 2 and b < len(dark)-2]\n        counts.append(len(runs))\n    count = int(np.median(counts))\n    if count not in {4, 5, 6, 7, 8} or max(counts) != min(counts):\n        raise ValueError(f\"ambiguous string runs: {counts}\")\n    return str(count)"
+    },
+    {
+      "world": "steered-marked-articulation-search",
+      "path": "static/questions/steered-marked-articulation-search/generator.py.txt",
+      "sha256": "7868d8547e9d3f84bdabb4fc4cb5b3461255cf6bb3407b2f2cb7613f795eecaa",
+      "startLine": 125,
+      "endLine": 136,
+      "text": "def _scores(scene: dict) -> list[tuple[int, str]]:\n    scores = []\n    for cluster in scene[\"clusters\"]:\n        cells = {tuple(cell) for cell in cluster[\"cells\"]}\n        marker = tuple(cluster[\"marker\"])\n        score = (\n            _components_after_removal(cells, marker)\n            if marker in cells and _component_count(cells) == 1\n            else 0\n        )\n        scores.append((score, str(cluster[\"color\"])))\n    return scores"
+    },
+    {
+      "world": "steered-marked-articulation-search",
+      "path": "static/questions/steered-marked-articulation-search/generator.py.txt",
+      "sha256": "7868d8547e9d3f84bdabb4fc4cb5b3461255cf6bb3407b2f2cb7613f795eecaa",
+      "startLine": 139,
+      "endLine": 143,
+      "text": "def analytic_gold(scene: dict) -> str:\n    scores = sorted(_scores(scene), reverse=True)\n    if len(scores) != 4 or scores[0][0] < 2 or scores[0][0] == scores[1][0]:\n        raise ValueError(\"scene lacks a unique marked articulation winner\")\n    return scores[0][1]"
+    },
+    {
+      "world": "steered-marked-articulation-search",
+      "path": "static/questions/steered-marked-articulation-search/inverse.py.txt",
+      "sha256": "5ecf0da2f81054e38ca7385875c392bab9f9932da27981ecff5b43f8a789887f",
+      "startLine": 86,
+      "endLine": 105,
+      "text": "def decision_from_image(image: Image.Image) -> str:\n    array = np.asarray(image.convert(\"RGB\"), dtype=np.uint8)\n    if array.ndim != 3 or array.shape[0] < 128 or array.shape[1] < 128:\n        raise ValueError(\"unexpected raster\")\n    gold_mask = _near(array, GOLD)\n    recovered = []\n    for name, rgb in PALETTE.items():\n        item = _recover_candidate(array, name, _near(array, rgb), gold_mask)\n        if item is not None:\n            recovered.append(item)\n    winners = [(score, name) for score, name in recovered if score >= 2]\n    if not winners:\n        raise ValueError(\"no intact marked articulation candidate\")\n    winners.sort(reverse=True)\n    if len(winners) > 1 and winners[0][0] == winners[1][0]:\n        raise ValueError(\"ambiguous marked articulation candidates\")\n    runner_score = max((score for score, _ in recovered if (score, _) != winners[0]), default=1)\n    if winners[0][0] - runner_score < 1:\n        raise ValueError(\"insufficient pixel runner-up margin\")\n    return winners[0][1]"
+    },
+    {
+      "world": "feedback-breach-relevel-depth",
+      "path": "static/questions/feedback-breach-relevel-depth/generator.py.txt",
+      "sha256": "6b82999839f39c757f59e37b21e7d49d8140032ba4ae20f32e21153afabf48f5",
+      "startLine": 222,
+      "endLine": 225,
+      "text": "def analytic_gold(scene: dict) -> str:\n    \"\"\"Structural gold: water depth over the arrow column once the red one goes.\"\"\"\n    edited = _removed_profile(scene[\"heights\"], scene[\"removed\"])\n    return f\"depth-{_depth_at(edited, scene['query'])}\""
+    },
+    {
+      "world": "feedback-breach-relevel-depth",
+      "path": "static/questions/feedback-breach-relevel-depth/inverse.py.txt",
+      "sha256": "80ede550aaa5fdc8317f0066bb8223c9f1bfe0e6628de26a011fb444146b6a00",
+      "startLine": 128,
+      "endLine": 133,
+      "text": "def decision_from_image(image: Image.Image) -> str:\n    \"\"\"Water depth over the arrow column after the red column is taken away.\"\"\"\n    heights, query, cut = _profile(image)\n    edited = list(heights)\n    edited[cut] = 0\n    return f\"depth-{_standing(edited)[query]}\""
+    },
+    {
+      "world": "feedback-breach-relevel-depth",
+      "path": "static/questions/feedback-breach-relevel-depth/inverse.py.txt",
+      "sha256": "80ede550aaa5fdc8317f0066bb8223c9f1bfe0e6628de26a011fb444146b6a00",
+      "startLine": 114,
+      "endLine": 125,
+      "text": "def _standing(heights) -> list[int]:\n    n = len(heights)\n    pref, suf = [0] * n, [0] * n\n    run = 0\n    for i in range(n):\n        run = max(run, heights[i])\n        pref[i] = run\n    run = 0\n    for i in range(n - 1, -1, -1):\n        run = max(run, heights[i])\n        suf[i] = run\n    return [max(0, min(pref[i], suf[i]) - heights[i]) for i in range(n)]"
+    },
+    {
+      "paperImage": "figures/results/inverse-arm/stovetop_original.png",
+      "path": "static/images/method/stovetop_original.png",
+      "sha256": "6d024fae1a4adf71844418ad2ee5c02d2078cbf3fc721fcdd56f212594249be2"
+    },
+    {
+      "paperImage": "figures/results/inverse-arm/stovetop_same_answer.png",
+      "path": "static/images/method/stovetop_same_answer.png",
+      "sha256": "46fe54dbe74009072417be0d9d2b605b3d19e426dc39630ff1e6fb4814def2c2"
+    },
+    {
+      "paperImage": "figures/results/inverse-arm/stovetop_answer_changed.png",
+      "path": "static/images/method/stovetop_answer_changed.png",
+      "sha256": "0a41bf45ef2a2378552c949aebc02dd2b48caa2629f7f711866c0e5a12387a64"
+    },
+    {
+      "paperImage": "figures/assets/piano_buggy_image.png",
+      "path": "static/images/method/piano_buggy_image.png",
+      "sha256": "418f1bc34267652f52356d21325ea1534d8e2b781a3d3659b154e6b87b4e9be2"
+    },
+    {
+      "paperImage": "figures/assets/piano_buggy_step1_keep.png",
+      "path": "static/images/method/piano_buggy_step1_keep.png",
+      "sha256": "44d6f88e5566d85a2836509af99f6cd4a127ea0d477f252d35998ccc5e23f0d6"
+    },
+    {
+      "paperImage": "figures/assets/piano_buggy_step2_blobs.png",
+      "path": "static/images/method/piano_buggy_step2_blobs.png",
+      "sha256": "93287c9135be711c59319a2d2c56d3c0a9c243c3ec7a7de29d345a43b70e00d4"
+    },
+    {
+      "paperImage": "figures/assets/piano_buggy_step3_count.png",
+      "path": "static/images/method/piano_buggy_step3_count.png",
+      "sha256": "1ec5f4a5b35f1f7b40725560e5325fb01f9475f6a214c2731efe3dabdeb756e5"
+    },
+    {
+      "paperImage": "figures/assets/piano_fixed_image.png",
+      "path": "static/images/method/piano_fixed_image.png",
+      "sha256": "e933e3c08c5a8ea26d01e1ed5a7cf129866c66b9e4340e6a96f50a8de5db0f78"
+    },
+    {
+      "paperImage": "figures/inverse-steps/stopsign/input.png",
+      "path": "static/images/method/stopsign_input.png",
+      "sha256": "94c6378d088dda6b8dea06b634b2ff38f1ac398a2d73c6f4b7ccd1d16c80838f"
+    },
+    {
+      "paperImage": "figures/inverse-steps/stopsign/step1_red.png",
+      "path": "static/images/method/stopsign_step1_red.png",
+      "sha256": "021c417b8d5fa12ed6ae0d2abc782aee21b4afae4d75f023adfdb8d2721dba24"
+    },
+    {
+      "paperImage": "figures/inverse-steps/stopsign/step2_hull.png",
+      "path": "static/images/method/stopsign_step2_hull.png",
+      "sha256": "d12aa2f9b0c2a2f0ea38ee8d23e5939fcd9e898ace74bd3d9ddf9a33fc0b7cb2"
+    },
+    {
+      "paperImage": "figures/inverse-steps/stopsign/step3_profile.png",
+      "path": "static/images/method/stopsign_step3_profile.png",
+      "sha256": "b3427bb0f80dd4165a22ed8d43605490a621a85ab545a9fc2d31941d0af6a436"
+    },
+    {
+      "paperImage": "figures/inverse-steps/stopsign/step4_fit.png",
+      "path": "static/images/method/stopsign_step4_fit.png",
+      "sha256": "dae37e856f77fe20b1cab3183f9cd1adae7d6d4523a7b1ff47c2d5e029866ed9"
+    }
+  ]
+}
