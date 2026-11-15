@@ -1,0 +1,325 @@
+{
+ "key": "044",
+ "title": "Trace island winding",
+ "headline": "Clockwise or counterclockwise?",
+ "question": "Starting at the green port, follow the dark path around the gray island to the red terminal. Does it wind clockwise or counterclockwise around the island? Answer clockwise or counterclockwise.",
+ "generator": "Luna",
+ "agent": "Codex",
+ "profile": "tracing",
+ "answer": "clockwise",
+ "image": {
+  "w": 560,
+  "h": 440,
+  "src": "final.webp",
+  "sha256": "b6a835f0ce962a0548f1809c2701d0883303c16c59ab8d12622116485b02d219"
+ },
+ "scene": "{\n \"background\": [250, 247, 243],\n \"island_radius\": 51.82,\n \"island_x\": 236.38,\n \"island_y\": 232.21,\n \"near_boundary\": false,\n \"path_color\": [25, 62, 65],\n \"path_points\": [\n  [275.88, 82.37],\n  [259.73, 143.62],\n  [273.81, 154.04],\n  [287.81, 162.49],\n  [300.14, 173.24],\n  \"… 12 more\"\n ],\n \"port_radius\": 12,\n \"start_color\": [45, 174, 99],\n \"stroke_width\": 8,\n \"terminal_color\": [222, 76, 76],\n \"winding_sign\": 1\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    turn = _signed_turn(scene[\"path_points\"], float(scene[\"island_x\"]), float(scene[\"island_y\"]))\n    return \"clockwise\" if turn > 0.0 else \"counterclockwise\"",
+  "decision": "clockwise",
+  "answer": "clockwise"
+ },
+ "render": {
+  "events": 23,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "draw.ellipse(island_box, fill=ISLAND_FILL, outline=ISLAND_OUTLINE, width=3)",
+    "line": 103,
+    "kind": "draw.ellipse",
+    "event": 1,
+    "box": [
+     0.325,
+     0.4022727272727273,
+     0.5214285714285715,
+     0.6545454545454545
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 2,
+    "box": [
+     0.45,
+     0.17727272727272728,
+     0.5964285714285714,
+     0.8613636363636363
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 3,
+    "box": null
+   },
+   {
+    "src": "r003.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 4,
+    "box": [
+     0.5125,
+     0.3568181818181818,
+     0.525,
+     0.37272727272727274
+    ]
+   },
+   {
+    "src": "r004.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 5,
+    "box": null
+   },
+   {
+    "src": "r005.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 6,
+    "box": null
+   },
+   {
+    "src": "r006.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 7,
+    "box": null
+   },
+   {
+    "src": "r007.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 8,
+    "box": null
+   },
+   {
+    "src": "r008.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 9,
+    "box": null
+   },
+   {
+    "src": "r009.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 10,
+    "box": null
+   },
+   {
+    "src": "r010.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 11,
+    "box": null
+   },
+   {
+    "src": "r011.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 12,
+    "box": null
+   },
+   {
+    "src": "r012.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 13,
+    "box": null
+   },
+   {
+    "src": "r013.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 14,
+    "box": [
+     0.5178571428571429,
+     0.7022727272727273,
+     0.5303571428571429,
+     0.7181818181818181
+    ]
+   },
+   {
+    "src": "r014.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 15,
+    "box": [
+     0.48928571428571427,
+     0.725,
+     0.5017857142857143,
+     0.740909090909091
+    ]
+   },
+   {
+    "src": "r015.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.pieslice",
+    "event": 16,
+    "box": [
+     0.45,
+     0.7159090909090909,
+     0.4660714285714286,
+     0.7386363636363636
+    ]
+   },
+   {
+    "src": "r016.webp",
+    "code": "draw.line(points, fill=tuple(scene[\"path_color\"]), width=int(scene[\"stroke_width\"]), joint=\"curve\")",
+    "line": 106,
+    "kind": "draw.line",
+    "event": 17,
+    "box": null
+   },
+   {
+    "src": "r017.webp",
+    "code": "draw.ellipse((x - halo, y - halo, x + halo, y + halo), fill=WHITE)",
+    "line": 117,
+    "kind": "draw.ellipse",
+    "event": 18,
+    "box": [
+     0.4589285714285714,
+     0.1431818181818182,
+     0.5285714285714286,
+     0.2318181818181818
+    ]
+   },
+   {
+    "src": "r018.webp",
+    "code": "draw.ellipse((x - port_radius, y - port_radius, x + port_radius, y + port_radius), fill=color)",
+    "line": 118,
+    "kind": "draw.ellipse",
+    "event": 19,
+    "box": [
+     0.4660714285714286,
+     0.15227272727272728,
+     0.5214285714285715,
+     0.22272727272727272
+    ]
+   },
+   {
+    "src": "r019.webp",
+    "code": "draw.ellipse((x - port_radius, y - port_radius, x + port_radius, y + port_radius), outline=WHITE, width=2)",
+    "line": 119,
+    "kind": "draw.ellipse",
+    "event": 20,
+    "box": [
+     0.4660714285714286,
+     0.15227272727272728,
+     0.5214285714285715,
+     0.22272727272727272
+    ]
+   },
+   {
+    "src": "r020.webp",
+    "code": "draw.ellipse((x - halo, y - halo, x + halo, y + halo), fill=WHITE)",
+    "line": 117,
+    "kind": "draw.ellipse",
+    "event": 21,
+    "box": [
+     0.45,
+     0.8068181818181818,
+     0.5196428571428572,
+     0.8954545454545455
+    ]
+   },
+   {
+    "src": "r021.webp",
+    "code": "draw.ellipse((x - port_radius, y - port_radius, x + port_radius, y + port_radius), fill=color)",
+    "line": 118,
+    "kind": "draw.ellipse",
+    "event": 22,
+    "box": [
+     0.45714285714285713,
+     0.8159090909090909,
+     0.5125,
+     0.8863636363636364
+    ]
+   },
+   {
+    "src": "r022.webp",
+    "code": "draw.ellipse((x - port_radius, y - port_radius, x + port_radius, y + port_radius), outline=WHITE, width=2)",
+    "line": 119,
+    "kind": "draw.ellipse",
+    "event": 23,
+    "box": [
+     0.45714285714285713,
+     0.8159090909090909,
+     0.5125,
+     0.8863636363636364
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Find the gray island",
+    "fn": "decision_from_image",
+    "value_of": "decision_from_image",
+    "src": "island_mask",
+    "code": "island_mask = np.all(rgb == ISLAND_FILL, axis=2)",
+    "style": "mask",
+    "marks": [],
+    "note": "7,646 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Keep the dark path pixels",
+    "fn": "decision_from_image",
+    "value_of": "_nearest",
+    "src": "mask",
+    "code": "path_mask = (red < 80) & (green < 100) & (blue < 125) & ((blue - red) > 12)",
+    "style": "mask",
+    "marks": [],
+    "note": "2,553 pixels kept",
+    "overlay": "b1.webp"
+   },
+   {
+    "title": "Walk the path from the green port to the red terminal",
+    "fn": "_ordered_pixels",
+    "value_of": "_ordered_pixels",
+    "src": "return",
+    "code": "path = _ordered_pixels(path_mask, start, end)",
+    "style": "path",
+    "marks": [],
+    "note": "272 points",
+    "overlay": "b2.webp"
+   }
+  ],
+  "final": {
+   "code": "return \"clockwise\" if signed_turn > 0.0 else \"counterclockwise\"",
+   "fn": "decision_from_image",
+   "text": "Sum the signed turning angle around the island centre",
+   "values": [
+    {
+     "label": "signed_turn",
+     "value": "2.645"
+    }
+   ]
+  },
+  "decision": "clockwise",
+  "answer": "clockwise"
+ },
+ "study_title": "Trace Island Winding",
+ "site_id": "profile-conditioned-trace-island-winding-12c9c56591"
+}

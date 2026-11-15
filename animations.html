@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Animated forward and inverse programs for 20 PixelProof question worlds: the scene and forward answer, every drawing call, the values the inverse program computed from the pixels, and the final agreement check."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="Watch the inverse program read the answer from the pixels · PixelProof" />
+    <meta
+      property="og:description"
+      content="Watch 20 generated question worlds draw their image call by call, then read the answer back from pixels alone."
+    />
+    <meta property="og:type" content="website" />
+    <title>Watch the inverse program read the answer from the pixels · PixelProof</title>
+    <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="static/css/bulma.min.css?v=58b286592209" />
+    <link rel="stylesheet" href="static/css/nerfies.css?v=747bae5899d9" />
+    <link rel="stylesheet" href="static/css/site.css?v=87700d14492b" />
+    <link rel="stylesheet" href="static/css/gallery.css?v=b1752d721dd0" />
+    <link rel="stylesheet" href="static/css/paper.css?v=57286315c86b" />
+    <link rel="stylesheet" href="static/css/design.css?v=36d25e5bc946" />
+    <link rel="stylesheet" href="static/css/editorial.css?v=63efdf3c0bf3" />
+    <link rel="stylesheet" href="static/css/pp-anim.css?v=96b4fc9a292e" />
+    <link rel="stylesheet" href="static/css/animations.css?v=5904922203d3" />
+    <script src="static/js/pp-anim.js?v=9deeb3fc4ca9" defer></script>
+    <script src="static/js/animations.js?v=c368e00c88af" defer></script>
+  <link rel="stylesheet" href="static/css/navigation.css?v=f50120de8292"><link rel="stylesheet" href="static/css/reading.css?v=c8d4e1ae07b4"><meta property="og:url" content="https://projectpixelproof.github.io/animations.html" />
+<link rel="canonical" href="https://projectpixelproof.github.io/animations.html" />
+</head>
+  <body class="reading-page animations-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="site-nav" aria-label="Main navigation"><a class="wordmark" href="index.html" aria-label="PixelProof home">PixelProof</a><div class="nav-links"><a href="index.html">Overview</a><a href="questions.html">Questions</a><a href="programs.html">Programs</a><a href="animations.html" aria-current="page">Animations</a><a href="steering.html">Spatial patterns</a><a href="results.html">Results</a><a href="index.html#updates">After submission</a></div></nav>
+    <main id="main">
+      <header class="reading-page-intro">
+        <div class="container site-width">
+          <a href="programs.html">← Programs and verification</a>
+          <h1>Watch the inverse program read the answer from the pixels</h1>
+          <p>
+            Every PixelProof world pairs two programs that never share code. The <strong>forward program</strong> reads
+            the answer from the scene specification. The renderer turns that specification into pixels, one drawing call
+            at a time. The <strong>inverse program</strong> sees only the finished image and recovers the answer. These
+            animations replay all three, as recorded while each world’s own code ran, for 20 of the 100 worlds in the
+            image-replacement test.
+          </p>
+          <nav class="page-contents" aria-label="On this page">
+            <a href="#viewer">Animation</a><a href="#browse">Search and filter</a><a href="#about">How the animations were made</a>
+          </nav>
+        </div>
+      </header>
+
+      <section class="anim-section" aria-labelledby="viewer-heading">
+        <div class="container site-width">
+
+          <div class="anim-rail-wrap">
+            <p class="anim-rail-title"><span id="anim-rail-count">20 worlds</span> <span>select one to play its animation</span></p>
+            <ol class="anim-rail" id="anim-rail" aria-label="Choose a world"></ol>
+          </div>
+          <div class="anim-viewer" id="viewer" tabindex="-1">
+            <h2 class="visually-hidden" id="viewer-heading">Animation</h2>
+            <div class="anim-toolbar">
+              <a class="anim-back" href="#browse">↓ Search and filter the worlds</a>
+              <p class="anim-position" id="viewer-position" aria-live="polite"></p>
+              <div class="anim-prevnext">
+                <button type="button" id="prev-world" aria-label="Previous world">← Previous</button>
+                <button type="button" id="next-world" aria-label="Next world">Next →</button>
+              </div>
+            </div>
+            <div class="ppa" id="player" data-manual><div class="ppa-loading">Loading animation…</div></div>
+            <div class="anim-strip" id="strip" aria-label="Jump to a step"></div>
+            <p class="anim-links" id="world-links"></p>
+          </div>
+
+          <ul class="anim-legend" aria-label="The four parts of each animation">
+            <li style="--c: var(--scene)"><b>1 · Scene and forward</b>The sampled scene and the forward program’s answer, before any pixel exists.</li>
+            <li style="--c: var(--scene)"><b>2 · Renderer</b>Each recorded drawing call, the statement that made it, and the pixels it changed.</li>
+            <li style="--c: var(--pixels)"><b>3 · Inverse program</b>Masks, regions, and points the inverse program computed from the image.</li>
+            <li style="--c: var(--positive)"><b>4 · Self-check</b>The two answers must agree before the world is accepted.</li>
+          </ul>
+          <noscript><p class="anim-note">The animations need JavaScript. The recorded data for every world is in <a href="data/animations.json">data/animations.json</a>.</p></noscript>
+        </div>
+      </section>
+
+      <section class="anim-section anim-browse" id="browse" aria-labelledby="browse-heading">
+        <div class="container site-width">
+          <h2 id="browse-heading">Browse the 20 worlds</h2>
+          <p class="anim-lede">
+            Four worlds from each of the five coding-agent configurations, covering all nine discovery profiles. Choose a
+            world to play its animation above.
+          </p>
+          <div class="filter-bar anim-filters">
+            <label class="search-field"><span>Search</span><input id="anim-search" type="search" placeholder="Try “maze”, “count”, or “mirror”…" autocomplete="off" /></label>
+            <label hidden><span>Collection</span><select id="anim-collection">
+              <option value="">All worlds</option>
+            </select></label>
+            <label><span>Discovery profile</span><select id="anim-profile"><option value="">All profiles</option></select></label>
+            <label><span>Coding agent</span><select id="anim-agent"><option value="">All coding agents</option></select></label>
+          </div>
+          <div class="explorer-status anim-status">
+            <p id="anim-count" role="status" aria-live="polite"></p>
+            <button class="text-button" id="anim-reset" type="button">Reset filters</button>
+          </div>
+          <ol class="anim-grid" id="anim-grid"></ol>
+          <p class="anim-empty" id="anim-empty" hidden>No worlds match these filters.</p>
+          <nav class="anim-pages" id="anim-pages" aria-label="Pages"></nav>
+        </div>
+      </section>
+
+      <section class="anim-section anim-about" id="about" aria-labelledby="about-heading">
+        <div class="container site-width">
+          <h2 id="about-heading">How the animations were made</h2>
+          <div class="anim-about-grid">
+            <div>
+              <h3>Worlds and scenes</h3>
+              <p>
+                Twenty of the 100 replay-verified, profile-steered worlds of the image-replacement test: four from each
+                coding-agent configuration, covering all nine discovery profiles. Each world’s own code ran offline on one exported
+                scene. The final image is pixel-identical to the dataset image of that scene, and the question is shown
+                verbatim.
+              </p>
+              <h3>Renderer</h3>
+              <p>
+                Drawing calls were recorded by wrapping the image library’s drawing functions. Each step shows the
+                statement that made the call and a box around the pixels it changed. When a renderer makes more than 60
+                calls, evenly spaced snapshots are shown and the counter says so. Renderers that draw at a higher
+                resolution are shown downscaled until the final frame.
+              </p>
+            </div>
+            <div>
+              <h3>Inverse program</h3>
+              <p>
+                Inverse values are the return values and local arrays of the inverse program’s functions on that run.
+                Only the first call of each function is recorded, so a step may say which call is shown, such as “red
+                shown”. Overlay colors and labels are added for display; long recorded lists are shortened with “…”.
+              </p>
+              <h3>Checks</h3>
+              <p>
+                Captions were drafted from the source code with help from coding agents, and every animation is checked
+                mechanically: forward, inverse, and recorded answers agree; each quoted code line occurs verbatim in the
+                program; each quoted value equals the recorded value; and point overlays land on drawn pixels. Some steps
+                add a drawing computed from recorded values, such as a fitted circle; each must reproduce a recorded
+                result before it is shown.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container reading-width has-text-centered">
+        <p><strong>PixelProof</strong> · Visual Question Generation through Forward–Inverse Agreement</p>
+        <p>Use space to play or pause and the arrow keys to step, after selecting an animation. Drag along the timeline to scrub.</p>
+        <p><a href="THIRD_PARTY_NOTICES.md">Credits &amp; asset notices</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

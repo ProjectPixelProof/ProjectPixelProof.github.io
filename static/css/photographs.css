@@ -1,0 +1,25 @@
+/* Photographs page: rendering and photograph pairs. */
+.photographs-page .photo-section { padding: 36px 24px 8px; }
+.photographs-page .photo-section:last-of-type { padding-bottom: 56px; }
+.photographs-page .photo-section h2 { margin: 0 0 10px; }
+.photo-lede { max-width: 80ch; margin: 0 0 22px; font-size: 16.5px; line-height: 1.7; color: var(--reading-muted, #4c5967); }
+.reading-page-intro .photo-note { margin-top: 14px; padding: 12px 16px; border-left: 3px solid #b65b25; background: #fff; font-size: 15.5px; }
+.photo-world { margin: 0 0 34px; padding: 22px 22px 24px; background: #fff; border: 1px solid #d9e0e7; border-radius: 10px; }
+.photo-world h3 { margin: 0 0 6px; font-size: 13px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: #5c6b7c; }
+.photo-question { margin: 0 0 10px; font-size: 20px; line-height: 1.45; font-weight: 600; color: #1d2733; max-width: 70ch; }
+.photo-options { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.photo-options span { padding: 3px 12px; border: 1px solid #c9d2dc; border-radius: 999px; font-size: 14px; color: #33414f; background: #f5f7f9; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 20px; }
+.photo-pair { margin: 0; }
+.photo-images { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.photo-images a { position: relative; display: block; border-radius: 6px; overflow: hidden; border: 1px solid #d9e0e7; background: #eef1f4; }
+.photo-images img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.photo-images span { position: absolute; left: 6px; top: 6px; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.03em; color: #fff; background: rgba(29, 39, 51, 0.78); }
+.photo-pair figcaption { margin-top: 7px; font-size: 14px; line-height: 1.5; color: #4c5967; }
+.photo-pair figcaption b { color: #12704b; }
+@media (max-width: 760px) {
+  .photographs-page .photo-section { padding: 26px 16px 4px; }
+  .photo-world { padding: 16px 14px 18px; }
+  .photo-question { font-size: 18px; }
+  .photo-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,500 @@
+{
+ "schemaVersion": 1,
+ "worldCount": 20,
+ "showcase": [
+  "019",
+  "083",
+  "073",
+  "044",
+  "000",
+  "097",
+  "034",
+  "074",
+  "002",
+  "081",
+  "059",
+  "092",
+  "050",
+  "023",
+  "036",
+  "029",
+  "076",
+  "068",
+  "055",
+  "017"
+ ],
+ "worlds": [
+  {
+   "key": "000",
+   "id": "profile-conditioned-marker-region-partition-772a8c5d91",
+   "title": "Marker region partition",
+   "headline": "How many regions hold the dots?",
+   "profile": "topology",
+   "profileLabel": "Topology",
+   "generator": "Sol (max)",
+   "question": "The four colored dots lie inside a black-walled box. Two dots occupy the same region only when a path through white space connects them without crossing a black wall; corner-only contact does not connect. Do the dots occupy exactly two regions? Answer yes or no.",
+   "answer": "no",
+   "calls": 17,
+   "steps": [
+    "Keep the wall pixels (half resolution)",
+    "Keep the coloured dots",
+    "Flood-fill white space from each dot"
+   ],
+   "final": "",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "key": "017",
+   "id": "profile-conditioned-pie-sector-fraction-7461cca9d4",
+   "title": "Pie sector fraction",
+   "headline": "Find the largest slice",
+   "profile": "measurement",
+   "profileLabel": "Measurement",
+   "generator": "DS-V4-Flash",
+   "question": "A filled circle (a pie chart) is cut into three colored sectors: red, blue, and green, which together cover the whole disk. Which colored sector has the largest central angle, meaning it is the biggest slice (covers the largest fraction of the pie)? Answer with only the color: red, blue, or green.",
+   "answer": "blue",
+   "calls": 4,
+   "steps": [
+    "Give every pixel its nearest palette colour"
+   ],
+   "final": "The colour with the most pixels is the biggest slice",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    480,
+    340
+   ]
+  },
+  {
+   "key": "019",
+   "id": "profile-conditioned-prior-piano-keys-7f976f0c1a",
+   "title": "Prior piano keys",
+   "headline": "Count the white keys",
+   "profile": "prior-conflict",
+   "profileLabel": "Prior conflict",
+   "generator": "DS-V4-Flash",
+   "question": "This is a piano keyboard. A conventional piano octave has seven white keys, but report exactly what is drawn here. How many white keys are shown? Count only the visible white keys and answer with a single number.",
+   "answer": "6",
+   "calls": 7,
+   "steps": [
+    "Keep the near-white pixels",
+    "Scan the middle row and count white runs"
+   ],
+   "final": "Six separate white runs on the middle row",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    384,
+    384
+   ]
+  },
+  {
+   "key": "023",
+   "id": "profile-conditioned-radial-spoke-count-b24d7dc882",
+   "title": "Radial spoke count",
+   "headline": "Count the spokes",
+   "profile": "reveal-global-structure",
+   "profileLabel": "Reveal global structure",
+   "generator": "DS-V4-Flash",
+   "question": "A set of small dark dots is drawn on a white canvas. The dots are laid out on straight radial spokes that all emanate from one shared center, so together they trace a star-burst of spokes: dots along the same spoke are very close in direction, while consecutive spokes are separated by a much larger empty angular gap. How many radial spokes do the dots trace around the shared center? Choose 3, 4, 5, or 6.",
+   "answer": "6",
+   "calls": 18,
+   "steps": [
+    "Keep the dark dot pixels",
+    "Flood-fill each blob and take its centroid",
+    "Measure each centroid's angle around their mean"
+   ],
+   "final": "Large angular gaps separate six spokes",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "key": "029",
+   "id": "profile-conditioned-path-fold-count-e2f834fd71",
+   "title": "Path fold count",
+   "headline": "Count the folds",
+   "profile": "tracing",
+   "profileLabel": "Tracing",
+   "generator": "DS-V4-Flash",
+   "question": "A single winding blue path is drawn. It doubles back on itself several times, making sharp U-turn folds where the stroke reverses direction. How many U-turn folds does the blue path make? Answer 3, 4, or 5.",
+   "answer": "3",
+   "calls": 7,
+   "steps": [
+    "Keep the blue path pixels",
+    "Mark rows dense with blue: the horizontal lanes"
+   ],
+   "final": "Each fold joins two lanes, so folds = lanes − 1",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    480,
+    480
+   ]
+  },
+  {
+   "key": "034",
+   "id": "profile-conditioned-pacman-facing-direction-71cea89b94",
+   "title": "Pacman facing direction",
+   "headline": "Which way does the mouth open?",
+   "profile": "prior-conflict",
+   "profileLabel": "Prior conflict",
+   "generator": "Luna",
+   "question": "Which direction is the Pac-Man-shaped character facing? Use the direction in which its wedge-shaped mouth opens; answer left, right, up, or down.",
+   "answer": "down",
+   "calls": 6,
+   "steps": [
+    "Keep strongly coloured pixels",
+    "Keep the largest connected region: the body",
+    "Extract the body outline",
+    "Fit a circle for each facing; 'down' fits the outline best"
+   ],
+   "final": "",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "key": "036",
+   "id": "profile-conditioned-directional-sweep-reveal-509d6d334e",
+   "title": "Directional sweep reveal",
+   "headline": "Apply the stated filter, read the symbol",
+   "profile": "reveal-declared-transform",
+   "profileLabel": "Reveal declared transform",
+   "generator": "Luna",
+   "question": "Find the grayscale square bounded by four colored corner marks. Replace each pixel by the mean of the 25 samples in its horizontal row at offsets -12 through +12, using edge replication at the square boundary; ignore the marks and outer edge. Which broad symbol appears: arch, diamond, fork, or ring?",
+   "answer": "arch",
+   "calls": 5,
+   "steps": [
+    "Find the four corner marks",
+    "Crop the square between them",
+    "Apply the question's 25-sample horizontal mean",
+    "Compare with each symbol template (arch shown)"
+   ],
+   "final": "",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    420,
+    320
+   ]
+  },
+  {
+   "key": "044",
+   "id": "profile-conditioned-trace-island-winding-12c9c56591",
+   "title": "Trace island winding",
+   "headline": "Clockwise or counterclockwise?",
+   "profile": "tracing",
+   "profileLabel": "Tracing",
+   "generator": "Luna",
+   "question": "Starting at the green port, follow the dark path around the gray island to the red terminal. Does it wind clockwise or counterclockwise around the island? Answer clockwise or counterclockwise.",
+   "answer": "clockwise",
+   "calls": 23,
+   "steps": [
+    "Find the gray island",
+    "Keep the dark path pixels",
+    "Walk the path from the green port to the red terminal"
+   ],
+   "final": "Sum the signed turning angle around the island centre",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    560,
+    440
+   ]
+  },
+  {
+   "key": "050",
+   "id": "profile-conditioned-compass-needle-heading-08b295df8d",
+   "title": "Compass needle heading",
+   "headline": "Where does the solid triangle point?",
+   "profile": "prior-conflict",
+   "profileLabel": "Prior conflict",
+   "generator": "Opus 5",
+   "question": "This image shows a compass dial. The rim circle, the four long tick marks, the four short diagonal marks and the letter N are fixed decoration: they are drawn in exactly the same place in every image of this set, so they never indicate the answer. The needle is the two-triangle arrow through the centre of the dial. Exactly one of its two triangles is filled with a solid colour; the mirror-image triangle on the other side is only a grey outline. Report the direction that the SOLID coloured triangle points, using the image itself and not what a compass normally does. If it points between two of the four long ticks, round to the nearer one; the four short diagonal marks show the exact halfway lines. Answer with exactly one word: up, right, down, or left.",
+   "answer": "down",
+   "calls": 17,
+   "steps": [
+    "Keep the coloured pixels",
+    "Keep the largest connected region: the solid triangle",
+    "Centroid to apex gives the bearing"
+   ],
+   "final": "Round the bearing to the nearest of up, right, down, left",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    448,
+    448
+   ]
+  },
+  {
+   "key": "055",
+   "id": "profile-conditioned-state-machine-tape-run-b37bf168c6",
+   "title": "State machine tape run",
+   "headline": "Run the tape through the table",
+   "profile": "state-tracking",
+   "profileLabel": "State tracking",
+   "generator": "Opus 5",
+   "question": "The picture shows a transition table, a marker and a tape. Down the left of the table are four coloured circles: these are the four states, one per table row, and no two of them share a colour. Along the top of the table are three coloured squares: these are the three input symbols, one per table column, and no two of them share a colour. Every cell of the table holds a square painted in one of the four state colours: that cell says which state you move to if you are currently in the state of that cell's row and you read the symbol of that cell's column. A cell painted in its own row's colour means you stay where you are. To the left of the circles is a black ring: the marker starts in the state whose circle centre is nearest to the centre of that black ring. Below the table is a tape of coloured squares, each painted in one of the three symbol colours. The tape is read one square at a time from left to right, in the direction of the arrow drawn beneath it, and each square is one step: look up the row of the state you are currently in and the column whose header square has that tape square's colour, and move to the state named by that cell. Nothing about the run is drawn: the path of the marker and the state it ends in appear nowhere in the picture. After every tape square has been read in order, which state is the marker in? Answer with the colour of that state: red, blue, green or orange.",
+   "answer": "blue",
+   "calls": 28,
+   "steps": [
+    "Assign each pixel to its nearest reference colour",
+    "One colour at a time (red shown): its state disc and table cells"
+   ],
+   "final": "Rebuild the table from cell positions, then replay the tape",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    780,
+    560
+   ]
+  },
+  {
+   "key": "059",
+   "id": "profile-conditioned-oneway-reachable-tank-a30543ab55",
+   "title": "Oneway reachable tank",
+   "headline": "Follow the one-way lanes",
+   "profile": "tracing",
+   "profileLabel": "Tracing",
+   "generator": "Opus 5",
+   "question": "This picture shows a one-way lane network. Every disc is a junction and every straight gray bar is a lane joining the two junctions at its ends. Each lane carries exactly one black arrowhead at its middle, and that arrowhead points along the only direction in which that lane may be travelled. You start at the green junction. You may move only along lanes, and on each lane only the way its arrowhead points; you may pass through any number of junctions on the way and you may never move against an arrowhead. Three junctions are colored tanks: one blue, one orange and one purple; all other junctions are gray. Lanes join all of these junctions when the arrowheads are ignored, so how near a tank sits to the green junction on the page, how many lanes touch it, and where it lies do not matter; only travel that follows the arrowheads counts. Exactly one of the three tanks can be reached from the green junction under this rule. Which colored tank can be reached from the green junction? Answer blue, orange, or purple.",
+   "answer": "blue",
+   "calls": 38,
+   "steps": [
+    "Find junction discs by their exact colour (gray shown)",
+    "Keep lane and arrowhead pixels"
+   ],
+   "final": "Orient each lane by its arrowhead, then search from the green junction",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    640,
+    490
+   ]
+  },
+  {
+   "key": "068",
+   "id": "profile-conditioned-rook-permutation-search-32b22225c9",
+   "title": "Rook permutation search",
+   "headline": "One dot per row and column",
+   "profile": "search",
+   "profileLabel": "Search",
+   "generator": "Sol (high)",
+   "question": "Which labeled board has exactly one blue dot in every row and exactly one blue dot in every column? Answer A, B, C, or D.",
+   "answer": "A",
+   "calls": 52,
+   "steps": [
+    "Keep the blue dot pixels",
+    "Split the 12 dots into four boards at the median gaps"
+   ],
+   "final": "Count distinct columns + rows per board; only A reaches 6",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    720,
+    560
+   ]
+  },
+  {
+   "key": "073",
+   "id": "profile-conditioned-chamber-graph-center-c9d219e3f0",
+   "title": "Chamber graph center",
+   "headline": "Find the most central chamber",
+   "profile": "topology",
+   "profileLabel": "Topology",
+   "generator": "Sol (high)",
+   "question": "Black lines are walls, and connected white areas are chambers. Two chambers are neighbors only when they share a black wall segment; touching at a corner does not count. For counting distance, one step crosses one shared wall into a neighboring chamber. Which colored dot is in the chamber whose farthest chamber is the fewest steps away? Answer orange, green, or purple.",
+   "answer": "purple",
+   "calls": 26,
+   "steps": [
+    "Keep the black walls (quarter resolution)",
+    "Label each connected white chamber"
+   ],
+   "final": "Link chambers that share a wall; compare each dot's farthest-chamber distance",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "key": "076",
+   "id": "profile-conditioned-network-station-correspondence-214b1a3c55",
+   "title": "Network station correspondence",
+   "headline": "Match stations by their connections",
+   "profile": "correspondence",
+   "profileLabel": "Correspondence",
+   "generator": "Sol (max)",
+   "question": "Both panels show the same seven-station network, but the station positions are rearranged. What fill color in the right panel belongs to the magenta-centered station in the left panel? Match stations using all connections. Answer red, green, or blue.",
+   "answer": "blue",
+   "calls": 45,
+   "steps": [
+    "Keep the neutral (left-panel) station fills",
+    "Keep the dark link pixels"
+   ],
+   "final": "Recover both graphs, find the one station mapping that preserves every link",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    900,
+    500
+   ]
+  },
+  {
+   "key": "081",
+   "id": "profile-conditioned-plus-stencil-erosion-symbol-e7765a9502",
+   "title": "Plus stencil erosion symbol",
+   "headline": "Apply the stencil, read the symbol",
+   "profile": "reveal-declared-transform",
+   "profileLabel": "Reveal declared transform",
+   "generator": "Sol (max)",
+   "question": "The gold key is a 3-by-3 plus stencil. Center it on every interior cell of the 13-by-13 framed mosaic, making an 11-by-11 result. Mark a result cell dark only when all five gold stencil positions cover dark mosaic tiles. Preserve row and column order. Which way is the dark frame open: up, right, down, or left?",
+   "answer": "down",
+   "calls": 217,
+   "steps": [
+    "Find the cyan mosaic frame",
+    "Read the 13 × 13 tiles",
+    "Apply the stated plus-stencil rule"
+   ],
+   "final": "Compare with the four rotated templates",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    760,
+    650
+   ]
+  },
+  {
+   "key": "083",
+   "id": "profile-negative-space-gate-maze",
+   "title": "Follow the negative space",
+   "headline": "Which gates share a corridor?",
+   "profile": "reveal-global-structure",
+   "profileLabel": "Reveal global structure",
+   "generator": "Sol (max)",
+   "question": "Which two colored gates are connected by one continuous white path through the charcoal maze? Paths may bend; corner-only touching does not connect. Answer as color-color, for example red-blue.",
+   "answer": "red-green",
+   "calls": 588,
+   "steps": [
+    "Keep white corridor pixels plus the gates",
+    "Label connected corridors"
+   ],
+   "final": "",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "key": "092",
+   "id": "profile-conditioned-bipartite-network-selection-cd4807270c",
+   "title": "Bipartite network selection",
+   "headline": "Which network is bipartite?",
+   "profile": "topology",
+   "profileLabel": "Topology",
+   "generator": "Luna",
+   "question": "Which colored network is bipartite: red, blue, or green? Each network has six colored nodes and eight gray links. Bipartite means its nodes can be divided into two groups so every link joins different groups; ignore the white canvas.",
+   "answer": "blue",
+   "calls": 42,
+   "steps": [
+    "Keep the gray link pixels",
+    "Find the node centres of one colour (red first)"
+   ],
+   "final": "For each network: recover its eight links, then try to 2-colour it",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    840,
+    360
+   ]
+  },
+  {
+   "key": "002",
+   "id": "profile-conditioned-pipe-fewer-corners-33311d3ecc",
+   "title": "Pipe fewer corners",
+   "headline": "Which pipe turns fewer times?",
+   "profile": "tracing",
+   "profileLabel": "Tracing",
+   "generator": "Opus 5",
+   "question": "This picture contains exactly two gray pipes. The two pipes never touch each other, and no pipe ever touches or crosses itself. Each pipe runs from one end sitting inside a black ring to its other end, which is covered by a colored square: one pipe ends at the orange square and the other pipe ends at the purple square. Every pipe is built only from horizontal and vertical straight sections, so every bend in a pipe is a right-angle turn. Follow each pipe from its black ring to its colored square and count the right-angle turns you pass along that pipe. How long the pipes are, how much of the picture they cover, and where they sit do not matter; only the number of right-angle turns counts. Which colored square is at the end of the pipe with fewer right-angle turns? Answer orange or purple.",
+   "answer": "purple",
+   "calls": 36,
+   "steps": [
+    "Keep the mid-gray, unsaturated pipe pixels",
+    "Keep the saturated pixels: the two end squares",
+    "Count each pipe's long straight runs, minus one"
+   ],
+   "final": "Name each pipe by its nearest square; the purple pipe turns fewer times",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    720,
+    720
+   ]
+  },
+  {
+   "key": "074",
+   "id": "profile-conditioned-crossover-continuity-terminal-5910e5ccea",
+   "title": "Crossover continuity terminal",
+   "headline": "Go straight through every crossover",
+   "profile": "tracing",
+   "profileLabel": "Tracing",
+   "generator": "Sol (high)",
+   "question": "Start at the green ring and follow the dark route. At each cyan crossover ring, leave by the spoke directly opposite the one you entered; do not turn onto a side spoke. Small gray dots are bends, not choices. Which colored square do you reach: orange, purple, or blue?",
+   "answer": "blue",
+   "calls": 27,
+   "steps": [
+    "Find markers by colour (green start ring shown)",
+    "Keep the dark route and its centre line",
+    "Link markers along the route; at crossovers take the 0° spoke"
+   ],
+   "final": "The walk stops at the first coloured square it reaches",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "key": "097",
+   "id": "profile-conditioned-border-flood-reveal-e2c34e6425",
+   "title": "Border flood reveal",
+   "headline": "Flood from the gate, read what remains",
+   "profile": "reveal-declared-transform",
+   "profileLabel": "Reveal declared transform",
+   "generator": "Sol (high)",
+   "question": "Starting at the magenta-gated black cell, erase every black grid cell reachable by side-sharing moves (up, down, left, or right; not diagonally). Which symbol remains: diamond, square, plus, or X?",
+   "answer": "X",
+   "calls": 242,
+   "steps": [
+    "Keep cyan pixels: the frame bounds the grid",
+    "Keep the exact gray of the grid lines",
+    "Magenta gate's nearest edge gives the start cell",
+    "Flood dark cells from the start; these are left over"
+   ],
+   "final": "Shift the leftover cells to the corner and compare with each template",
+   "showcase": true,
+   "holdBack": null,
+   "size": [
+    480,
+    480
+   ]
+  }
+ ]
+}

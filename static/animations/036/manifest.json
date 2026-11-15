@@ -1,0 +1,169 @@
+{
+ "key": "036",
+ "title": "Directional sweep reveal",
+ "headline": "Apply the stated filter, read the symbol",
+ "question": "Find the grayscale square bounded by four colored corner marks. Replace each pixel by the mean of the 25 samples in its horizontal row at offsets -12 through +12, using edge replication at the square boundary; ignore the marks and outer edge. Which broad symbol appears: arch, diamond, fork, or ring?",
+ "generator": "Luna",
+ "agent": "Codex",
+ "profile": "reveal-declared-transform",
+ "answer": "arch",
+ "image": {
+  "w": 420,
+  "h": 320,
+  "src": "final.webp",
+  "sha256": "216f4ba90502f2a4a0c2830136860f50a116d6186da2487199812b1efb1bfc69"
+ },
+ "scene": "{\n \"background\": 248,\n \"base_level\": 160,\n \"carrier_amplitude\": 82,\n \"marker_color\": [30, 142, 226],\n \"marker_size\": 11,\n \"phase_index\": 1,\n \"signal_strength\": 54,\n \"symbol\": \"arch\",\n \"tile_size\": 184,\n \"tile_x\": 177,\n \"tile_y\": 88\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    return str(scene[\"symbol\"])",
+  "decision": "arch",
+  "answer": "arch"
+ },
+ "render": {
+  "events": 5,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "output = Image.fromarray(image, mode=\"RGB\")",
+    "line": 116,
+    "kind": "Image.fromarray",
+    "event": 1,
+    "box": [
+     0.4142857142857143,
+     0.265625,
+     0.8666666666666667,
+     0.859375
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "draw.rectangle((cx - half, cy - half, cx + half, cy + half), fill=color)",
+    "line": 127,
+    "kind": "draw.rectangle",
+    "event": 2,
+    "box": [
+     0.37857142857142856,
+     0.21875,
+     0.41904761904761906,
+     0.271875
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "draw.rectangle((cx - half, cy - half, cx + half, cy + half), fill=color)",
+    "line": 127,
+    "kind": "draw.rectangle",
+    "event": 3,
+    "box": [
+     0.861904761904762,
+     0.21875,
+     0.9023809523809524,
+     0.271875
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "draw.rectangle((cx - half, cy - half, cx + half, cy + half), fill=color)",
+    "line": 127,
+    "kind": "draw.rectangle",
+    "event": 4,
+    "box": [
+     0.37857142857142856,
+     0.853125,
+     0.41904761904761906,
+     0.90625
+    ]
+   },
+   {
+    "src": "r004.webp",
+    "code": "draw.rectangle((cx - half, cy - half, cx + half, cy + half), fill=color)",
+    "line": 127,
+    "kind": "draw.rectangle",
+    "event": 5,
+    "box": [
+     0.861904761904762,
+     0.853125,
+     0.9023809523809524,
+     0.90625
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Find the four corner marks",
+    "fn": "_marker_centers",
+    "value_of": "_marker_centers",
+    "src": "return",
+    "code": "centers.append((float(values[:, 1].mean()), float(values[:, 0].mean())))",
+    "style": "rings",
+    "marks": [],
+    "note": "4 points",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Crop the square between them",
+    "fn": "_crop_square",
+    "value_of": "_crop_square",
+    "src": "return",
+    "code": "return arr[y0:y1, x0:x1, 0].astype(np.float32)",
+    "style": "grid",
+    "marks": [],
+    "note": "184 × 184 array returned by _crop_square",
+    "grid": "b1.webp",
+    "grid_size": [
+     184,
+     184
+    ]
+   },
+   {
+    "title": "Apply the question's 25-sample horizontal mean",
+    "fn": "_horizontal_sweep",
+    "value_of": "_horizontal_sweep",
+    "src": "return",
+    "code": "swept[row] = np.convolve(padded[row], kernel, mode=\"valid\")",
+    "style": "grid",
+    "marks": [],
+    "note": "184 × 184 array returned by _horizontal_sweep",
+    "grid": "b2.webp",
+    "grid_size": [
+     184,
+     184
+    ]
+   },
+   {
+    "title": "Compare with each symbol template (arch shown)",
+    "fn": "_symbol_mask",
+    "value_of": "_symbol_mask",
+    "src": "return",
+    "code": "scores[symbol] = _score(observed, template)",
+    "style": "grid",
+    "marks": [],
+    "note": "184 × 184 array returned by _symbol_mask",
+    "grid": "b3.webp",
+    "grid_size": [
+     737,
+     737
+    ]
+   }
+  ],
+  "final": {
+   "code": "return max(scores, key=scores.get)",
+   "fn": "decision_from_image",
+   "text": "",
+   "values": [
+    {
+     "label": "scores",
+     "value": "{'arch': -45.25, 'diamond': -187.4, 'fork': -204.4, 'ring': -135.5}"
+    }
+   ]
+  },
+  "decision": "arch",
+  "answer": "arch"
+ },
+ "study_title": "Directional Sweep Reveal",
+ "site_id": "profile-conditioned-directional-sweep-reveal-509d6d334e"
+}

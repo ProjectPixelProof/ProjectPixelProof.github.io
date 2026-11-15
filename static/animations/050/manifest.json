@@ -1,0 +1,313 @@
+{
+ "key": "050",
+ "title": "Compass needle heading",
+ "headline": "Where does the solid triangle point?",
+ "question": "This image shows a compass dial. The rim circle, the four long tick marks, the four short diagonal marks and the letter N are fixed decoration: they are drawn in exactly the same place in every image of this set, so they never indicate the answer. The needle is the two-triangle arrow through the centre of the dial. Exactly one of its two triangles is filled with a solid colour; the mirror-image triangle on the other side is only a grey outline. Report the direction that the SOLID coloured triangle points, using the image itself and not what a compass normally does. If it points between two of the four long ticks, round to the nearer one; the four short diagonal marks show the exact halfway lines. Answer with exactly one word: up, right, down, or left.",
+ "generator": "Opus 5",
+ "agent": "Claude Code",
+ "profile": "prior-conflict",
+ "answer": "down",
+ "image": {
+  "w": 448,
+  "h": 448,
+  "src": "final.webp",
+  "sha256": "cefeee0a25e429c06c30ae06320f2ada2335f436f61c86d70c962bcea5309722"
+ },
+ "scene": "{\n \"heading_deg\": 214.11,\n \"height\": 448,\n \"needle_color\": [28, 62, 198],\n \"pip_angles\": [41.68, 186.02, 249.74],\n \"width\": 448\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    \"\"\"The direction the solid triangle points, rounded to the nearest cardinal.\"\"\"\n    return _nearest_cardinal(float(scene[\"heading_deg\"]))[0]",
+  "decision": "down",
+  "answer": "down"
+ },
+ "render": {
+  "events": 17,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "d.ellipse([cx - rim, cy - rim, cx + rim, cy + rim], outline=FRAME_GRAY, width=4 * ss)",
+    "line": 216,
+    "kind": "draw.ellipse",
+    "event": 1,
+    "box": [
+     0.10267857142857142,
+     0.10267857142857142,
+     0.8973214285714286,
+     0.8973214285714286
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "d.line([(cx + ux * r0, cy + uy * r0), (cx + ux * r1, cy + uy * r1)], fill=FRAME_GRAY, width=int(wid))",
+    "line": 227,
+    "kind": "draw.line",
+    "event": 2,
+    "box": [
+     0.48660714285714285,
+     0.12053571428571429,
+     0.5133928571428571,
+     0.20089285714285715
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "d.line([(cx + ux * r0, cy + uy * r0), (cx + ux * r1, cy + uy * r1)], fill=FRAME_GRAY, width=int(wid))",
+    "line": 227,
+    "kind": "draw.line",
+    "event": 3,
+    "box": [
+     0.7321428571428571,
+     0.22767857142857142,
+     0.7723214285714286,
+     0.26785714285714285
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "d.line([(cx + ux * r0, cy + uy * r0), (cx + ux * r1, cy + uy * r1)], fill=FRAME_GRAY, width=int(wid))",
+    "line": 227,
+    "kind": "draw.line",
+    "event": 4,
+    "box": [
+     0.7991071428571429,
+     0.48660714285714285,
+     0.8794642857142857,
+     0.5133928571428571
+    ]
+   },
+   {
+    "src": "r004.webp",
+    "code": "d.line([(cx + ux * r0, cy + uy * r0), (cx + ux * r1, cy + uy * r1)], fill=FRAME_GRAY, width=int(wid))",
+    "line": 227,
+    "kind": "draw.line",
+    "event": 5,
+    "box": [
+     0.7321428571428571,
+     0.7321428571428571,
+     0.7723214285714286,
+     0.7723214285714286
+    ]
+   },
+   {
+    "src": "r005.webp",
+    "code": "d.line([(cx + ux * r0, cy + uy * r0), (cx + ux * r1, cy + uy * r1)], fill=FRAME_GRAY, width=int(wid))",
+    "line": 227,
+    "kind": "draw.line",
+    "event": 6,
+    "box": [
+     0.48660714285714285,
+     0.7991071428571429,
+     0.5133928571428571,
+     0.8794642857142857
+    ]
+   },
+   {
+    "src": "r006.webp",
+    "code": "d.line([(cx + ux * r0, cy + uy * r0), (cx + ux * r1, cy + uy * r1)], fill=FRAME_GRAY, width=int(wid))",
+    "line": 227,
+    "kind": "draw.line",
+    "event": 7,
+    "box": [
+     0.22767857142857142,
+     0.7321428571428571,
+     0.26785714285714285,
+     0.7723214285714286
+    ]
+   },
+   {
+    "src": "r007.webp",
+    "code": "d.line([(cx + ux * r0, cy + uy * r0), (cx + ux * r1, cy + uy * r1)], fill=FRAME_GRAY, width=int(wid))",
+    "line": 227,
+    "kind": "draw.line",
+    "event": 8,
+    "box": [
+     0.12053571428571429,
+     0.48660714285714285,
+     0.20089285714285715,
+     0.5133928571428571
+    ]
+   },
+   {
+    "src": "r008.webp",
+    "code": "d.line([(cx + ux * r0, cy + uy * r0), (cx + ux * r1, cy + uy * r1)], fill=FRAME_GRAY, width=int(wid))",
+    "line": 227,
+    "kind": "draw.line",
+    "event": 9,
+    "box": [
+     0.22767857142857142,
+     0.22767857142857142,
+     0.26785714285714285,
+     0.26785714285714285
+    ]
+   },
+   {
+    "src": "r009.webp",
+    "code": "d.line([(nx - hw, ny + hh), (nx - hw, ny - hh)], fill=FRAME_GRAY, width=4 * ss)",
+    "line": 233,
+    "kind": "draw.line",
+    "event": 10,
+    "box": [
+     0.4575892857142857,
+     0.19419642857142858,
+     0.484375,
+     0.28794642857142855
+    ]
+   },
+   {
+    "src": "r010.webp",
+    "code": "d.line([(nx - hw, ny - hh), (nx + hw, ny + hh)], fill=FRAME_GRAY, width=4 * ss)",
+    "line": 234,
+    "kind": "draw.line",
+    "event": 11,
+    "box": [
+     0.4642857142857143,
+     0.19419642857142858,
+     0.5401785714285714,
+     0.29017857142857145
+    ]
+   },
+   {
+    "src": "r011.webp",
+    "code": "d.line([(nx + hw, ny + hh), (nx + hw, ny - hh)], fill=FRAME_GRAY, width=4 * ss)",
+    "line": 235,
+    "kind": "draw.line",
+    "event": 12,
+    "box": [
+     0.515625,
+     0.19419642857142858,
+     0.5424107142857143,
+     0.28794642857142855
+    ]
+   },
+   {
+    "src": "r012.webp",
+    "code": "d.ellipse([cx + ux * r - pr, cy + uy * r - pr, cx + ux * r + pr, cy + uy * r + pr], fill=PIP_GRAY)",
+    "line": 242,
+    "kind": "draw.ellipse",
+    "event": 13,
+    "box": [
+     0.6584821428571429,
+     0.28125,
+     0.6986607142857143,
+     0.31919642857142855
+    ]
+   },
+   {
+    "src": "r013.webp",
+    "code": "d.ellipse([cx + ux * r - pr, cy + uy * r - pr, cx + ux * r + pr, cy + uy * r + pr], fill=PIP_GRAY)",
+    "line": 242,
+    "kind": "draw.ellipse",
+    "event": 14,
+    "box": [
+     0.453125,
+     0.7477678571428571,
+     0.49107142857142855,
+     0.7857142857142857
+    ]
+   },
+   {
+    "src": "r014.webp",
+    "code": "d.ellipse([cx + ux * r - pr, cy + uy * r - pr, cx + ux * r + pr, cy + uy * r + pr], fill=PIP_GRAY)",
+    "line": 242,
+    "kind": "draw.ellipse",
+    "event": 15,
+    "box": [
+     0.22991071428571427,
+     0.5736607142857143,
+     0.26785714285714285,
+     0.6116071428571429
+    ]
+   },
+   {
+    "src": "r015.webp",
+    "code": "d.polygon(_tri(cx, cy, -ux, -uy, length, half), outline=FRAME_GRAY, width=4 * ss)",
+    "line": 252,
+    "kind": "draw.polygon",
+    "event": 16,
+    "box": [
+     0.45982142857142855,
+     0.23660714285714285,
+     0.6808035714285714,
+     0.5290178571428571
+    ]
+   },
+   {
+    "src": "r016.webp",
+    "code": "d.polygon(_tri(cx, cy, ux, uy, length, half), fill=tuple(scene[\"needle_color\"]))",
+    "line": 254,
+    "kind": "draw.polygon",
+    "event": 17,
+    "box": [
+     0.10714285714285714,
+     0.10714285714285714,
+     0.8928571428571429,
+     0.8928571428571429
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Keep the coloured pixels",
+    "fn": "_chromatic_mask",
+    "value_of": "_chromatic_mask",
+    "src": "return",
+    "code": "return ((hi - lo) >= SAT_MIN) & (hi >= MIN_VALUE)",
+    "style": "mask",
+    "marks": [],
+    "note": "2,441 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Keep the largest connected region: the solid triangle",
+    "fn": "_largest_component",
+    "value_of": "_largest_component",
+    "src": "return",
+    "code": "blob, total = _largest_component(mask)",
+    "style": "mask",
+    "marks": [],
+    "note": "2,441 pixels kept",
+    "overlay": "b1.webp"
+   },
+   {
+    "title": "Centroid to apex gives the bearing",
+    "fn": "measure",
+    "value_of": "measure",
+    "src": "report",
+    "code": "bearing = math.degrees(math.atan2(vec[0], -vec[1])) % 360.0",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.44174107142857144,
+      "y": 0.5370535714285715,
+      "text": "centroid"
+     },
+     {
+      "x": 0.34799107142857144,
+      "y": 0.7779017857142857,
+      "text": "apex"
+     }
+    ],
+    "note": "centroid (197.9, 262.6), apex (155.9, 324.5), bearing 214.2°",
+    "overlay": "b2.webp"
+   }
+  ],
+  "final": {
+   "code": "return measure(image).get(\"decision\", ABSTAIN)",
+   "fn": "decision_from_image",
+   "text": "Round the bearing to the nearest of up, right, down, left",
+   "values": [
+    {
+     "label": "bearing",
+     "value": "214.1"
+    }
+   ]
+  },
+  "decision": "down",
+  "answer": "down"
+ },
+ "study_title": "Compass Needle Heading",
+ "site_id": "profile-conditioned-compass-needle-heading-08b295df8d"
+}

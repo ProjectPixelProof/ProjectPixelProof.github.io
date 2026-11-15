@@ -1,0 +1,255 @@
+{
+ "key": "b06",
+ "title": "Spring extension",
+ "headline": "Which spring assembly stretches more?",
+ "question": "For equal added loads, which assembly extends farther? Assume identical linear springs and rigid crossbars.",
+ "generator": "",
+ "agent": "",
+ "profile": "mechanisms-connections",
+ "profile_label": "Mechanisms and connections",
+ "answer": "Right assembly",
+ "image": {
+  "w": 1024,
+  "h": 1024,
+  "src": "final.webp",
+  "sha256": "e8f1b699af840cc8506550e9a38fbb33bdd44121db2725bf3d3557e4f5d16b82"
+ },
+ "scene": "{\n \"assemblies\": [\n  {\n   \"x\": -1.66,\n   \"bars\": [\n    {\n     \"id\": 0,\n     \"z\": 4.65\n    },\n    {\n     \"id\": 1,\n     \"z\": 3.43\n    },\n    {\n     \"id\": 2,\n     \"z\": 2.21\n    }\n   ],\n   \"springs\": [\n    {\n     \"upper\": 0,\n     \"lower\": 1,\n     \"x\": -1.88\n    },\n    {\n     \"upper\": 0,\n     \"lower\": 1,\n     \"x\": -1.44\n    },\n    {\n     \"upper\": 1,\n     \"lower\": 2,\n     \"x\": -2.09\n    },\n    {\n     \"upper\": 1,\n     \"lower\": 2,\n     \"x\": -1.66\n    },\n    {\n     \"upper\": 1,\n     \"lower\": 2,\n     \"x\": -1.23\n    }\n   ]\n  },\n  {\n   \"x\": 1.66,\n   \"bars\": [\n    {\n     \"id\": 0,\n     \"z\": 4.65\n    },\n    {\n     \"id\": 1,\n     \"z\": 3.43\n    },\n    {\n     \"id\": 2,\n     \"z\": 2.21\n    }\n   ],\n   \"springs\": [\n    {\n     \"upper\": 0,\n     \"lower\": 1,\n     \"x\": 1.66\n    },\n    {\n     \"upper\": 1,\n     \"lower\": 2,\n     \"x\": 1.01\n    },\n    {\n     \"upper\": 1,\n     \"lower\": 2,\n     \"x\": 1.44\n    },\n    {\n     \"upper\": 1,\n     \"lower\": 2,\n     \"x\": 1.88\n    },\n    {\n     \"upper\": 1,\n     \"lower\": 2,\n     \"x\": 2.3\n    }\n   ]\n  }\n ],\n \"spacing\": 1.22,\n \"bar_width\": 1.97,\n \"coil_radius\": 0.1,\n …",
+ "forward": {
+  "code": "def analytic_gold(scene):\n    left, right = [compliance(a) for a in scene['assemblies']]\n    return 'left' if left > right else 'right'",
+  "decision": "right",
+  "answer": "Right assembly",
+  "saved": true
+ },
+ "render": {
+  "events": 1,
+  "frames": [
+   {
+    "src": "final.webp",
+    "code": "return render_scene(rendering_scene(scene)).convert('RGB')",
+    "continues": false,
+    "line": 134,
+    "kind": "blender",
+    "event": 1,
+    "box": null,
+    "saved": true
+   }
+  ],
+  "mode": "saved",
+  "engine": "Blender"
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Keep brass hues, then only horizontal runs of 55 px or more",
+    "fn": "measure",
+    "value_of": "measure",
+    "src": "mask",
+    "code": "mask = cv2.morphologyEx(mask,cv2.MORPH_OPEN,np.ones((1,55),np.uint8))",
+    "style": "mask",
+    "marks": [],
+    "note": "54,092 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Keep the wide, flat blobs: six crossbars",
+    "fn": "measure",
+    "value_of": "measure",
+    "src": "bars",
+    "code": "if w > 150 and 6 < h < 60 and w/h > 5 and area > 1200:",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.26611328125,
+      "y": 0.1572265625,
+      "text": "285 × 33 px"
+     }
+    ],
+    "note": "7 blobs after the clean-up; 6 are wide and flat (over 150 px wide, 7 to 59 px tall, over 5 times as wide as tall, area over 1,200 px); the program refuses unless it finds six or eight",
+    "ink": 1.0,
+    "overlay": "b1.webp"
+   },
+   {
+    "title": "Split the bars at the middle x into left and right assembly",
+    "fn": "measure",
+    "value_of": "measure",
+    "src": "split",
+    "code": "split = (centers[len(centers)//2-1]+centers[len(centers)//2])/2",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.26611328125,
+      "y": 0.1533203125,
+      "text": "left assembly",
+      "strong": true
+     },
+     {
+      "x": 0.73388671875,
+      "y": 0.1533203125,
+      "text": "right assembly",
+      "strong": true
+     },
+     {
+      "x": 0.5,
+      "y": 0.654296875,
+      "text": "x = 512"
+     }
+    ],
+    "note": "bar centres lie at x = 272.5 and 751.5; the split is halfway between the two middle values of the sorted list; each side is then ordered top to bottom",
+    "ink": 1.0,
+    "overlay": "b2.webp"
+   },
+   {
+    "title": "Between each bar and the next, take the middle of the gap",
+    "fn": "measure",
+    "value_of": "measure",
+    "src": "stages",
+    "code": "ya = int(y1+0.26*(y2-y1))",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.26611328125,
+      "y": 0.2373046875,
+      "text": "stage 1"
+     },
+     {
+      "x": 0.26611328125,
+      "y": 0.400390625,
+      "text": "stage 2"
+     },
+     {
+      "x": 0.73388671875,
+      "y": 0.236328125,
+      "text": "stage 1"
+     },
+     {
+      "x": 0.73388671875,
+      "y": 0.400390625,
+      "text": "stage 2"
+     }
+    ],
+    "note": "between each bar and the next one below, rows from 26% to 74% of the gap and columns 7 px inside the bar ends (first band: rows 269 to 332, columns 137 to 407); the fractions are fixed in the code",
+    "ink": 1.0,
+    "overlay": "b3.webp"
+   },
+   {
+    "title": "In each band keep pixels darker than 70% of its median",
+    "fn": "measure",
+    "value_of": "measure",
+    "src": "dark",
+    "code": "threshold = min(112.0, float(np.median(crop)) * 0.70)",
+    "style": "derive",
+    "marks": [],
+    "note": "band medians (grey level) 109, 141, 106, 139; thresholds 76.3, 98.7, 74.2, 97.3: 70% of the median, capped at 112. Dark coil wire against the lighter backdrop is assumed",
+    "ink": 1.0,
+    "overlay": "b4.webp"
+   },
+   {
+    "title": "Columns with enough dark pixels form runs: one per spring",
+    "fn": "measure",
+    "value_of": "measure",
+    "src": "spans",
+    "code": "active = (profile > 0.13).astype(np.uint8)",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.431640625,
+      "y": 0.2939453125,
+      "text": "n = 2",
+      "strong": true
+     },
+     {
+      "x": 0.431640625,
+      "y": 0.45703125,
+      "text": "n = 3",
+      "strong": true
+     },
+     {
+      "x": 0.568359375,
+      "y": 0.29345703125,
+      "text": "n = 1",
+      "strong": true
+     },
+     {
+      "x": 0.568359375,
+      "y": 0.45703125,
+      "text": "n = 4",
+      "strong": true
+     }
+    ],
+    "note": "a column is coil if more than 13% of its band pixels are dark; gaps under 17 px are bridged; runs 10 to 48 px wide count as one spring (here 34 to 35 px); one to four springs per stage are accepted",
+    "ink": 1.0,
+    "overlay": "b5.webp"
+   },
+   {
+    "title": "A stage with n springs stretches 1/n; add up the stages",
+    "fn": "measure",
+    "value_of": "measure",
+    "src": "result",
+    "code": "'compliance':float(sum(1/s['parallel_count'] for s in stages))})",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.431640625,
+      "y": 0.2939453125,
+      "text": "1/2"
+     },
+     {
+      "x": 0.431640625,
+      "y": 0.45703125,
+      "text": "1/3"
+     },
+     {
+      "x": 0.26611328125,
+      "y": 0.6435546875,
+      "text": "1/2 + 1/3 = 0.83"
+     },
+     {
+      "x": 0.568359375,
+      "y": 0.29345703125,
+      "text": "1/1"
+     },
+     {
+      "x": 0.568359375,
+      "y": 0.45703125,
+      "text": "1/4"
+     },
+     {
+      "x": 0.73388671875,
+      "y": 0.6435546875,
+      "text": "1/1 + 1/4 = 1.25",
+      "strong": true
+     }
+    ],
+    "note": "n equal springs side by side are n times as stiff, so a stage stretches 1/n as much as one spring; stages hang in a chain, so their stretches add. Units: stretch of one spring under the load",
+    "ink": 1.0,
+    "overlay": "b6.webp"
+   }
+  ],
+  "final": {
+   "code": "'decision':'Left assembly' if a>b else 'Right assembly',",
+   "fn": "measure",
+   "text": "Identical springs, rigid bars: the larger sum stretches more, the right",
+   "values": [
+    {
+     "label": "left sum",
+     "value": "0.8333"
+    },
+    {
+     "label": "right sum",
+     "value": "1.25"
+    },
+    {
+     "label": "relative difference (at least 0.12)",
+     "value": "0.3333"
+    }
+   ]
+  },
+  "decision": "Right assembly",
+  "answer": "Right assembly"
+ },
+ "study_title": "Spring extension",
+ "site_id": "b06"
+}

@@ -1,0 +1,869 @@
+{
+ "key": "081",
+ "title": "Plus stencil erosion symbol",
+ "headline": "Apply the stencil, read the symbol",
+ "question": "The gold key is a 3-by-3 plus stencil. Center it on every interior cell of the 13-by-13 framed mosaic, making an 11-by-11 result. Mark a result cell dark only when all five gold stencil positions cover dark mosaic tiles. Preserve row and column order. Which way is the dark frame open: up, right, down, or left?",
+ "generator": "Sol (max)",
+ "agent": "Codex",
+ "profile": "reveal-declared-transform",
+ "answer": "down",
+ "image": {
+  "w": 760,
+  "h": 650,
+  "src": "final.webp",
+  "sha256": "a210a604cba805d9dd73ee01308ea10d5e95184e47fff385d29a9b4c6bbc32cb"
+ },
+ "scene": "{\n \"cell_size\": 30,\n \"dark_rgb\": [29, 47, 68],\n \"origin_x\": 93,\n \"origin_y\": 151,\n \"source_rows\": [\"0111111000111\", \"1110000000101\", \"1011111111101\", \"0011111111101\", \"1011111111101\", \"… 8 more\"]\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    decision, _ = _classify(_erode(_source(scene)))\n    return decision",
+  "decision": "down",
+  "answer": "down"
+ },
+ "render": {
+  "events": 217,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "draw.rectangle((x0 - border, y0 - border, x0 + width + border - 1, y0 + width + border - 1), fill=FRAME)",
+    "line": 145,
+    "kind": "draw.rectangle",
+    "event": 1,
+    "box": [
+     0.10921052631578948,
+     0.2169230769230769,
+     0.6486842105263158,
+     0.8476923076923077
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 15,
+    "box": [
+     0.11842105263157894,
+     0.2276923076923077,
+     0.6394736842105263,
+     0.3292307692307692
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 29,
+    "box": [
+     0.11842105263157894,
+     0.27384615384615385,
+     0.6394736842105263,
+     0.37538461538461537
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 43,
+    "box": [
+     0.11842105263157894,
+     0.32,
+     0.6394736842105263,
+     0.42153846153846153
+    ]
+   },
+   {
+    "src": "r004.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 57,
+    "box": [
+     0.11842105263157894,
+     0.36615384615384616,
+     0.6394736842105263,
+     0.4676923076923077
+    ]
+   },
+   {
+    "src": "r005.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 71,
+    "box": [
+     0.11842105263157894,
+     0.4123076923076923,
+     0.6394736842105263,
+     0.5138461538461538
+    ]
+   },
+   {
+    "src": "r006.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 85,
+    "box": [
+     0.11842105263157894,
+     0.4584615384615385,
+     0.6394736842105263,
+     0.56
+    ]
+   },
+   {
+    "src": "r007.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 99,
+    "box": [
+     0.11842105263157894,
+     0.5046153846153846,
+     0.6394736842105263,
+     0.6061538461538462
+    ]
+   },
+   {
+    "src": "r008.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 113,
+    "box": [
+     0.11842105263157894,
+     0.5507692307692308,
+     0.6394736842105263,
+     0.6523076923076923
+    ]
+   },
+   {
+    "src": "r009.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 127,
+    "box": [
+     0.11842105263157894,
+     0.5969230769230769,
+     0.6394736842105263,
+     0.6984615384615385
+    ]
+   },
+   {
+    "src": "r010.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 141,
+    "box": [
+     0.11842105263157894,
+     0.6430769230769231,
+     0.6394736842105263,
+     0.7446153846153846
+    ]
+   },
+   {
+    "src": "r011.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 155,
+    "box": [
+     0.11842105263157894,
+     0.6892307692307692,
+     0.6394736842105263,
+     0.7907692307692308
+    ]
+   },
+   {
+    "src": "r012.webp",
+    "code": "draw.rectangle((left, top, left + cell - 1, top + cell - 1), fill=fill)",
+    "line": 154,
+    "kind": "draw.rectangle",
+    "event": 170,
+    "box": [
+     0.11842105263157894,
+     0.7353846153846154,
+     0.6394736842105263,
+     0.8369230769230769
+    ]
+   },
+   {
+    "src": "r013.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 171,
+    "box": [
+     0.11842105263157894,
+     0.2276923076923077,
+     0.12763157894736843,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r014.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 172,
+    "box": [
+     0.11973684210526316,
+     0.2276923076923077,
+     0.6407894736842106,
+     0.23846153846153847
+    ]
+   },
+   {
+    "src": "r015.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 173,
+    "box": [
+     0.15789473684210525,
+     0.22923076923076924,
+     0.16710526315789473,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r016.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 174,
+    "box": [
+     0.11973684210526316,
+     0.27384615384615385,
+     0.6407894736842106,
+     0.2846153846153846
+    ]
+   },
+   {
+    "src": "r017.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 175,
+    "box": [
+     0.19736842105263158,
+     0.22923076923076924,
+     0.20657894736842106,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r018.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 176,
+    "box": [
+     0.11973684210526316,
+     0.32,
+     0.6407894736842106,
+     0.33076923076923076
+    ]
+   },
+   {
+    "src": "r019.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 177,
+    "box": [
+     0.23684210526315788,
+     0.22923076923076924,
+     0.24605263157894736,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r020.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 178,
+    "box": [
+     0.11973684210526316,
+     0.36615384615384616,
+     0.6407894736842106,
+     0.3769230769230769
+    ]
+   },
+   {
+    "src": "r021.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 179,
+    "box": [
+     0.27631578947368424,
+     0.22923076923076924,
+     0.2855263157894737,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r022.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 180,
+    "box": [
+     0.11973684210526316,
+     0.4123076923076923,
+     0.6407894736842106,
+     0.4230769230769231
+    ]
+   },
+   {
+    "src": "r023.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 181,
+    "box": [
+     0.3157894736842105,
+     0.22923076923076924,
+     0.325,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r024.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 182,
+    "box": [
+     0.11973684210526316,
+     0.4584615384615385,
+     0.6407894736842106,
+     0.46923076923076923
+    ]
+   },
+   {
+    "src": "r025.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 183,
+    "box": [
+     0.35526315789473684,
+     0.22923076923076924,
+     0.36447368421052634,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r026.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 184,
+    "box": [
+     0.11973684210526316,
+     0.5046153846153846,
+     0.6407894736842106,
+     0.5153846153846153
+    ]
+   },
+   {
+    "src": "r027.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 185,
+    "box": [
+     0.39473684210526316,
+     0.22923076923076924,
+     0.4039473684210526,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r028.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 186,
+    "box": [
+     0.11973684210526316,
+     0.5507692307692308,
+     0.6407894736842106,
+     0.5615384615384615
+    ]
+   },
+   {
+    "src": "r029.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 187,
+    "box": [
+     0.4342105263157895,
+     0.22923076923076924,
+     0.44342105263157894,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r030.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 188,
+    "box": [
+     0.11973684210526316,
+     0.5969230769230769,
+     0.6407894736842106,
+     0.6076923076923076
+    ]
+   },
+   {
+    "src": "r031.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 189,
+    "box": [
+     0.47368421052631576,
+     0.22923076923076924,
+     0.48289473684210527,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r032.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 190,
+    "box": [
+     0.11973684210526316,
+     0.6430769230769231,
+     0.6407894736842106,
+     0.6538461538461539
+    ]
+   },
+   {
+    "src": "r033.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 191,
+    "box": [
+     0.5131578947368421,
+     0.22923076923076924,
+     0.5223684210526316,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r034.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 192,
+    "box": [
+     0.11973684210526316,
+     0.6892307692307692,
+     0.6407894736842106,
+     0.7
+    ]
+   },
+   {
+    "src": "r035.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 193,
+    "box": [
+     0.5526315789473685,
+     0.22923076923076924,
+     0.5618421052631579,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r036.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 194,
+    "box": [
+     0.11973684210526316,
+     0.7353846153846154,
+     0.6407894736842106,
+     0.7461538461538462
+    ]
+   },
+   {
+    "src": "r037.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 195,
+    "box": [
+     0.5921052631578947,
+     0.22923076923076924,
+     0.6013157894736842,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r038.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 196,
+    "box": [
+     0.11973684210526316,
+     0.7815384615384615,
+     0.6407894736842106,
+     0.7923076923076923
+    ]
+   },
+   {
+    "src": "r039.webp",
+    "code": "draw.line((x0 + pos, y0, x0 + pos, y0 + width), fill=GRID_LINE, width=1)",
+    "line": 157,
+    "kind": "draw.line",
+    "event": 197,
+    "box": [
+     0.631578947368421,
+     0.22923076923076924,
+     0.6407894736842106,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r040.webp",
+    "code": "draw.line((x0, y0 + pos, x0 + width, y0 + pos), fill=GRID_LINE, width=1)",
+    "line": 158,
+    "kind": "draw.line",
+    "event": 198,
+    "box": [
+     0.11973684210526316,
+     0.8276923076923077,
+     0.6394736842105263,
+     0.8384615384615385
+    ]
+   },
+   {
+    "src": "r041.webp",
+    "code": "draw.rectangle((key_x - 6, key_y - 6, key_x + 3 * key_cell + 5, key_y + 3 * key_cell + 5), fill=KEY_LINE)",
+    "line": 164,
+    "kind": "draw.rectangle",
+    "event": 199,
+    "box": [
+     0.6973684210526315,
+     0.3323076923076923,
+     0.8078947368421052,
+     0.46153846153846156
+    ]
+   },
+   {
+    "src": "r042.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 200,
+    "box": [
+     0.7052631578947368,
+     0.3415384615384615,
+     0.7421052631578947,
+     0.38461538461538464
+    ]
+   },
+   {
+    "src": "r043.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 201,
+    "box": [
+     0.7052631578947368,
+     0.3415384615384615,
+     0.7421052631578947,
+     0.38461538461538464
+    ]
+   },
+   {
+    "src": "r044.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 202,
+    "box": [
+     0.7342105263157894,
+     0.3415384615384615,
+     0.7710526315789473,
+     0.38461538461538464
+    ]
+   },
+   {
+    "src": "r045.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 203,
+    "box": [
+     0.7342105263157894,
+     0.3415384615384615,
+     0.7710526315789473,
+     0.38461538461538464
+    ]
+   },
+   {
+    "src": "r046.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 204,
+    "box": [
+     0.7631578947368421,
+     0.3415384615384615,
+     0.8,
+     0.38461538461538464
+    ]
+   },
+   {
+    "src": "r047.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 205,
+    "box": [
+     0.7631578947368421,
+     0.3415384615384615,
+     0.8,
+     0.38461538461538464
+    ]
+   },
+   {
+    "src": "r048.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 206,
+    "box": [
+     0.7052631578947368,
+     0.37538461538461537,
+     0.7421052631578947,
+     0.41846153846153844
+    ]
+   },
+   {
+    "src": "r049.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 207,
+    "box": [
+     0.7052631578947368,
+     0.37538461538461537,
+     0.7421052631578947,
+     0.41846153846153844
+    ]
+   },
+   {
+    "src": "r050.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 208,
+    "box": [
+     0.7342105263157894,
+     0.37538461538461537,
+     0.7710526315789473,
+     0.41846153846153844
+    ]
+   },
+   {
+    "src": "r051.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 209,
+    "box": [
+     0.7342105263157894,
+     0.37538461538461537,
+     0.7710526315789473,
+     0.41846153846153844
+    ]
+   },
+   {
+    "src": "r052.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 210,
+    "box": [
+     0.7631578947368421,
+     0.37538461538461537,
+     0.8,
+     0.41846153846153844
+    ]
+   },
+   {
+    "src": "r053.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 211,
+    "box": [
+     0.7631578947368421,
+     0.37538461538461537,
+     0.8,
+     0.41846153846153844
+    ]
+   },
+   {
+    "src": "r054.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 212,
+    "box": [
+     0.7052631578947368,
+     0.40923076923076923,
+     0.7421052631578947,
+     0.4523076923076923
+    ]
+   },
+   {
+    "src": "r055.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 213,
+    "box": [
+     0.7052631578947368,
+     0.40923076923076923,
+     0.7421052631578947,
+     0.4523076923076923
+    ]
+   },
+   {
+    "src": "r056.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 214,
+    "box": [
+     0.7342105263157894,
+     0.40923076923076923,
+     0.7710526315789473,
+     0.4523076923076923
+    ]
+   },
+   {
+    "src": "r057.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 215,
+    "box": [
+     0.7342105263157894,
+     0.40923076923076923,
+     0.7710526315789473,
+     0.4523076923076923
+    ]
+   },
+   {
+    "src": "r058.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), fill=fill)",
+    "line": 174,
+    "kind": "draw.rectangle",
+    "event": 216,
+    "box": [
+     0.7631578947368421,
+     0.40923076923076923,
+     0.8,
+     0.4523076923076923
+    ]
+   },
+   {
+    "src": "r059.webp",
+    "code": "draw.rectangle((left, top, left + key_cell - 1, top + key_cell - 1), outline=KEY_LINE, width=2)",
+    "line": 175,
+    "kind": "draw.rectangle",
+    "event": 217,
+    "box": [
+     0.7631578947368421,
+     0.40923076923076923,
+     0.8,
+     0.4523076923076923
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Find the cyan mosaic frame",
+    "fn": "_frame_interior",
+    "value_of": "_frame_interior",
+    "src": "cyan",
+    "code": "cyan = distance <= 2",
+    "style": "mask",
+    "marks": [],
+    "note": "10,335 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Read the 13 × 13 tiles",
+    "fn": "_read_source",
+    "value_of": "_read_source",
+    "src": "return",
+    "code": "source = np.zeros((GRID_N, GRID_N), dtype=bool)",
+    "style": "grid",
+    "marks": [],
+    "note": "13 × 13 array returned by _read_source",
+    "grid": "b1.webp",
+    "grid_size": [
+     352,
+     352
+    ]
+   },
+   {
+    "title": "Apply the stated plus-stencil rule",
+    "fn": "_erode",
+    "value_of": "_erode",
+    "src": "return",
+    "code": "result[row, col] = all(values)",
+    "style": "grid",
+    "marks": [],
+    "note": "11 × 11 array returned by _erode",
+    "grid": "b2.webp",
+    "grid_size": [
+     309,
+     309
+    ]
+   }
+  ],
+  "final": {
+   "code": "decision = ranked[0][0]",
+   "fn": "measure_from_image",
+   "text": "Compare with the four rotated templates",
+   "values": [
+    {
+     "label": "matching cells",
+     "value": "{'up': 103, 'left': 107, 'down': 121, 'right': 107}"
+    }
+   ]
+  },
+  "decision": "down",
+  "answer": "down"
+ },
+ "study_title": "Plus Stencil Erosion Symbol",
+ "site_id": "profile-conditioned-plus-stencil-erosion-symbol-e7765a9502"
+}

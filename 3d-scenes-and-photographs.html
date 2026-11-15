@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="The PixelProof forward–inverse check applied to 3D scenes rendered in Blender and to photographs from an image-generation model. Exploratory samples made after submission." />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="3D scenes and photographs · PixelProof" />
+    <meta property="og:description" content="The same forward–inverse check on 3D scenes rendered in Blender and on photographs." />
+    <meta property="og:type" content="website" />
+    <title>3D scenes and photographs · PixelProof</title>
+    <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="static/css/bulma.min.css?v=58b286592209" />
+    <link rel="stylesheet" href="static/css/nerfies.css?v=747bae5899d9" />
+    <link rel="stylesheet" href="static/css/site.css?v=87700d14492b" />
+    <link rel="stylesheet" href="static/css/paper.css?v=57286315c86b" />
+    <link rel="stylesheet" href="static/css/design.css?v=36d25e5bc946" />
+    <link rel="stylesheet" href="static/css/editorial.css?v=63efdf3c0bf3" />
+    <link rel="stylesheet" href="static/css/pp-anim.css?v=96b4fc9a292e" /><script src="static/js/pp-anim.js?v=9deeb3fc4ca9" defer></script>
+    <link rel="stylesheet" href="static/css/photographs.css?v=10562e7d4b71" />
+    <link rel="stylesheet" href="static/css/blender.css?v=7dbb48e6a9c8" />
+    <link rel="stylesheet" href="static/css/beyond.css?v=3d807a86b51f" />
+  <link rel="stylesheet" href="static/css/navigation.css?v=f50120de8292"><link rel="stylesheet" href="static/css/reading.css?v=c8d4e1ae07b4"><meta property="og:url" content="https://projectpixelproof.github.io/3d-scenes-and-photographs.html" />
+<link rel="canonical" href="https://projectpixelproof.github.io/3d-scenes-and-photographs.html" />
+</head>
+  <body class="reading-page photographs-page bl-page beyond-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="site-nav" aria-label="Main navigation"><a class="wordmark" href="index.html" aria-label="PixelProof home">PixelProof</a><div class="nav-links"><a href="index.html">Overview</a><a href="questions.html">Questions</a><a href="programs.html">Programs</a><a href="animations.html">Animations</a><a href="steering.html">Spatial patterns</a><a href="results.html">Results</a><a href="index.html#updates">After submission</a></div></nav>
+    <main id="main">
+      <header class="reading-page-intro">
+        <div class="container site-width">
+          <a href="index.html">← Project overview</a>
+          <h1>3D scenes and photographs</h1>
+          <p>
+            The worlds in the paper are 2D images drawn with Python code. After submission we kept the
+            forward–inverse check unchanged and gave the coding agent two other ways to make an image: Blender
+            for 3D scenes, and an image-generation model that turns a program rendering into a photograph.
+            In both, one program computes the answer and a second program must recover it from the pixels alone.
+          </p>
+          <p>
+            Both are first runs. The samples below are exploratory, none has been through formal human review,
+            and we report no model accuracy on them.
+          </p>
+          <nav class="page-contents" aria-label="On this page"><a href="#blender">3D scenes in Blender</a><a href="#photographs">Photographs</a></nav>
+        </div>
+      </header>
+      <div class="reading-page-intro beyond-part" id="blender">
+        <div class="container site-width">
+          <h2>3D scenes rendered in Blender</h2>
+          <p>
+            The same forward–inverse check, with a 3D renderer in place of 2D drawing code. One program builds a scene,
+            renders it in Blender and computes the answer; a second program receives only the rendered image and the
+            question, and must reach the same answer from the pixels.
+          </p>
+          <p class="bl-note">
+            Exploratory samples made after submission; they are not part of the paper's dataset and we report no model
+            accuracy on them. One coding agent ran for two hours on each of three themes and attempted 23 worlds: 22
+            passed the check during development, and 20 passed it again on six new scenes each (120 of 120 answers
+            agree). This page shows 9 of those 20, chosen by us, with three scenes each. No world has been through
+            human review, and one agent wrote both programs of each world.
+          </p>
+        </div>
+      </div>
+      <section class="bl-section"><div class="container site-width">
+        <article class="bl-card" id="rings">
+          <header>
+            <p class="bl-kicker">1 · 3D spatial relationships</p>
+            <h2>Are the two closed metal rings linked together?</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>yes</span><span>no</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program measured</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/rings/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Linked metal rings" /><img class="bl-overlay" src="static/blender/rings/1-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>yes</b></p>
+                <ul><li>Crossing 1: the brass ring is on top.</li><li>Crossing 2: the steel ring is on top.</li><li>Different rings on top at the two crossings: linked.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/rings/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Linked metal rings" /><img class="bl-overlay" src="static/blender/rings/2-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>no</b></p>
+                <ul><li>Crossing 1: the brass ring is on top.</li><li>Crossing 2: the brass ring is on top.</li><li>The same ring on top at both crossings: not linked.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/rings/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Linked metal rings" /><img class="bl-overlay" src="static/blender/rings/3-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>yes</b></p>
+                <ul><li>Crossing 1: the brass ring is on top.</li><li>Crossing 2: the steel ring is on top.</li><li>Different rings on top at the two crossings: linked.</li></ul></figcaption>
+            </figure></div>
+          <details class="bl-more"><summary>Watch the inverse program work, step by step</summary><div class="ppa" data-src="static/animations/b01/manifest.json"></div></details>
+          <details class="bl-more"><summary>Inverse program as generated (81 lines)</summary>
+            <pre class="bl-code"><code>import math
+import numpy as np
+import cv2
+
+
+def _ellipse(mask):
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(mask.astype(np.uint8),8)
+    if n &lt; 2:
+        raise ValueError(&#x27;No ring material recovered&#x27;)
+    keep=[max(range(1,n),key=lambda i: stats[i,cv2.CC_STAT_AREA])]
+    clean=np.isin(labels,keep)
+    y,x=np.where(clean)
+    if len(x)&lt;500:
+        raise ValueError(&#x27;Insufficient exposed ring surface&#x27;)
+    pts=np.column_stack([x,y]).astype(np.float32)
+    fit=cv2.fitEllipse(pts.reshape(-1,1,2))
+    # Robustly trim feet and specular stray pixels using radial residual.
+    for _ in range(3):
+        c,axes,ang=fit
+        u=pts-np.array(c)
+        t=math.radians(ang); co=math.cos(t); si=math.sin(t)
+        xx=u[:,0]*co+u[:,1]*si
+        yy=-u[:,0]*si+u[:,1]*co
+        rr=np.sqrt((xx/(axes[0]/2))**2+(yy/(axes[1]/2))**2)
+        trimmed=pts[np.abs(rr-1)&lt;0.15]
+        if len(trimmed)&lt;500: raise ValueError(&#x27;Incomplete ellipse&#x27;)
+        fit=cv2.fitEllipse(trimmed.reshape(-1,1,2))
+    return fit
+
+
+def _point(e,t):
+    c,a,ang=e
+    co=math.cos(math.radians(ang)); si=math.sin(math.radians(ang))
+    x=a[0]/2*math.cos(t); y=a[1]/2*math.sin(t)
+    return np.array([c[0]+co*x-si*y,c[1]+si*x+co*y])
+
+
+def _implicit(e,p):
+    c,a,ang=e
+    u=p-np.array(c); co=math.cos(math.radians(ang)); si=math.sin(math.radians(ang))
+    return ((u[0]*co+u[1]*si)/(a[0]/2))**2+((-u[0]*si+u[1]*co)/(a[1]/2))**2-1
+
+
+def measure(image):
+    rgb=np.asarray(image.convert(&#x27;RGB&#x27;)).astype(np.float32)
+    r,g,b=rgb[:,:,0],rgb[:,:,1],rgb[:,:,2]
+    steel=(b&gt;r*1.075)&amp;(b&gt;g*1.015)&amp;(r&lt;180)&amp;(b&lt;220)
+    brass=(r&gt;g*1.14)&amp;(g&gt;b*1.20)&amp;(r&gt;55)
+    e1=_ellipse(steel); e2=_ellipse(brass)
+    crossings=[]
+    for i in range(720):
+        lo=2*math.pi*i/720; hi=2*math.pi*(i+1)/720
+        fl=_implicit(e2,_point(e1,lo)); fh=_implicit(e2,_point(e1,hi))
+        if fl*fh&gt;=0: continue
+        for _ in range(20):
+            mid=(lo+hi)/2; fm=_implicit(e2,_point(e1,mid))
+            if fl*fm&lt;=0: hi=mid
+            else: lo=mid; fl=fm
+        p=_point(e1,(lo+hi)/2)
+        x,y=[int(round(v)) for v in p]
+        st=int(steel[y-4:y+5,x-4:x+5].sum())
+        br=int(brass[y-4:y+5,x-4:x+5].sum())
+        if max(st,br)&lt;30 or abs(st-br)&lt;25:
+            raise ValueError(&#x27;Crossing order not clearly observable&#x27;)
+        crossings.append({&#x27;xy&#x27;:p.tolist(),&#x27;steel_pixels&#x27;:st,&#x27;brass_pixels&#x27;:br,&#x27;over&#x27;:&#x27;steel&#x27; if st&gt;br else &#x27;brass&#x27;})
+    if len(crossings)!=2:
+        raise ValueError(&#x27;Supported scope requires two transverse projected crossings&#x27;)
+    linked=crossings[0][&#x27;over&#x27;]!=crossings[1][&#x27;over&#x27;]
+    return {&#x27;ellipses&#x27;:[{&#x27;center&#x27;:list(e[0]),&#x27;axes&#x27;:list(e[1]),&#x27;angle&#x27;:e[2]} for e in (e1,e2)],
+            &#x27;crossings&#x27;:crossings,&#x27;trace&#x27;:&#x27;Opposite crossing orders imply interlock of two simple closed rings; equal orders imply separation.&#x27;,
+            &#x27;decision&#x27;:&#x27;linked&#x27; if linked else &#x27;separate&#x27;,&#x27;answer&#x27;:&#x27;yes&#x27; if linked else &#x27;no&#x27;}
+
+
+def answer_from_image(image,question,choices):
+    result=measure(image)[&#x27;answer&#x27;]
+    if result not in choices: raise ValueError(&#x27;Missing public answer choice&#x27;)
+    return result
+
+
+def explain_from_image(image,question,choices):
+    return measure(image)
+</code></pre></details>
+        </article><article class="bl-card" id="frame">
+          <header>
+            <p class="bl-kicker">2 · Mechanisms</p>
+            <h2>With ideal pin joints and the two lower pivots fixed, which four-sided frame can change shape without bending its bars?</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>left</span><span>right</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program measured</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/frame/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Pinned-frame mobility" /><img class="bl-overlay" src="static/blender/frame/1-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>right</b></p>
+                <ul><li>Left frame: 5 bars between 4 pins; the bars lock its shape.</li><li>Right frame: 4 bars between 4 pins; it can still change shape.</li><li>Blue pins are the two fixed lower pivots.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/frame/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Pinned-frame mobility" /><img class="bl-overlay" src="static/blender/frame/2-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>left</b></p>
+                <ul><li>Left frame: 4 bars between 4 pins; it can still change shape.</li><li>Right frame: 5 bars between 4 pins; the bars lock its shape.</li><li>Blue pins are the two fixed lower pivots.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/frame/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Pinned-frame mobility" /><img class="bl-overlay" src="static/blender/frame/3-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>right</b></p>
+                <ul><li>Left frame: 5 bars between 4 pins; the bars lock its shape.</li><li>Right frame: 4 bars between 4 pins; it can still change shape.</li><li>Blue pins are the two fixed lower pivots.</li></ul></figcaption>
+            </figure></div>
+          <details class="bl-more"><summary>Watch the inverse program work, step by step</summary><div class="ppa" data-src="static/animations/b05/manifest.json"></div></details>
+          <details class="bl-more"><summary>Inverse program as generated (69 lines)</summary>
+            <pre class="bl-code"><code>&quot;&quot;&quot;Pixel-only pin detection, bar recovery, and pinned rigidity computation.&quot;&quot;&quot;
+import itertools
+import cv2
+import numpy as np
+
+
+def _measure(image):
+    rgb=np.asarray(image.convert(&#x27;RGB&#x27;))
+    hsv=cv2.cvtColor(rgb,cv2.COLOR_RGB2HSV)
+    # Brass hue is a material cue. It does not encode linkage state.
+    mask=((hsv[:,:,0]&gt;8)&amp;(hsv[:,:,0]&lt;39)&amp;(hsv[:,:,1]&gt;75)&amp;(hsv[:,:,2]&gt;65)).astype(np.uint8)*255
+    mask=cv2.morphologyEx(mask,cv2.MORPH_CLOSE,np.ones((3,3),np.uint8))
+    n,labels,stats,centers=cv2.connectedComponentsWithStats(mask)
+    pins=[]
+    for k in range(1,n):
+        x,y,w,h,area=stats[k]
+        if 80&lt;area&lt;2200 and .55&lt;w/max(h,1)&lt;1.8 and 10&lt;w&lt;55 and 10&lt;h&lt;55:
+            pins.append([float(centers[k][0]),float(centers[k][1])])
+    if len(pins)!=8: raise ValueError(&#x27;ambiguous pivot segmentation: &#x27;+str(len(pins)))
+    pins.sort(key=lambda p:p[0])
+    groups=[pins[:4],pins[4:]]
+    # Neutral dark steel bars contrast with the pale mounting plates.
+    gray=cv2.cvtColor(rgb,cv2.COLOR_RGB2GRAY)
+    dark=gray&lt;175
+    records=[]
+    for ps in groups:
+        p=np.array(ps,float)
+        fixed=list(np.argsort(p[:,1])[-2:])
+        free=[i for i in range(4) if i not in fixed]
+        edges=[]; scores=[]
+        for i,j in itertools.combinations(range(4),2):
+            d=p[j]-p[i]; length=np.linalg.norm(d); normal=np.array([-d[1],d[0]])/length
+            # End exclusion removes heads; a small transverse band tolerates
+            # the visible height offset between the pin cap and the steel bar.
+            ts=np.linspace(.19,.81,90)
+            profiles=[]
+            for offset in range(-10,11):
+                q=p[i][None,:]+ts[:,None]*d+normal[None,:]*offset
+                xy=np.rint(q).astype(int)
+                profiles.append(dark[xy[:,1],xy[:,0]])
+            support=np.max(np.array(profiles),axis=0)
+            score=float(support.mean())
+            if .40&lt;score&lt;.80: raise ValueError(&#x27;ambiguous bar support&#x27;)
+            if score&gt;=.80: edges.append([i,j])
+            scores.append({&#x27;pair&#x27;:[i,j],&#x27;support&#x27;:score})
+        rows=[]
+        for i,j in edges:
+            d=p[i]-p[j]; d=d/np.linalg.norm(d)
+            row=np.zeros(4)
+            if i in free: row[2*free.index(i):2*free.index(i)+2]=d
+            if j in free: row[2*free.index(j):2*free.index(j)+2]=-d
+            rows.append(row)
+        if len(edges) not in (4,5): raise ValueError(&#x27;unsupported recovered linkage&#x27;)
+        singular=np.linalg.svd(np.array(rows),compute_uv=False)
+        rank=int(np.sum(singular&gt;.015))
+        records.append({&#x27;pivots&#x27;:ps,&#x27;fixed&#x27;:list(map(int,fixed)),&#x27;bars&#x27;:edges,&#x27;bar_scores&#x27;:scores,&#x27;singular_values&#x27;:singular.tolist(),&#x27;constraint_rank&#x27;:rank,&#x27;internal_dof&#x27;:4-rank})
+    mobile=[i for i,r in enumerate(records) if r[&#x27;internal_dof&#x27;]&gt;0]
+    if len(mobile)!=1: raise ValueError(&#x27;ambiguous mobility comparison&#x27;)
+    return {&#x27;objects&#x27;:records,&#x27;decision&#x27;:&#x27;left&#x27; if mobile[0]==0 else &#x27;right&#x27;,&#x27;trace&#x27;:&#x27;Recover brass pivot centers; measure continuous steel bars; fix lower two centers; rank bar-length constraints on upper pivots.&#x27;}
+
+
+def explain_from_image(image,question,choices):
+    result=_measure(image)
+    if result[&#x27;decision&#x27;] not in choices: raise ValueError(&#x27;unsupported choices&#x27;)
+    return result
+
+
+def answer_from_image(image,question,choices):
+    return explain_from_image(image,question,choices)[&#x27;decision&#x27;]
+</code></pre></details>
+        </article><article class="bl-card" id="crank">
+          <header>
+            <p class="bl-kicker">3 · Mechanisms</p>
+            <h2>Which linkage lets its left grounded crank complete a full turn? Assume ideal pin joints and ignore collisions between bars in separate layers.</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>Left linkage</span><span>Right linkage</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program measured</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/crank/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Full crank rotation" /><img class="bl-overlay" src="static/blender/crank/1-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Right linkage</b></p>
+                <ul><li>Left linkage: crank 124, coupler 160, output 208, ground 292 px; the crank cannot turn fully.</li><li>Right linkage: crank 95, coupler 246, output 165, ground 258 px; the crank can turn fully.</li><li>Pink is the left grounded crank.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/crank/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Full crank rotation" /><img class="bl-overlay" src="static/blender/crank/2-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Left linkage</b></p>
+                <ul><li>Left linkage: crank 129, coupler 243, output 209, ground 263 px; the crank can turn fully.</li><li>Right linkage: crank 122, coupler 158, output 176, ground 277 px; the crank cannot turn fully.</li><li>Pink is the left grounded crank.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/crank/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Full crank rotation" /><img class="bl-overlay" src="static/blender/crank/3-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Right linkage</b></p>
+                <ul><li>Left linkage: crank 129, coupler 169, output 187, ground 276 px; the crank cannot turn fully.</li><li>Right linkage: crank 111, coupler 241, output 205, ground 292 px; the crank can turn fully.</li><li>Pink is the left grounded crank.</li></ul></figcaption>
+            </figure></div>
+          
+          <details class="bl-more"><summary>Inverse program as generated (61 lines)</summary>
+            <pre class="bl-code"><code>&quot;&quot;&quot;Pixel-only pivot recovery followed by full-cycle four-bar closure.&quot;&quot;&quot;
+import math
+import numpy as np
+import cv2
+
+
+def measure(image):
+    rgb=np.asarray(image.convert(&#x27;RGB&#x27;))
+    # Dark circular pin heads are ordinary visible mechanical fasteners.
+    gray=cv2.cvtColor(rgb,cv2.COLOR_RGB2GRAY)
+    mask=(gray&lt;90).astype(np.uint8)*255
+    # Remove narrow cast-shadow bridges/tails while retaining round pin cores.
+    mask=cv2.morphologyEx(mask,cv2.MORPH_OPEN,
+                          cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(7,7)))
+    count,labels,stats,centers=cv2.connectedComponentsWithStats(mask)
+    pins=[]
+    for k in range(1,count):
+        x,y,w,h,area=map(int,stats[k])
+        if not (350&lt;area&lt;1100 and 18&lt;w&lt;36 and 18&lt;h&lt;36): continue
+        if max(w,h)/min(w,h)&gt;1.45: continue
+        if area/(w*h)&lt;.60: continue
+        pins.append([float(centers[k][0]),float(centers[k][1])])
+    if len(pins)!=8:
+        raise ValueError(&#x27;Expected eight unoccluded round pin heads; recovered &#x27;+str(len(pins)))
+    pins.sort(key=lambda p:p[0])
+    groups=[pins[:4],pins[4:]]
+    measurements=[]
+    for group in groups:
+        # In this supported upright configuration both fixed pivots lie below
+        # both moving pivots. Infer the grounded pair from visible image order.
+        by_y=sorted(group,key=lambda p:p[1],reverse=True)
+        ground=sorted(by_y[:2],key=lambda p:p[0])
+        moving=sorted(by_y[2:],key=lambda p:p[0])
+        A,D=ground; B,C=moving
+        a=math.dist(A,B); b=math.dist(B,C); c=math.dist(C,D); g=math.dist(D,A)
+        lower=abs(g-a)-abs(b-c)
+        upper=b+c-g-a
+        margin=min(lower,upper)
+        if abs(margin)&lt;12: raise ValueError(&#x27;Full-cycle closure too close to boundary&#x27;)
+        measurements.append({&#x27;pivots_px&#x27;:[A,B,C,D], &#x27;lengths_px&#x27;:{&#x27;input&#x27;:a,&#x27;coupler&#x27;:b,&#x27;output&#x27;:c,&#x27;ground&#x27;:g},
+                             &#x27;crank_distance_range_px&#x27;:[abs(g-a),g+a],
+                             &#x27;closure_annulus_px&#x27;:[abs(b-c),b+c],
+                             &#x27;endpoint_clearances_px&#x27;:[lower,upper],
+                             &#x27;margin_px&#x27;:margin,&#x27;full_turn&#x27;:margin&gt;0})
+    valid=[m[&#x27;full_turn&#x27;] for m in measurements]
+    if sum(valid)!=1: raise ValueError(&#x27;Expected one uniquely feasible full-turn linkage&#x27;)
+    return {&#x27;objects&#x27;:measurements,&#x27;decision&#x27;:&#x27;left&#x27; if valid[0] else &#x27;right&#x27;,
+            &#x27;trace&#x27;:&#x27;The complete crank distance interval must lie strictly inside the two-link closure annulus.&#x27;}
+
+
+def answer_from_image(image,question,choices):
+    m=measure(image)
+    wanted=&#x27;Left linkage&#x27; if m[&#x27;decision&#x27;]==&#x27;left&#x27; else &#x27;Right linkage&#x27;
+    if wanted not in choices: raise ValueError(&#x27;Unsupported choices&#x27;)
+    return wanted
+
+
+def explain_from_image(image,question,choices):
+    result=measure(image)
+    result[&#x27;answer&#x27;]=&#x27;Left linkage&#x27; if result[&#x27;decision&#x27;]==&#x27;left&#x27; else &#x27;Right linkage&#x27;
+    return result
+</code></pre></details>
+        </article><article class="bl-card" id="springs">
+          <header>
+            <p class="bl-kicker">4 · Mechanisms</p>
+            <h2>For equal added loads, which assembly extends farther? Assume identical linear springs and rigid crossbars.</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>Left assembly</span><span>Right assembly</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program measured</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/springs/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Spring extension" /><img class="bl-overlay" src="static/blender/springs/1-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Right assembly</b></p>
+                <ul><li>Left assembly: 2 then 3 springs side by side; stretch is proportional to 1/2 + 1/3 = 0.83.</li><li>Right assembly: 1 then 4 springs side by side; stretch is proportional to 1/1 + 1/4 = 1.25.</li><li>More springs side by side are stiffer; stages in a chain add their stretch.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/springs/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Spring extension" /><img class="bl-overlay" src="static/blender/springs/2-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Left assembly</b></p>
+                <ul><li>Left assembly: 1 then 4 springs side by side; stretch is proportional to 1/1 + 1/4 = 1.25.</li><li>Right assembly: 3 then 2 springs side by side; stretch is proportional to 1/3 + 1/2 = 0.83.</li><li>More springs side by side are stiffer; stages in a chain add their stretch.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/springs/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Spring extension" /><img class="bl-overlay" src="static/blender/springs/3-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Right assembly</b></p>
+                <ul><li>Left assembly: 2 then 3 then 3 springs side by side; stretch is proportional to 1/2 + 1/3 + 1/3 = 1.17.</li><li>Right assembly: 1 then 3 then 4 springs side by side; stretch is proportional to 1/1 + 1/3 + 1/4 = 1.58.</li><li>More springs side by side are stiffer; stages in a chain add their stretch.</li></ul></figcaption>
+            </figure></div>
+          <details class="bl-more"><summary>Watch the inverse program work, step by step</summary><div class="ppa" data-src="static/animations/b06/manifest.json"></div></details>
+          <details class="bl-more"><summary>Inverse program as generated (73 lines)</summary>
+            <pre class="bl-code"><code>&quot;&quot;&quot;Pixel-only crossbar localization, spring grouping, and compliance calculation.&quot;&quot;&quot;
+import numpy as np
+import cv2
+
+
+def measure(image):
+    rgb = np.asarray(image.convert(&#x27;RGB&#x27;))
+    hsv = cv2.cvtColor(rgb, cv2.COLOR_RGB2HSV)
+    # Natural brass crossbars are chromatic; steel coils and frames are neutral.
+    mask = ((hsv[:,:,0] &gt;= 8) &amp; (hsv[:,:,0] &lt;= 38) &amp;
+            (hsv[:,:,1] &gt; 65) &amp; (hsv[:,:,2] &gt; 65)).astype(np.uint8)
+    mask = cv2.morphologyEx(mask,cv2.MORPH_CLOSE,np.ones((3,5),np.uint8))
+    mask = cv2.morphologyEx(mask,cv2.MORPH_OPEN,np.ones((1,55),np.uint8))
+    num, labels, stats, centroids = cv2.connectedComponentsWithStats(mask)
+    bars = []
+    for x,y,w,h,area in stats[1:]:
+        if w &gt; 150 and 6 &lt; h &lt; 60 and w/h &gt; 5 and area &gt; 1200:
+            bars.append([int(x),int(y),int(w),int(h)])
+    if len(bars) not in [6,8]:
+        raise ValueError(&#x27;Cannot recover six or eight distinct brass crossbars: &#x27;+str(bars))
+    centers = sorted([b[0]+b[2]/2 for b in bars])
+    split = (centers[len(centers)//2-1]+centers[len(centers)//2])/2
+    groups = [[b for b in bars if b[0]+b[2]/2 &lt; split],
+              [b for b in bars if b[0]+b[2]/2 &gt; split]]
+    gray = cv2.cvtColor(rgb,cv2.COLOR_RGB2GRAY)
+    result = []
+    for group in groups:
+        group.sort(key=lambda b:b[1])
+        stages = []
+        for upper,lower in zip(group,group[1:]):
+            # Exclude bar faces and eyelets; each coil crosses this central band.
+            y1 = upper[1]+upper[3]
+            y2 = lower[1]
+            ya = int(y1+0.26*(y2-y1))
+            yb = int(y1+0.74*(y2-y1))
+            xa = int(max(upper[0],lower[0])+7)
+            xb = int(min(upper[0]+upper[2],lower[0]+lower[2])-7)
+            crop = gray[ya:yb,xa:xb]
+            threshold = min(112.0, float(np.median(crop)) * 0.70)
+            dark = (crop &lt; threshold).astype(np.uint8)
+            # A coil is a persistent vertical band of dark wire. Integrating
+            # across its turns bridges horizontal holes without joining coils.
+            profile = dark.mean(axis=0)
+            active = (profile &gt; 0.13).astype(np.uint8)
+            active = cv2.morphologyEx(active.reshape(1,-1), cv2.MORPH_CLOSE,
+                                     np.ones((1,17),np.uint8)).reshape(-1)
+            transitions = np.diff(np.r_[0,active,0].astype(int))
+            starts = np.where(transitions == 1)[0]
+            ends = np.where(transitions == -1)[0]
+            spans = [[int(a+xa),int(b+xa)] for a,b in zip(starts,ends) if 10 &lt;= b-a &lt;= 48]
+            if not 1 &lt;= len(spans) &lt;= 4:
+                raise ValueError(&#x27;Ambiguous spring count: &#x27;+str(spans))
+            stages.append({&#x27;band&#x27;:[xa,ya,xb,yb], &#x27;spring_spans&#x27;:spans, &#x27;parallel_count&#x27;:len(spans)})
+        result.append({&#x27;crossbars&#x27;:group,&#x27;stages&#x27;:stages,
+                       &#x27;compliance&#x27;:float(sum(1/s[&#x27;parallel_count&#x27;] for s in stages))})
+    a,b = [r[&#x27;compliance&#x27;] for r in result]
+    separation = abs(a-b)/max(a,b)
+    if separation &lt; 0.12:
+        raise ValueError(&#x27;Indistinguishable assembly compliances&#x27;)
+    return {&#x27;assemblies&#x27;:result,&#x27;relative_separation&#x27;:separation,
+            &#x27;decision&#x27;:&#x27;Left assembly&#x27; if a&gt;b else &#x27;Right assembly&#x27;,
+            &#x27;trace&#x27;:&#x27;parallel stage stiffness = n*k; series compliance = sum(1/n)/k&#x27;}
+
+
+def explain_from_image(image,question,choices):
+    result = measure(image)
+    if result[&#x27;decision&#x27;] not in choices:
+        raise ValueError(&#x27;Unsupported choices&#x27;)
+    return result
+
+
+def answer_from_image(image,question,choices):
+    return explain_from_image(image,question,choices)[&#x27;decision&#x27;]
+</code></pre></details>
+        </article><article class="bl-card" id="weave">
+          <header>
+            <p class="bl-kicker">5 · Functional inspection</p>
+            <h2>Does the strap pass alternately over and under successive bars?</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>yes</span><span>no</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program read</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/weave/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Strap-weave alternation" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>no</b></p>
+                <ul><li>5 bars found. Strap at each bar, in order: over, under, under, under, over.</li><li>Two neighbouring bars have the same state, so it does not alternate.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/weave/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Strap-weave alternation" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>yes</b></p>
+                <ul><li>7 bars found. Strap at each bar, in order: under, over, under, over, under, over, under.</li><li>It alternates all the way.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/weave/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Strap-weave alternation" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>no</b></p>
+                <ul><li>6 bars found. Strap at each bar, in order: under, over, under, under, under, over.</li><li>Two neighbouring bars have the same state, so it does not alternate.</li></ul></figcaption>
+            </figure></div>
+          
+          <details class="bl-more"><summary>Inverse program as generated (65 lines)</summary>
+            <pre class="bl-code"><code>&quot;&quot;&quot;Pixel-only occlusion measurement followed by sequence inspection.&quot;&quot;&quot;
+import numpy as np
+import cv2
+
+
+def measure(image):
+    rgb=np.asarray(image.convert(&#x27;RGB&#x27;)).astype(np.float32)
+    R,G,B=rgb[:,:,0],rgb[:,:,1],rgb[:,:,2]
+    blue=(B&gt;R*1.30)&amp;(B&gt;G*1.12)&amp;(B-R&gt;24)&amp;(B&gt;55)
+    wood=(R&gt;G*1.12)&amp;(G&gt;B*1.16)&amp;(R-B&gt;25)
+    yy,xx=np.nonzero(blue)
+    if len(xx)&lt;1500: raise ValueError(&#x27;Insufficient visible strap&#x27;)
+    pts=np.column_stack([xx,yy]).astype(float)
+    origin=np.mean(pts,axis=0)
+    cov=np.cov(pts.T); val,vec=np.linalg.eigh(cov); axis=vec[:,-1]
+    if axis[1]&lt;0:axis=-axis
+    normal=np.array([axis[1],-axis[0]])
+    H,W=blue.shape
+    gy,gx=np.indices((H,W))
+    px=(gx-origin[0])*axis[0]+(gy-origin[1])*axis[1]
+    qx=(gx-origin[0])*normal[0]+(gy-origin[1])*normal[1]
+    # Width is estimated from the strap pixels, independent of bar count.
+    qblue=(pts-origin)@normal
+    width=float(np.percentile(qblue,97)-np.percentile(qblue,3))
+    if width&lt;20:raise ValueError(&#x27;Strap too narrow&#x27;)
+    side=(np.abs(qx)&gt;width*.85)&amp;(np.abs(qx)&lt;width*1.5)
+    bins=np.floor(px+H).astype(np.int32)
+    sw=np.bincount(bins[side&amp;wood],minlength=3*H)
+    st=np.bincount(bins[side],minlength=3*H)
+    profile=sw/np.maximum(st,1)
+    active=(profile&gt;.58).astype(np.uint8)
+    # Separate rung bands, rejecting isolated pixels and end-clamp supports.
+    runs=[];beg=None
+    for i,v in enumerate(active):
+        if v and beg is None:beg=i
+        if beg is not None and (not v or i==len(active)-1):
+            stop=i
+            if stop-beg&gt;=8:runs.append((beg-H,stop-H))
+            beg=None
+    # Frame rails lie outside the side strips; actual rungs span both sides.
+    states=[]; measured=[]
+    for lo,hi in runs:
+        mid=(lo+hi)/2
+        region=(np.abs(px-mid)&lt;max(2,(hi-lo)*.20))&amp;(np.abs(qx)&lt;width*.27)
+        score=float(np.mean(blue[region])) if np.any(region) else .5
+        if .15&lt;score&lt;.85:raise ValueError(&#x27;Ambiguous crossing&#x27;)
+        state=&#x27;over&#x27; if score&gt;=.85 else &#x27;under&#x27;
+        states.append(state)
+        measured.append(dict(position=float(mid),band_width=float(hi-lo),blue_fraction=score,state=state))
+    if not 5&lt;=len(states)&lt;=7:raise ValueError(&#x27;Expected five to seven exposed bars; found &#x27;+str(len(states)))
+    alternating=all(a!=b for a,b in zip(states,states[1:]))
+    return dict(strap_width_px=width,axis=axis.tolist(),crossings=measured,
+                states=states,violations=[i for i in range(len(states)-1) if states[i]==states[i+1]],
+                decision=&#x27;yes&#x27; if alternating else &#x27;no&#x27;)
+
+
+def answer_from_image(image,question,choices):
+    d=measure(image)[&#x27;decision&#x27;]
+    for choice in choices:
+        if choice.lower()==d:return choice
+    raise ValueError(&#x27;Unsupported choices&#x27;)
+
+
+def explain_from_image(image,question,choices):
+    return measure(image)
+</code></pre></details>
+        </article><article class="bl-card" id="tripod">
+          <header>
+            <p class="bl-kicker">6 · Functional inspection</p>
+            <h2>In this overhead view, is the lamp shade&#x27;s center inside the triangle formed by the centers of the three rubber feet?</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>yes</span><span>no</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program measured</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/tripod/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Lamp support projection" /><img class="bl-overlay" src="static/blender/tripod/1-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>no</b></p>
+                <ul><li>Triangle through the three feet (blue); shade centre (pink).</li><li>Signed distance from the centre to each side: +182, +446, -114 px.</li><li>One is negative: the centre is outside.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/tripod/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Lamp support projection" /><img class="bl-overlay" src="static/blender/tripod/2-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>yes</b></p>
+                <ul><li>Triangle through the three feet (blue); shade centre (pink).</li><li>Signed distance from the centre to each side: +275, +73, +169 px.</li><li>All positive: the centre is inside.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/tripod/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Lamp support projection" /><img class="bl-overlay" src="static/blender/tripod/3-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>no</b></p>
+                <ul><li>Triangle through the three feet (blue); shade centre (pink).</li><li>Signed distance from the centre to each side: +343, +212, -62 px.</li><li>One is negative: the centre is outside.</li></ul></figcaption>
+            </figure></div>
+          
+          <details class="bl-more"><summary>Inverse program as generated (64 lines)</summary>
+            <pre class="bl-code"><code>&quot;&quot;&quot;Pixels only: locate rubber pads and enamel shade, then test support triangle.&quot;&quot;&quot;
+import math
+import cv2
+import numpy as np
+
+
+def _components(mask):
+    n,l,stats,centroids=cv2.connectedComponentsWithStats(mask.astype(np.uint8),8)
+    return [(stats[i],centroids[i],l==i) for i in range(1,n)]
+
+
+def measure(image):
+    a=np.asarray(image.convert(&#x27;RGB&#x27;))
+    hsv=cv2.cvtColor(a,cv2.COLOR_RGB2HSV)
+    # Yellow enamel is an ordinary material, common to both decisions.
+    shade=((hsv[:,:,0]&gt;10)&amp;(hsv[:,:,0]&lt;42)&amp;(hsv[:,:,1]&gt;105)&amp;(hsv[:,:,2]&gt;65))
+    shade=cv2.morphologyEx(shade.astype(np.uint8),cv2.MORPH_CLOSE,np.ones((7,7),np.uint8))
+    shapes=[v for v in _components(shade) if v[0][4]&gt;1500]
+    if len(shapes)!=1: raise ValueError(&#x27;ambiguous shade segmentation&#x27;)
+    st,center,mask=shapes[0]
+    contours,_=cv2.findContours(mask.astype(np.uint8),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+    c=max(contours,key=cv2.contourArea)
+    (sx,sy),sr=cv2.minEnclosingCircle(c)
+    if sr&lt;35 or sr&gt;110: raise ValueError(&#x27;shade scale unsupported&#x27;)
+    if cv2.contourArea(c)/(math.pi*sr*sr)&lt;.82: raise ValueError(&#x27;shade outline not circular&#x27;)
+    # Neutral, very dark rubber. Thin metal legs and small fittings disappear
+    # under a disk opening; retain only large compact round support pads.
+    gray=cv2.cvtColor(a,cv2.COLOR_RGB2GRAY)
+    dark=((gray&lt;95)&amp;(hsv[:,:,1]&lt;110)).astype(np.uint8)
+    dark=cv2.morphologyEx(dark,cv2.MORPH_OPEN,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(17,17)))
+    pads=[]
+    for st,cen,m in _components(dark):
+        if st[4]&lt;1800 or st[4]&gt;10000: continue
+        cs,_=cv2.findContours(m.astype(np.uint8),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+        cc=max(cs,key=cv2.contourArea)
+        (x,y),r=cv2.minEnclosingCircle(cc)
+        fill=cv2.contourArea(cv2.convexHull(cc))/(math.pi*r*r)
+        if fill&gt;.85 and 25&lt;r&lt;60:
+            pads.append([float(x),float(y)])
+    if len(pads)!=3: raise ValueError(&#x27;expected three unoccluded rubber feet, measured %s&#x27;%len(pads))
+    hub=np.mean(pads,axis=0)
+    pads.sort(key=lambda p:math.atan2(p[1]-hub[1],p[0]-hub[0]))
+    ds=[]
+    for p,q in zip(pads,pads[1:]+pads[:1]):
+        dx,dy=q[0]-p[0],q[1]-p[1]
+        ds.append((dx*(sy-p[1])-dy*(sx-p[0]))/math.hypot(dx,dy))
+    d=min(ds)
+    if abs(d)&lt;15: raise ValueError(&#x27;shade center too near support boundary&#x27;)
+    return {&#x27;shade&#x27;:{&#x27;center&#x27;:[float(sx),float(sy)],&#x27;radius&#x27;:float(sr)},
+            &#x27;feet&#x27;:pads,&#x27;signed_edge_distances_px&#x27;:[float(x) for x in ds],
+            &#x27;margin_px&#x27;:float(abs(d)), &#x27;decision&#x27;:&#x27;yes&#x27; if d&gt;0 else &#x27;no&#x27;,
+            &#x27;trace&#x27;:[&#x27;segment circular enamel shade&#x27;,&#x27;recover three rubber foot centers&#x27;,
+                     &#x27;sort feet around centroid&#x27;,&#x27;test shade center against all three oriented edges&#x27;]}
+
+
+def explain_from_image(image,question,choices):
+    return measure(image)
+
+
+def answer_from_image(image,question,choices):
+    d=measure(image)[&#x27;decision&#x27;]
+    for choice in choices:
+        if choice.lower()==d: return choice
+    raise ValueError(&#x27;public choices must contain yes/no&#x27;)
+</code></pre></details>
+        </article><article class="bl-card" id="sockets">
+          <header>
+            <p class="bl-kicker">7 · Functional inspection</p>
+            <h2>Which power strip has two neighboring empty sockets?</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>Left power strip</span><span>Right power strip</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program read</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/sockets/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Neighboring empty sockets" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Right power strip</b></p>
+                <ul><li>Left strip, top to bottom: plug, plug, empty, plug, empty.</li><li>Right strip, top to bottom: plug, plug, empty, empty, plug. Two empty sockets are neighbours.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/sockets/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Neighboring empty sockets" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Left power strip</b></p>
+                <ul><li>Left strip, top to bottom: plug, plug, empty, empty, plug. Two empty sockets are neighbours.</li><li>Right strip, top to bottom: plug, plug, empty, plug, empty.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/sockets/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Neighboring empty sockets" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Right power strip</b></p>
+                <ul><li>Left strip, top to bottom: plug, empty, plug, empty, plug.</li><li>Right strip, top to bottom: plug, plug, plug, empty, empty. Two empty sockets are neighbours.</li></ul></figcaption>
+            </figure></div>
+          <details class="bl-more"><summary>Watch the inverse program work, step by step</summary><div class="ppa" data-src="static/animations/b04/manifest.json"></div></details>
+          <details class="bl-more"><summary>Inverse program as generated (74 lines)</summary>
+            <pre class="bl-code"><code>&quot;&quot;&quot;Pixel-only socket occupancy and ordered run detection.&quot;&quot;&quot;
+import cv2
+import numpy as np
+
+
+def measure(image):
+    rgb=np.asarray(image.convert(&#x27;RGB&#x27;))
+    # Pale plastic housings on a darker neutral bench. No unique part colors.
+    light=((rgb.min(axis=2)&gt;176)&amp;((rgb.max(axis=2)-rgb.min(axis=2))&lt;50)).astype(np.uint8)*255
+    light=cv2.morphologyEx(light,cv2.MORPH_CLOSE,np.ones((5,5),np.uint8))
+    contours,_=cv2.findContours(light,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+    bodies=[]
+    for c in contours:
+        rect=cv2.minAreaRect(c); a,b=rect[1]
+        if min(a,b)&gt;65 and max(a,b)/min(a,b)&gt;3.4 and cv2.contourArea(c)&gt;20000:
+            bodies.append((float(rect[0][0]),rect))
+    bodies=sorted(bodies,key=lambda b:b[0])
+    if len(bodies)!=2:
+        raise ValueError(&#x27;Ambiguous housing detection: &#x27;+str(len(bodies)))
+    result=[]
+    for x,rect in bodies:
+        box=cv2.boxPoints(rect).astype(np.float32)
+        top=box[np.argsort(box[:,1])[:2]]; bottom=box[np.argsort(box[:,1])[2:]]
+        tl,tr=top[np.argsort(top[:,0])]; bl,br=bottom[np.argsort(bottom[:,0])]
+        w=int(round((np.linalg.norm(tr-tl)+np.linalg.norm(br-bl))/2))
+        h=int(round((np.linalg.norm(bl-tl)+np.linalg.norm(br-tr))/2))
+        transform=cv2.getPerspectiveTransform(np.array([tl,tr,br,bl],np.float32),np.array([[0,0],[w-1,0],[w-1,h-1],[0,h-1]],np.float32))
+        patch=cv2.warpPerspective(rgb,transform,(w,h))
+        dark=(patch.max(axis=2)&lt;150).astype(np.uint8)
+        dark[:int(h*.055)]=0; dark[int(h*.945):]=0
+        dark[:,:int(w*.16)]=0; dark[:,int(w*.84):]=0
+        n,labels,stats,centers=cv2.connectedComponentsWithStats(dark,8)
+        parts=[]
+        for i in range(1,n):
+            xx,yy,ww,hh,area=stats[i]
+            if area&gt;=10:
+                parts.append(dict(y=float(centers[i][1]),area=int(area),bbox=[int(xx),int(yy),int(ww),int(hh)]))
+        parts.sort(key=lambda p:p[&#x27;y&#x27;])
+        if len(parts)&lt;5:
+            raise ValueError(&#x27;Not enough visible stations&#x27;)
+        gaps=[parts[i+1][&#x27;y&#x27;]-parts[i][&#x27;y&#x27;] for i in range(len(parts)-1)]
+        cuts=sorted(sorted(range(len(gaps)),key=lambda i:gaps[i],reverse=True)[:4])
+        groups=[]; start=0
+        for end in cuts+[len(parts)-1]:
+            groups.append(parts[start:end+1]); start=end+1
+        stations=[]
+        for g in groups:
+            area=sum(p[&#x27;area&#x27;] for p in g)
+            ratio=area/(w*w)
+            if .06&lt;ratio&lt;.16:
+                raise ValueError(&#x27;Ambiguous occupancy area&#x27;)
+            stations.append(dict(y=float(np.mean([p[&#x27;y&#x27;] for p in g])),dark_area=area,normalized_area=round(ratio,4),occupied=bool(ratio&gt;.11)))
+        empty=[not s[&#x27;occupied&#x27;] for s in stations]
+        pairs=[i for i in range(4) if empty[i] and empty[i+1]]
+        result.append(dict(center_x=x,housing_size=[w,h],stations=stations,empty_neighbor_pairs=pairs,qualifies=bool(pairs)))
+    good=[i for i,s in enumerate(result) if s[&#x27;qualifies&#x27;]]
+    if len(good)!=1:
+        raise ValueError(&#x27;Expected one unambiguous free pair&#x27;)
+    return dict(strips=result,decision=&#x27;left&#x27; if good[0]==0 else &#x27;right&#x27;,trace=&#x27;Detect housings; rectify rows; group dark bores or plug bodies into five ordered stations; classify occupancy by area; find consecutive empty stations.&#x27;)
+
+
+def answer_from_image(image,question,choices):
+    m=measure(image)
+    word=&#x27;Left&#x27; if m[&#x27;decision&#x27;]==&#x27;left&#x27; else &#x27;Right&#x27;
+    matches=[c for c in choices if c.lower().startswith(word.lower())]
+    if len(matches)!=1:
+        raise ValueError(&#x27;Unrecognized choices&#x27;)
+    return matches[0]
+
+
+def explain_from_image(image,question,choices):
+    m=measure(image)
+    m[&#x27;answer&#x27;]=answer_from_image(image,question,choices)
+    return m
+</code></pre></details>
+        </article><article class="bl-card" id="pulley">
+          <header>
+            <p class="bl-kicker">8 · Mechanisms</p>
+            <h2>For ideal pulleys, how many times the rope tension is the upward force on the lower moving block?</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>2 times</span><span>3 times</span><span>4 times</span><span>5 times</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program measured</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/pulley/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Pulley supporting strands" /><img class="bl-overlay" src="static/blender/pulley/1-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>4 times</b></p>
+                <ul><li>5 vertical rope runs between the blocks.</li><li>The rightmost run continues down to the free end, so it is the pulled end (blue).</li><li>The other 4 runs hold up the lower block (pink).</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/pulley/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Pulley supporting strands" /><img class="bl-overlay" src="static/blender/pulley/2-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>3 times</b></p>
+                <ul><li>4 vertical rope runs between the blocks.</li><li>The rightmost run continues down to the free end, so it is the pulled end (blue).</li><li>The other 3 runs hold up the lower block (pink).</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/pulley/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Pulley supporting strands" /><img class="bl-overlay" src="static/blender/pulley/3-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>5 times</b></p>
+                <ul><li>6 vertical rope runs between the blocks.</li><li>The rightmost run continues down to the free end, so it is the pulled end (blue).</li><li>The other 5 runs hold up the lower block (pink).</li></ul></figcaption>
+            </figure></div>
+          
+          <details class="bl-more"><summary>Inverse program as generated (63 lines)</summary>
+            <pre class="bl-code"><code>&quot;&quot;&quot;Pixel-only rope incidence measurement for exposed planar tackles.&quot;&quot;&quot;
+import numpy as np
+import cv2
+
+
+def _runs(row):
+    ids=np.flatnonzero(row)
+    if len(ids)==0:return []
+    groups=np.split(ids,np.where(np.diff(ids)&gt;1)[0]+1)
+    return [(int(g[0]),int(g[-1])) for g in groups if len(g)&gt;=3]
+
+
+def measure(image):
+    rgb=np.asarray(image.convert(&#x27;RGB&#x27;))
+    hsv=cv2.cvtColor(rgb,cv2.COLOR_RGB2HSV)
+    # Natural tan rope is the sole warm material, not an answer code.
+    mask=((hsv[:,:,0]&gt;=8)&amp;(hsv[:,:,0]&lt;=35)&amp;(hsv[:,:,1]&gt;85)&amp;(hsv[:,:,2]&gt;65)).astype(np.uint8)
+    mask=cv2.morphologyEx(mask,cv2.MORPH_CLOSE,np.ones((3,3),np.uint8))
+    yy,xx=np.nonzero(mask)
+    if len(xx)&lt;300:raise ValueError(&#x27;No sufficiently visible rope&#x27;)
+    ymin,ymax=int(yy.min()),int(yy.max())
+    # Long repeated vertical runs define the clear region between fixed and
+    # moving sheaves; curved wrap bands are short and fail this persistence test.
+    lo=ymin+int(.18*(ymax-ymin)); hi=ymin+int(.70*(ymax-ymin))
+    records=[]
+    for y in range(lo,hi):
+        groups=_runs(mask[y]&gt;0)
+        groups=[g for g in groups if g[1]-g[0]&lt;22]
+        if 3&lt;=len(groups)&lt;=6:
+            records.append((y,tuple(round((a+b)/2) for a,b in groups)))
+    best=[]; current=[]
+    for rec in records:
+        if current and (rec[0]!=current[-1][0]+1 or len(rec[1])!=len(current[-1][1]) or max(abs(a-b) for a,b in zip(rec[1],current[-1][1]))&gt;3):
+            if len(current)&gt;len(best):best=current
+            current=[]
+        current.append(rec)
+    if len(current)&gt;len(best):best=current
+    if len(best)&lt;35:raise ValueError(&#x27;Ambiguous rope runs in inter-block gap&#x27;)
+    centers=np.median(np.asarray([p[1] for p in best]),axis=0)
+    if min(np.diff(centers))&lt;25:raise ValueError(&#x27;Unresolved adjacent rope runs&#x27;)
+    # The rightmost rope is followed below the moving sheave band to its free
+    # grip; all other vertical strands terminate on or wrap the moving block.
+    x=int(centers[-1]); other=[int(c) for c in centers[:-1]]
+    bottom=[]
+    for cx in [*other,x]:
+        rows=np.flatnonzero(np.any(mask[:,max(0,cx-3):cx+4]&gt;0,axis=1))
+        bottom.append(int(rows.max()) if len(rows) else -1)
+    if bottom[-1]&lt;max(bottom[:-1])+25:raise ValueError(&#x27;Hauling tail not visibly separate below moving block&#x27;)
+    supports=len(centers)-1
+    return {&#x27;vertical_rope_x&#x27;:centers.tolist(),&#x27;gap_rows&#x27;:[best[0][0],best[-1][0]],
+       &#x27;rope_bottom_rows&#x27;:bottom,&#x27;free_tail_x&#x27;:x,&#x27;supporting_runs&#x27;:supports,
+       &#x27;decision&#x27;:str(supports)+&#x27; times&#x27;,
+       &#x27;trace&#x27;:&#x27;Identify separate downward hauling tail; exclude it. Each remaining taut vertical run applies one upward tension to the moving assembly.&#x27;}
+
+
+def answer_from_image(image,question,choices):
+    result=measure(image)[&#x27;decision&#x27;]
+    if result not in choices:raise ValueError(&#x27;Unsupported answer choices&#x27;)
+    return result
+
+
+def explain_from_image(image,question,choices):
+    return measure(image)
+</code></pre></details>
+        </article><article class="bl-card" id="roof">
+          <header>
+            <p class="bl-kicker">9 · 3D spatial relationships</p>
+            <h2>Is the central roof seam a ridge or a valley?</h2>
+            <p class="bl-options" aria-label="Answer choices"><span>Ridge</span><span>Valley</span></p>
+            <button class="bl-toggle" type="button" aria-pressed="false">Show what the inverse program measured</button>
+          </header>
+          <div class="bl-shots"><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/roof/1.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Roof ridge or valley" /><img class="bl-overlay" src="static/blender/roof/1-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Ridge</b></p>
+                <ul><li>Fold found at x = 486 (pink).</li><li>Along the roof&#x27;s far edge, the image height changes by -0.31 per pixel left of the fold and +0.26 right of it.</li><li>The edge peaks at the fold: a ridge.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/roof/2.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Roof ridge or valley" /><img class="bl-overlay" src="static/blender/roof/2-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Valley</b></p>
+                <ul><li>Fold found at x = 522 (pink).</li><li>Along the roof&#x27;s far edge, the image height changes by +0.25 per pixel left of the fold and -0.34 right of it.</li><li>The edge dips at the fold: a valley.</li></ul></figcaption>
+            </figure><figure class="bl-shot">
+              <div class="bl-frame"><img src="static/blender/roof/3.jpg" width="1024" height="1024" loading="lazy" alt="Rendered scene: Roof ridge or valley" /><img class="bl-overlay" src="static/blender/roof/3-measured.png" width="1024" height="1024" loading="lazy" alt="" /></div>
+              <figcaption class="bl-reveal"><p class="bl-answer">Answer from both programs: <b>Ridge</b></p>
+                <ul><li>Fold found at x = 508 (pink).</li><li>Along the roof&#x27;s far edge, the image height changes by -0.30 per pixel left of the fold and +0.30 right of it.</li><li>The edge peaks at the fold: a ridge.</li></ul></figcaption>
+            </figure></div>
+          
+          <details class="bl-more"><summary>Inverse program as generated (61 lines)</summary>
+            <pre class="bl-code"><code>&quot;&quot;&quot;Image-only roof silhouette recovery and joined-slope computation.&quot;&quot;&quot;
+from __future__ import annotations
+import numpy as np
+import cv2
+
+
+def measure(image):
+    rgb=np.asarray(image.convert(&#x27;RGB&#x27;),dtype=np.float32)
+    # Natural dark blue-gray roof material versus warm timber and neutral ground.
+    mask=((rgb[:,:,2]-rgb[:,:,0]&gt;12)&amp;(rgb[:,:,1]-rgb[:,:,0]&gt;5)&amp;
+          (rgb[:,:,0]&lt;165)).astype(np.uint8)
+    mask=cv2.morphologyEx(mask,cv2.MORPH_CLOSE,np.ones((3,3),np.uint8))
+    n,labels,stats,_=cv2.connectedComponentsWithStats(mask,8)
+    if n&lt;2:
+        raise ValueError(&#x27;No roof surface recovered&#x27;)
+    idx=1+int(np.argmax(stats[1:,cv2.CC_STAT_AREA]))
+    mask=labels==idx
+    yy,xx=np.nonzero(mask)
+    if len(xx)&lt;15000:
+        raise ValueError(&#x27;Roof surface too small&#x27;)
+    lo,hi=int(xx.min()),int(xx.max())
+    xs=np.arange(lo+0.08*(hi-lo),hi-0.08*(hi-lo),1).astype(int)
+    ys=np.array([np.flatnonzero(mask[:,x])[0] if mask[:,x].any() else np.nan for x in xs])
+    valid=np.isfinite(ys);xs=xs[valid].astype(float);ys=ys[valid].astype(float)
+    # Fit continuous two-line roof edge with an unknown seam position.
+    # y = intercept + tilt*x + fold*|x-seam|. This removes common camera tilt.
+    best=None
+    for seam in np.linspace(lo+0.32*(hi-lo),lo+0.68*(hi-lo),81):
+        mat=np.column_stack([np.ones(len(xs)),xs-seam,np.abs(xs-seam)])
+        coef=np.linalg.lstsq(mat,ys,rcond=None)[0]
+        residual=ys-mat@coef
+        error=float(np.mean(np.minimum(residual**2,100)))
+        if best is None or error&lt;best[0]:
+            best=(error,float(seam),coef)
+    error,seam,coef=best
+    left_slope=float(coef[1]-coef[2]);right_slope=float(coef[1]+coef[2])
+    # Image y points downward. A ridge is /\, so left slope &lt;0, right &gt;0.
+    if error&gt;20 or min(abs(left_slope),abs(right_slope))&lt;0.08:
+        raise ValueError(&#x27;Ambiguous or unsupported roof boundary&#x27;)
+    if left_slope&lt;0 and right_slope&gt;0:
+        decision=&#x27;ridge&#x27;
+    elif left_slope&gt;0 and right_slope&lt;0:
+        decision=&#x27;valley&#x27;
+    else:
+        raise ValueError(&#x27;Roof has no supported central fold&#x27;)
+    return {&#x27;roof_bounds&#x27;:[lo,int(yy.min()),hi,int(yy.max())],
+            &#x27;roof_pixels&#x27;:int(mask.sum()),&#x27;seam_x&#x27;:seam,
+            &#x27;left_image_slope&#x27;:left_slope,&#x27;right_image_slope&#x27;:right_slope,
+            &#x27;fit_mse_clipped&#x27;:error,&#x27;decision&#x27;:decision,
+            &#x27;trace&#x27;:[&#x27;Segment roof surface from pixels&#x27;,&#x27;Extract exposed rear roof edge&#x27;,
+                     &#x27;Fit adjoining edge slopes after common tilt&#x27;,&#x27;Classify their convex or concave fold&#x27;]}
+
+
+def explain_from_image(image,question,choices):
+    report=measure(image)
+    report[&#x27;answer&#x27;]=next(c for c in choices if c.lower()==report[&#x27;decision&#x27;])
+    return report
+
+
+def answer_from_image(image,question,choices):
+    return explain_from_image(image,question,choices)[&#x27;answer&#x27;]
+</code></pre></details>
+        </article>
+      </div></section>
+      <div class="reading-page-intro beyond-part" id="photographs">
+        <div class="container site-width">
+          <h2>From program renderings to photographs</h2>
+          <p>
+            Each pair below shows a rendering drawn by a world’s program and a photograph that an image-generation
+            model produced from that rendering. A world passes only if the same pixel-only inverse program recovers the
+            expected answer from all five renderings and all five photographs. In a two-hour run, 20 of 40 worlds
+            passed; 11 of them are shown here, with 54 image pairs.
+          </p>
+          <p class="photo-note">
+            This is a first feasibility experiment run after submission, not a benchmark. These are development
+            samples: the check is automatic, there was no formal human review, and a pass does not certify that a photograph is
+            free of other artifacts. The worlds shown are a selection of the passing ones, and the pairs were screened by eye
+            before inclusion, so a world may show fewer than five pairs.
+          </p>
+          <nav class="page-contents" aria-label="On this page"><a href="#unusual">Unusual objects</a><a href="#matching">Matching</a><a href="#tracing">Tracing</a></nav>
+        </div>
+      </div>
+      <section class="photo-section" id="unusual" aria-labelledby="unusual-heading"><div class="container site-width"><h2 id="unusual-heading">Unusual objects</h2><p class="photo-lede">An everyday object is shown either in its usual form or in an unusual but physically plausible one, and the question asks which.</p><article class="photo-world" id="cup_two_handles"><h3>Cup with one or two handles</h3><p class="photo-question">Does the cup have two handles?</p><p class="photo-options" aria-label="Answer choices"><span>yes</span><span>no</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cup_two_handles_1_rendering.jpg"><img src="static/photographs/cup_two_handles_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/cup_two_handles_1_photograph.jpg"><img src="static/photographs/cup_two_handles_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cup_two_handles_2_rendering.jpg"><img src="static/photographs/cup_two_handles_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/cup_two_handles_2_photograph.jpg"><img src="static/photographs/cup_two_handles_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>yes</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cup_two_handles_3_rendering.jpg"><img src="static/photographs/cup_two_handles_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/cup_two_handles_3_photograph.jpg"><img src="static/photographs/cup_two_handles_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cup_two_handles_4_rendering.jpg"><img src="static/photographs/cup_two_handles_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/cup_two_handles_4_photograph.jpg"><img src="static/photographs/cup_two_handles_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>yes</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cup_two_handles_5_rendering.jpg"><img src="static/photographs/cup_two_handles_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/cup_two_handles_5_photograph.jpg"><img src="static/photographs/cup_two_handles_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Cup with one or two handles, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure></div></article><article class="photo-world" id="door_round_handle"><h3>Door with a knob or a lever</h3><p class="photo-question">Is the door handle round?</p><p class="photo-options" aria-label="Answer choices"><span>yes</span><span>no</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/door_round_handle_1_rendering.jpg"><img src="static/photographs/door_round_handle_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/door_round_handle_1_photograph.jpg"><img src="static/photographs/door_round_handle_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/door_round_handle_2_rendering.jpg"><img src="static/photographs/door_round_handle_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/door_round_handle_2_photograph.jpg"><img src="static/photographs/door_round_handle_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>yes</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/door_round_handle_3_rendering.jpg"><img src="static/photographs/door_round_handle_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/door_round_handle_3_photograph.jpg"><img src="static/photographs/door_round_handle_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/door_round_handle_4_rendering.jpg"><img src="static/photographs/door_round_handle_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/door_round_handle_4_photograph.jpg"><img src="static/photographs/door_round_handle_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>yes</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/door_round_handle_5_rendering.jpg"><img src="static/photographs/door_round_handle_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/door_round_handle_5_photograph.jpg"><img src="static/photographs/door_round_handle_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Door with a knob or a lever, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure></div></article><article class="photo-world" id="outlet_ground_orientation"><h3>Wall outlet, ground hole up or down</h3><p class="photo-question">Is the ground hole below the two slots?</p><p class="photo-options" aria-label="Answer choices"><span>yes</span><span>no</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/outlet_ground_orientation_1_rendering.jpg"><img src="static/photographs/outlet_ground_orientation_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/outlet_ground_orientation_1_photograph.jpg"><img src="static/photographs/outlet_ground_orientation_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/outlet_ground_orientation_2_rendering.jpg"><img src="static/photographs/outlet_ground_orientation_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/outlet_ground_orientation_2_photograph.jpg"><img src="static/photographs/outlet_ground_orientation_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>yes</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/outlet_ground_orientation_3_rendering.jpg"><img src="static/photographs/outlet_ground_orientation_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/outlet_ground_orientation_3_photograph.jpg"><img src="static/photographs/outlet_ground_orientation_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/outlet_ground_orientation_4_rendering.jpg"><img src="static/photographs/outlet_ground_orientation_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/outlet_ground_orientation_4_photograph.jpg"><img src="static/photographs/outlet_ground_orientation_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>yes</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/outlet_ground_orientation_5_rendering.jpg"><img src="static/photographs/outlet_ground_orientation_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/outlet_ground_orientation_5_photograph.jpg"><img src="static/photographs/outlet_ground_orientation_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Wall outlet, ground hole up or down, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure></div></article><article class="photo-world" id="peanut_pod_bulges"><h3>Peanut pod with two or three bulges</h3><p class="photo-question">Does the peanut pod have two bulges?</p><p class="photo-options" aria-label="Answer choices"><span>yes</span><span>no</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/peanut_pod_bulges_1_rendering.jpg"><img src="static/photographs/peanut_pod_bulges_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/peanut_pod_bulges_1_photograph.jpg"><img src="static/photographs/peanut_pod_bulges_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/peanut_pod_bulges_2_rendering.jpg"><img src="static/photographs/peanut_pod_bulges_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/peanut_pod_bulges_2_photograph.jpg"><img src="static/photographs/peanut_pod_bulges_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>yes</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/peanut_pod_bulges_3_rendering.jpg"><img src="static/photographs/peanut_pod_bulges_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/peanut_pod_bulges_3_photograph.jpg"><img src="static/photographs/peanut_pod_bulges_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/peanut_pod_bulges_4_rendering.jpg"><img src="static/photographs/peanut_pod_bulges_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/peanut_pod_bulges_4_photograph.jpg"><img src="static/photographs/peanut_pod_bulges_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>yes</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/peanut_pod_bulges_5_rendering.jpg"><img src="static/photographs/peanut_pod_bulges_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/peanut_pod_bulges_5_photograph.jpg"><img src="static/photographs/peanut_pod_bulges_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Peanut pod with two or three bulges, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>no</b> · recovered by the inverse program from both images</figcaption></figure></div></article></div></section><section class="photo-section" id="matching" aria-labelledby="matching-heading"><div class="container site-width"><h2 id="matching-heading">Matching</h2><p class="photo-lede">One of three candidates has to be matched to a reference object by its pattern or shape.</p><article class="photo-world" id="domino_layout_match"><h3>Matching domino</h3><p class="photo-question">Which domino has the same pip layout as the domino above, allowing a half-turn?</p><p class="photo-options" aria-label="Answer choices"><span>left</span><span>center</span><span>right</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/domino_layout_match_1_rendering.jpg"><img src="static/photographs/domino_layout_match_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/domino_layout_match_1_photograph.jpg"><img src="static/photographs/domino_layout_match_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/domino_layout_match_2_rendering.jpg"><img src="static/photographs/domino_layout_match_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/domino_layout_match_2_photograph.jpg"><img src="static/photographs/domino_layout_match_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/domino_layout_match_3_rendering.jpg"><img src="static/photographs/domino_layout_match_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/domino_layout_match_3_photograph.jpg"><img src="static/photographs/domino_layout_match_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>right</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/domino_layout_match_4_rendering.jpg"><img src="static/photographs/domino_layout_match_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/domino_layout_match_4_photograph.jpg"><img src="static/photographs/domino_layout_match_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/domino_layout_match_5_rendering.jpg"><img src="static/photographs/domino_layout_match_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/domino_layout_match_5_photograph.jpg"><img src="static/photographs/domino_layout_match_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Matching domino, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure></div></article><article class="photo-world" id="cookie_stamp_match"><h3>Cookie and stamp</h3><p class="photo-question">Which cookie has the same embossed design as the stamp, allowing rotation or reflection?</p><p class="photo-options" aria-label="Answer choices"><span>left</span><span>center</span><span>right</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cookie_stamp_match_1_rendering.jpg"><img src="static/photographs/cookie_stamp_match_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/cookie_stamp_match_1_photograph.jpg"><img src="static/photographs/cookie_stamp_match_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cookie_stamp_match_2_rendering.jpg"><img src="static/photographs/cookie_stamp_match_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/cookie_stamp_match_2_photograph.jpg"><img src="static/photographs/cookie_stamp_match_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cookie_stamp_match_3_rendering.jpg"><img src="static/photographs/cookie_stamp_match_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/cookie_stamp_match_3_photograph.jpg"><img src="static/photographs/cookie_stamp_match_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>right</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cookie_stamp_match_4_rendering.jpg"><img src="static/photographs/cookie_stamp_match_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/cookie_stamp_match_4_photograph.jpg"><img src="static/photographs/cookie_stamp_match_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/cookie_stamp_match_5_rendering.jpg"><img src="static/photographs/cookie_stamp_match_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/cookie_stamp_match_5_photograph.jpg"><img src="static/photographs/cookie_stamp_match_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Cookie and stamp, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure></div></article><article class="photo-world" id="jigsaw_gap_fit"><h3>Puzzle piece and gap</h3><p class="photo-question">Which loose puzzle piece fits the empty space, allowing rotation?</p><p class="photo-options" aria-label="Answer choices"><span>left</span><span>center</span><span>right</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/jigsaw_gap_fit_1_rendering.jpg"><img src="static/photographs/jigsaw_gap_fit_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/jigsaw_gap_fit_1_photograph.jpg"><img src="static/photographs/jigsaw_gap_fit_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/jigsaw_gap_fit_2_rendering.jpg"><img src="static/photographs/jigsaw_gap_fit_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/jigsaw_gap_fit_2_photograph.jpg"><img src="static/photographs/jigsaw_gap_fit_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/jigsaw_gap_fit_3_rendering.jpg"><img src="static/photographs/jigsaw_gap_fit_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/jigsaw_gap_fit_3_photograph.jpg"><img src="static/photographs/jigsaw_gap_fit_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>right</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/jigsaw_gap_fit_4_rendering.jpg"><img src="static/photographs/jigsaw_gap_fit_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/jigsaw_gap_fit_4_photograph.jpg"><img src="static/photographs/jigsaw_gap_fit_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/jigsaw_gap_fit_5_rendering.jpg"><img src="static/photographs/jigsaw_gap_fit_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/jigsaw_gap_fit_5_photograph.jpg"><img src="static/photographs/jigsaw_gap_fit_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Puzzle piece and gap, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure></div></article><article class="photo-world" id="knit_glove_pair"><h3>Pair of knitted gloves</h3><p class="photo-question">Which glove has the same knitted stripe pattern as the single glove above?</p><p class="photo-options" aria-label="Answer choices"><span>left</span><span>center</span><span>right</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/knit_glove_pair_1_rendering.jpg"><img src="static/photographs/knit_glove_pair_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/knit_glove_pair_1_photograph.jpg"><img src="static/photographs/knit_glove_pair_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/knit_glove_pair_2_rendering.jpg"><img src="static/photographs/knit_glove_pair_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/knit_glove_pair_2_photograph.jpg"><img src="static/photographs/knit_glove_pair_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/knit_glove_pair_3_rendering.jpg"><img src="static/photographs/knit_glove_pair_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/knit_glove_pair_3_photograph.jpg"><img src="static/photographs/knit_glove_pair_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>right</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/knit_glove_pair_4_rendering.jpg"><img src="static/photographs/knit_glove_pair_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/knit_glove_pair_4_photograph.jpg"><img src="static/photographs/knit_glove_pair_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/knit_glove_pair_5_rendering.jpg"><img src="static/photographs/knit_glove_pair_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/knit_glove_pair_5_photograph.jpg"><img src="static/photographs/knit_glove_pair_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Pair of knitted gloves, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure></div></article><article class="photo-world" id="shaker_lid_correspondence"><h3>Shaker and loose lid</h3><p class="photo-question">Which shaker has the same hole arrangement as the loose lid, allowing rotation or reflection?</p><p class="photo-options" aria-label="Answer choices"><span>left</span><span>center</span><span>right</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/shaker_lid_correspondence_1_rendering.jpg"><img src="static/photographs/shaker_lid_correspondence_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Shaker and loose lid, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/shaker_lid_correspondence_1_photograph.jpg"><img src="static/photographs/shaker_lid_correspondence_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Shaker and loose lid, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/shaker_lid_correspondence_2_rendering.jpg"><img src="static/photographs/shaker_lid_correspondence_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Shaker and loose lid, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/shaker_lid_correspondence_2_photograph.jpg"><img src="static/photographs/shaker_lid_correspondence_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Shaker and loose lid, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>right</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/shaker_lid_correspondence_3_rendering.jpg"><img src="static/photographs/shaker_lid_correspondence_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Shaker and loose lid, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/shaker_lid_correspondence_3_photograph.jpg"><img src="static/photographs/shaker_lid_correspondence_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Shaker and loose lid, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>center</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/shaker_lid_correspondence_4_rendering.jpg"><img src="static/photographs/shaker_lid_correspondence_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Shaker and loose lid, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/shaker_lid_correspondence_4_photograph.jpg"><img src="static/photographs/shaker_lid_correspondence_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Shaker and loose lid, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>left</b> · recovered by the inverse program from both images</figcaption></figure></div></article></div></section><section class="photo-section" id="tracing" aria-labelledby="tracing-heading"><div class="container site-width"><h2 id="tracing-heading">Tracing</h2><p class="photo-lede">Two cables cross or touch, and the question asks which object a cable is connected to.</p><article class="photo-world" id="desk_headphone_trace"><h3>Headphones on a desk</h3><p class="photo-question">Which headphones are plugged into the laptop?</p><p class="photo-options" aria-label="Answer choices"><span>red headphones</span><span>blue headphones</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/desk_headphone_trace_1_rendering.jpg"><img src="static/photographs/desk_headphone_trace_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/desk_headphone_trace_1_photograph.jpg"><img src="static/photographs/desk_headphone_trace_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>blue headphones</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/desk_headphone_trace_2_rendering.jpg"><img src="static/photographs/desk_headphone_trace_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/desk_headphone_trace_2_photograph.jpg"><img src="static/photographs/desk_headphone_trace_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>red headphones</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/desk_headphone_trace_3_rendering.jpg"><img src="static/photographs/desk_headphone_trace_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/desk_headphone_trace_3_photograph.jpg"><img src="static/photographs/desk_headphone_trace_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>blue headphones</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/desk_headphone_trace_4_rendering.jpg"><img src="static/photographs/desk_headphone_trace_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/desk_headphone_trace_4_photograph.jpg"><img src="static/photographs/desk_headphone_trace_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>red headphones</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/desk_headphone_trace_5_rendering.jpg"><img src="static/photographs/desk_headphone_trace_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/desk_headphone_trace_5_photograph.jpg"><img src="static/photographs/desk_headphone_trace_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Headphones on a desk, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>blue headphones</b> · recovered by the inverse program from both images</figcaption></figure></div></article><article class="photo-world" id="pedalboard_patch_trace"><h3>Guitar, pedals and amplifier</h3><p class="photo-question">Which pedal is connected to the guitar?</p><p class="photo-options" aria-label="Answer choices"><span>orange pedal</span><span>green pedal</span></p><div class="photo-grid"><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/pedalboard_patch_trace_1_rendering.jpg"><img src="static/photographs/pedalboard_patch_trace_1_rendering.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 1: program rendering" /><span>Rendering</span></a><a href="static/photographs/pedalboard_patch_trace_1_photograph.jpg"><img src="static/photographs/pedalboard_patch_trace_1_photograph.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 1: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>green pedal</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/pedalboard_patch_trace_2_rendering.jpg"><img src="static/photographs/pedalboard_patch_trace_2_rendering.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 2: program rendering" /><span>Rendering</span></a><a href="static/photographs/pedalboard_patch_trace_2_photograph.jpg"><img src="static/photographs/pedalboard_patch_trace_2_photograph.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 2: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>orange pedal</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/pedalboard_patch_trace_3_rendering.jpg"><img src="static/photographs/pedalboard_patch_trace_3_rendering.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 3: program rendering" /><span>Rendering</span></a><a href="static/photographs/pedalboard_patch_trace_3_photograph.jpg"><img src="static/photographs/pedalboard_patch_trace_3_photograph.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 3: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>green pedal</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/pedalboard_patch_trace_4_rendering.jpg"><img src="static/photographs/pedalboard_patch_trace_4_rendering.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 4: program rendering" /><span>Rendering</span></a><a href="static/photographs/pedalboard_patch_trace_4_photograph.jpg"><img src="static/photographs/pedalboard_patch_trace_4_photograph.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 4: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>orange pedal</b> · recovered by the inverse program from both images</figcaption></figure><figure class="photo-pair"><div class="photo-images"><a href="static/photographs/pedalboard_patch_trace_5_rendering.jpg"><img src="static/photographs/pedalboard_patch_trace_5_rendering.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 5: program rendering" /><span>Rendering</span></a><a href="static/photographs/pedalboard_patch_trace_5_photograph.jpg"><img src="static/photographs/pedalboard_patch_trace_5_photograph.jpg" width="768" height="768" loading="lazy" alt="Guitar, pedals and amplifier, example 5: generated photograph" /><span>Photograph</span></a></div><figcaption>Answer: <b>green pedal</b> · recovered by the inverse program from both images</figcaption></figure></div></article></div></section>
+    </main>
+    <footer class="footer">
+      <div class="container reading-width has-text-centered">
+        <p><strong>PixelProof</strong> · Visual Question Generation through Forward–Inverse Agreement</p>
+        <p>Images are resized to at most 768 px. Select an image to open it.</p>
+        <p><a href="THIRD_PARTY_NOTICES.md">Credits &amp; asset notices</a></p>
+      </div>
+    </footer>
+    <script>
+      document.querySelectorAll('.bl-toggle').forEach(function (b) {
+        var shown = b.textContent, hidden = 'Hide the measurements';
+        b.addEventListener('click', function () {
+          var on = b.closest('.bl-card').classList.toggle('is-measured');
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.textContent = on ? hidden : shown;
+        });
+      });
+    </script>
+  </body>
+</html>

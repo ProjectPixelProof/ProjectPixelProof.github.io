@@ -1,0 +1,481 @@
+{
+ "key": "002",
+ "title": "Pipe fewer corners",
+ "headline": "Which pipe turns fewer times?",
+ "question": "This picture contains exactly two gray pipes. The two pipes never touch each other, and no pipe ever touches or crosses itself. Each pipe runs from one end sitting inside a black ring to its other end, which is covered by a colored square: one pipe ends at the orange square and the other pipe ends at the purple square. Every pipe is built only from horizontal and vertical straight sections, so every bend in a pipe is a right-angle turn. Follow each pipe from its black ring to its colored square and count the right-angle turns you pass along that pipe. How long the pipes are, how much of the picture they cover, and where they sit do not matter; only the number of right-angle turns counts. Which colored square is at the end of the pipe with fewer right-angle turns? Answer orange or purple.",
+ "generator": "Opus 5",
+ "agent": "Claude Code",
+ "profile": "tracing",
+ "answer": "purple",
+ "image": {
+  "w": 720,
+  "h": 720,
+  "src": "final.webp",
+  "sha256": "ec4df614a6d10683a849bee0c29c170ec664fa57bf6478cd2272fde26233949d"
+ },
+ "scene": "{\n \"background\": [255, 255, 255],\n \"canvas\": [720, 720],\n \"draw_order\": [0, 1],\n \"grid_n\": 14,\n \"nodes\": [\n  [\n   [12, 2],\n   [12, 5],\n   [10, 5],\n   [10, 8],\n   [8, 8],\n   \"… 6 more\"\n  ],\n  [\n   [2, 11],\n   [2, 7],\n   [6, 7],\n   [6, 10],\n   [10, 10],\n   \"… 3 more\"\n  ]\n ],\n \"origin\": 36,\n \"paths\": [\n  {\n   \"length_cells\": 25,\n   \"terminal\": \"orange\",\n   \"terminal_rgb\": [235, 125, 20]\n  },\n  {\n   \"length_cells\": 24,\n   \"terminal\": \"purple\",\n   \"terminal_rgb\": [135, 55, 195]\n  }\n ],\n \"pipe_color\": [74, 74, 74],\n \"pitch\": 48,\n \"ring_color\": [15, 15, 15],\n \"ring_radius\": 15,\n \"ring_width\": 4,\n \"seed\": 208,\n \"square_half\": 15,\n \"stroke_width\": 9\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    paths = scene[\"paths\"]\n    first, second = _turns(scene, 0), _turns(scene, 1)\n    return paths[0][\"terminal\"] if first <= second else paths[1][\"terminal\"]",
+  "decision": "purple",
+  "answer": "purple"
+ },
+ "render": {
+  "events": 36,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "dr.ellipse([x - r, y - r, x + r, y + r], outline=tuple(scene[\"ring_color\"]), width=scene[\"ring_width\"])",
+    "line": 207,
+    "kind": "draw.ellipse",
+    "event": 1,
+    "box": [
+     0.825,
+     0.15833333333333333,
+     0.8763888888888889,
+     0.20972222222222223
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "dr.ellipse([x - r, y - r, x + r, y + r], outline=tuple(scene[\"ring_color\"]), width=scene[\"ring_width\"])",
+    "line": 207,
+    "kind": "draw.ellipse",
+    "event": 2,
+    "box": [
+     0.15833333333333333,
+     0.7583333333333333,
+     0.20972222222222223,
+     0.8097222222222222
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 3,
+    "box": [
+     0.1125,
+     0.04027777777777778,
+     0.8611111111111112,
+     0.5944444444444444
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 4,
+    "box": null
+   },
+   {
+    "src": "r004.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 5,
+    "box": [
+     0.7069444444444445,
+     0.3736111111111111,
+     0.7208333333333333,
+     0.3875
+    ]
+   },
+   {
+    "src": "r005.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 6,
+    "box": null
+   },
+   {
+    "src": "r006.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 7,
+    "box": [
+     0.7138888888888889,
+     0.5805555555555556,
+     0.7263888888888889,
+     0.5930555555555556
+    ]
+   },
+   {
+    "src": "r007.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 8,
+    "box": null
+   },
+   {
+    "src": "r008.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 9,
+    "box": [
+     0.5736111111111111,
+     0.5805555555555556,
+     0.5875,
+     0.5930555555555556
+    ]
+   },
+   {
+    "src": "r009.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 10,
+    "box": null
+   },
+   {
+    "src": "r010.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 11,
+    "box": [
+     0.5805555555555556,
+     0.3736111111111111,
+     0.5930555555555556,
+     0.3875
+    ]
+   },
+   {
+    "src": "r011.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 12,
+    "box": null
+   },
+   {
+    "src": "r012.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 13,
+    "box": [
+     0.44027777777777777,
+     0.38055555555555554,
+     0.45416666666666666,
+     0.39305555555555555
+    ]
+   },
+   {
+    "src": "r013.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 14,
+    "box": null
+   },
+   {
+    "src": "r014.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 15,
+    "box": [
+     0.44722222222222224,
+     0.1736111111111111,
+     0.4597222222222222,
+     0.1875
+    ]
+   },
+   {
+    "src": "r015.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 16,
+    "box": null
+   },
+   {
+    "src": "r016.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 17,
+    "box": [
+     0.24027777777777778,
+     0.18055555555555555,
+     0.25416666666666665,
+     0.19305555555555556
+    ]
+   },
+   {
+    "src": "r017.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 18,
+    "box": null
+   },
+   {
+    "src": "r018.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 19,
+    "box": [
+     0.24722222222222223,
+     0.04027777777777778,
+     0.25972222222222224,
+     0.05416666666666667
+    ]
+   },
+   {
+    "src": "r019.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 20,
+    "box": null
+   },
+   {
+    "src": "r020.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 21,
+    "box": null
+   },
+   {
+    "src": "r021.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 22,
+    "box": [
+     0.1736111111111111,
+     0.5069444444444444,
+     0.9277777777777778,
+     0.9277777777777778
+    ]
+   },
+   {
+    "src": "r022.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 23,
+    "box": null
+   },
+   {
+    "src": "r023.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 24,
+    "box": [
+     0.44722222222222224,
+     0.5069444444444444,
+     0.4597222222222222,
+     0.5208333333333334
+    ]
+   },
+   {
+    "src": "r024.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 25,
+    "box": null
+   },
+   {
+    "src": "r025.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 26,
+    "box": [
+     0.44027777777777777,
+     0.7138888888888889,
+     0.45416666666666666,
+     0.7263888888888889
+    ]
+   },
+   {
+    "src": "r026.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 27,
+    "box": null
+   },
+   {
+    "src": "r027.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 28,
+    "box": [
+     0.7138888888888889,
+     0.7069444444444445,
+     0.7263888888888889,
+     0.7208333333333333
+    ]
+   },
+   {
+    "src": "r028.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 29,
+    "box": null
+   },
+   {
+    "src": "r029.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 30,
+    "box": [
+     0.7069444444444445,
+     0.9138888888888889,
+     0.7208333333333333,
+     0.9263888888888889
+    ]
+   },
+   {
+    "src": "r030.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 31,
+    "box": null
+   },
+   {
+    "src": "r031.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.pieslice",
+    "event": 32,
+    "box": [
+     0.9138888888888889,
+     0.9138888888888889,
+     0.9263888888888889,
+     0.9263888888888889
+    ]
+   },
+   {
+    "src": "r032.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 33,
+    "box": null
+   },
+   {
+    "src": "r033.webp",
+    "code": "dr.line(pts, fill=tuple(scene[\"pipe_color\"]), width=scene[\"stroke_width\"], joint=\"curve\")",
+    "line": 214,
+    "kind": "draw.line",
+    "event": 34,
+    "box": null
+   },
+   {
+    "src": "r034.webp",
+    "code": "dr.rectangle([x - s, y - s, x + s, y + s], fill=tuple(scene[\"paths\"][i][\"terminal_rgb\"]))",
+    "line": 223,
+    "kind": "draw.rectangle",
+    "event": 35,
+    "box": [
+     0.09166666666666666,
+     0.025,
+     0.14305555555555555,
+     0.0763888888888889
+    ]
+   },
+   {
+    "src": "r035.webp",
+    "code": "dr.rectangle([x - s, y - s, x + s, y + s], fill=tuple(scene[\"paths\"][i][\"terminal_rgb\"]))",
+    "line": 223,
+    "kind": "draw.rectangle",
+    "event": 36,
+    "box": [
+     0.8916666666666667,
+     0.6916666666666667,
+     0.9430555555555555,
+     0.7430555555555556
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": false,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Keep the mid-gray, unsaturated pipe pixels",
+    "fn": "decision_from_image",
+    "value_of": "decision_from_image",
+    "src": "stroke",
+    "code": "stroke = (sat <= 20) & (mean >= 40) & (mean <= 140)",
+    "style": "mask",
+    "marks": [],
+    "note": "20,792 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Keep the saturated pixels: the two end squares",
+    "fn": "decision_from_image",
+    "value_of": "decision_from_image",
+    "src": "colored",
+    "code": "colored = sat >= 60",
+    "style": "mask",
+    "marks": [],
+    "note": "1,922 pixels kept",
+    "overlay": "b1.webp"
+   },
+   {
+    "title": "Count each pipe's long straight runs, minus one",
+    "fn": "_turns",
+    "value_of": "_turns",
+    "src": "comp",
+    "code": "return n_h + n_v - 1",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.5502557651991614,
+      "y": 0.3307463312368973,
+      "text": "5 + 5 − 1 = 9 turns",
+      "strong": true
+     },
+     {
+      "x": 0.5374082886359672,
+      "y": 0.7093437936071865,
+      "text": "3 + 4 − 1 = 6 turns",
+      "strong": true
+     }
+    ],
+    "note": "long horizontal (blue) and vertical (orange) sections; turns per pipe [9, 6]",
+    "overlay": "b2.webp"
+   }
+  ],
+  "final": {
+   "code": "return \"orange\" if t_orange < t_purple else \"purple\"",
+   "fn": "decision_from_image",
+   "text": "Name each pipe by its nearest square; the purple pipe turns fewer times",
+   "values": [
+    {
+     "label": "turns (orange)",
+     "value": "9"
+    },
+    {
+     "label": "turns (purple)",
+     "value": "6"
+    }
+   ]
+  },
+  "decision": "purple",
+  "answer": "purple"
+ },
+ "study_title": "Pipe Fewer Corners",
+ "site_id": "profile-conditioned-pipe-fewer-corners-33311d3ecc"
+}

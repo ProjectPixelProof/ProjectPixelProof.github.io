@@ -1,0 +1,7 @@
+.teaser-section { padding: 2.5rem 1.5rem 1rem; }
+.teaser-container { max-width: 960px; margin: 0 auto; }
+.teaser-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.teaser-heading h2 { margin: 0; font-size: 1.5rem; font-weight: 600; color: #202a30; }
+.teaser-heading span { font-size: .875rem; color: #637078; }
+.teaser-video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #fff; border: 1px solid #dce2e5; border-radius: 12px; }
+@media (max-width: 600px) { .teaser-section { padding: 1.5rem 1rem .5rem; } .teaser-heading h2 { font-size: 1.25rem; } .teaser-video { border-radius: 8px; } }

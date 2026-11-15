@@ -1,0 +1,302 @@
+{
+ "key": "b05",
+ "title": "Pinned-frame mobility",
+ "headline": "Which frame can change shape?",
+ "question": "With ideal pin joints and the two lower pivots fixed, which four-sided frame can change shape without bending its bars?",
+ "generator": "",
+ "agent": "",
+ "profile": "mechanisms-connections",
+ "profile_label": "Mechanisms and connections",
+ "answer": "right",
+ "image": {
+  "w": 1024,
+  "h": 1024,
+  "src": "final.webp",
+  "sha256": "c47acc9d3c11b02280357d350214c2a9993837c6f0b6066da73c3ca6639f267a"
+ },
+ "scene": "{\n \"assemblies\": [\n  {\n   \"points\": [\n    [-2.96, -0.82],\n    [-0.94, -0.82],\n    [-1.07, 0.97],\n    [-3.02, 0.97]\n   ],\n   \"bars\": [\n    [0, 1],\n    [1, 2],\n    [2, 3],\n    [3, 0],\n    [0, 2]\n   ],\n   \"fixed\": [0, 1],\n   \"bar_width\": 0.14,\n   \"bar_color\": [0.08, 0.13, 0.15]\n  },\n  {\n   \"points\": [\n    [1.07, -0.98],\n    [2.83, -0.98],\n    [2.49, 1.12],\n    [1.1, 1.12]\n   ],\n   \"bars\": [\n    [0, 1],\n    [1, 2],\n    [2, 3],\n    [3, 0]\n   ],\n   \"fixed\": [0, 1],\n   \"bar_width\": 0.15,\n   \"bar_color\": [0.1, 0.12, 0.16]\n  }\n ],\n \"camera_y\": -3.96,\n \"camera_z\": 12.19,\n \"ortho_scale\": 8.48,\n \"base_gray\": 0.48,\n \"serial_note\": \"not rendered\"\n}",
+ "forward": {
+  "code": "def analytic_gold(scene):\n    ordered=sorted(scene['assemblies'],key=lambda a:sum(p[0] for p in a['points']))\n    movable=[i for i,a in enumerate(ordered) if _dof(a)>0]\n    if len(movable)!=1: raise ValueError('supported scenes require one movable frame')\n    return 'left' if movable[0]==0 else 'right'",
+  "decision": "right",
+  "answer": "right",
+  "saved": true
+ },
+ "render": {
+  "events": 1,
+  "frames": [
+   {
+    "src": "final.webp",
+    "code": "return render_scene(config).convert('RGB')",
+    "continues": false,
+    "line": 108,
+    "kind": "blender",
+    "event": 1,
+    "box": null,
+    "saved": true
+   }
+  ],
+  "mode": "saved",
+  "engine": "Blender"
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Keep brass-coloured pixels (hue 9 to 38, saturated, lit)",
+    "fn": "_measure",
+    "value_of": "_measure",
+    "src": "mask",
+    "code": "mask=((hsv[:,:,0]>8)&(hsv[:,:,0]<39)&(hsv[:,:,1]>75)&(hsv[:,:,2]>65)).astype(np.uint8)*255",
+    "style": "mask",
+    "marks": [],
+    "note": "4,935 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Keep blobs with a pin head's size and shape: eight pins",
+    "fn": "_measure",
+    "value_of": "_measure",
+    "src": "pins",
+    "code": "if 80<area<2200 and .55<w/max(h,1)<1.8 and 10<w<55 and 10<h<55:",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.2640873177591504,
+      "y": 0.30876187078967066,
+      "text": "4 pins"
+     },
+     {
+      "x": 0.7184915389322194,
+      "y": 0.29110800253378377,
+      "text": "4 pins"
+     }
+    ],
+    "note": "17 brass-coloured blobs; 8 have a pin head's size and shape (area 81 to 2,199 px, 11 to 54 px each way, width/height 0.55 to 1.8); the program refuses unless exactly eight remain",
+    "ink": 1.0,
+    "overlay": "b1.webp"
+   },
+   {
+    "title": "Sort pins left to right: four per frame",
+    "fn": "_measure",
+    "value_of": "_measure",
+    "src": "groups",
+    "code": "groups=[pins[:4],pins[4:]]",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.2640873177591504,
+      "y": 0.26969937078967066,
+      "text": "left frame",
+      "strong": true
+     },
+     {
+      "x": 0.7184915389322194,
+      "y": 0.25204550253378377,
+      "text": "right frame",
+      "strong": true
+     },
+     {
+      "x": 0.1040918235159086,
+      "y": 0.34477206244169545,
+      "text": "0"
+     },
+     {
+      "x": 0.11197897520423977,
+      "y": 0.6101904605888745,
+      "text": "1"
+     },
+     {
+      "x": 0.4113758620210423,
+      "y": 0.3430279358598282,
+      "text": "2"
+     },
+     {
+      "x": 0.42878952511229157,
+      "y": 0.6086262665310157,
+      "text": "3"
+     },
+     {
+      "x": 0.5929874230307662,
+      "y": 0.6353856803514302,
+      "text": "0"
+     },
+     {
+      "x": 0.5987091809346579,
+      "y": 0.3201401562404344,
+      "text": "1"
+     },
+     {
+      "x": 0.8166197818797515,
+      "y": 0.3160362656630163,
+      "text": "2"
+     },
+     {
+      "x": 0.8643855422737643,
+      "y": 0.6332252546285002,
+      "text": "3"
+     }
+    ],
+    "note": "pin x positions in order: 147, 154, 383, 398, 640, 645, 809, 850; the first four are the left frame, the last four the right frame; numbers are each pin's index inside its frame",
+    "ink": 1.0,
+    "overlay": "b2.webp"
+   },
+   {
+    "title": "In each frame the two lowest pins are taken as fixed",
+    "fn": "_measure",
+    "value_of": "_measure",
+    "src": "fixed",
+    "code": "fixed=list(np.argsort(p[:,1])[-2:])",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.14323598895958084,
+      "y": 0.31852749578967066,
+      "text": "free",
+      "strong": true
+     },
+     {
+      "x": 0.15018312360698366,
+      "y": 0.6372832118313522,
+      "text": "fixed"
+     },
+     {
+      "x": 0.37380935623123124,
+      "y": 0.31860278246997,
+      "text": "free",
+      "strong": true
+     },
+     {
+      "x": 0.38912080223880596,
+      "y": 0.6374693913246269,
+      "text": "fixed"
+     },
+     {
+      "x": 0.6246468458191851,
+      "y": 0.6562284459889643,
+      "text": "fixed"
+     },
+     {
+      "x": 0.6294061385697306,
+      "y": 0.3019992447503962,
+      "text": "free",
+      "strong": true
+     },
+     {
+      "x": 0.7903048835666023,
+      "y": 0.30087362753378377,
+      "text": "free",
+      "strong": true
+     },
+     {
+      "x": 0.8296082877733598,
+      "y": 0.6567683741302187,
+      "text": "fixed"
+     }
+    ],
+    "note": "the two pins with the largest y (lowest in the image) are taken as fixed: rows 591 and 591 on the left, 610 and 611 on the right. The grey base blocks under them are not detected",
+    "ink": 1.0,
+    "overlay": "b3.webp"
+   },
+   {
+    "title": "Mark every pixel with grey level under 175 as dark",
+    "fn": "_measure",
+    "value_of": "_measure",
+    "src": "dark",
+    "code": "dark=gray<175",
+    "style": "mask",
+    "marks": [],
+    "note": "459,480 pixels kept",
+    "overlay": "b4.webp"
+   },
+   {
+    "title": "For every pin pair, test for dark along the line between",
+    "fn": "_measure",
+    "value_of": "_measure",
+    "src": "scores",
+    "code": "support=np.max(np.array(profiles),axis=0)",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.2317545217401019,
+      "y": 0.4490497031822549,
+      "text": "0.16: no bar",
+      "strong": true
+     },
+     {
+      "x": 0.6842837394082553,
+      "y": 0.5106444613450993,
+      "text": "0.00: no bar",
+      "strong": true
+     },
+     {
+      "x": 0.6894667833308193,
+      "y": 0.43128154606434294,
+      "text": "0.00: no bar",
+      "strong": true
+     },
+     {
+      "x": 0.2640873177591504,
+      "y": 0.6550475163246269,
+      "text": "5 bars"
+     },
+     {
+      "x": 0.7184915389322194,
+      "y": 0.6743464991302187,
+      "text": "4 bars"
+     }
+    ],
+    "note": "90 points along the middle 62% of each of the 6 pin pairs, 21 px across; the score is the share of points with a dark pixel. Bars score 1.00 here, the other pairs 0.00 to 0.16; at least 0.80 is a bar, 0.40 to 0.80 is refused",
+    "ink": 1.0,
+    "overlay": "b5.webp"
+   },
+   {
+    "title": "Each bar pins one direction of the free pins: count the rank",
+    "fn": "_measure",
+    "value_of": "_measure",
+    "src": "singular",
+    "code": "rank=int(np.sum(singular>.015))",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.2640873177591504,
+      "y": 0.6550475163246269,
+      "text": "rank 4 of 4: rigid"
+     },
+     {
+      "x": 0.7184915389322194,
+      "y": 0.28134237753378377,
+      "text": "rank 3 of 4: can move",
+      "strong": true
+     }
+    ],
+    "note": "the two free pins have 4 coordinates; each bar gives one row (its direction at its free ends). Singular values left: 1.56; 1.17; 0.999; 0.434; right: 1.42; 1; 0.988; 3.17e-17. Values above 0.015 count towards the rank",
+    "ink": 1.0,
+    "overlay": "b6.webp"
+   }
+  ],
+  "final": {
+   "code": "mobile=[i for i,r in enumerate(records) if r['internal_dof']>0]",
+   "fn": "_measure",
+   "text": "Only the right frame has a freedom left over, so it can change shape",
+   "values": [
+    {
+     "label": "left: freedoms left (4 − rank)",
+     "value": "0"
+    },
+    {
+     "label": "right: freedoms left (4 − rank)",
+     "value": "1"
+    },
+    {
+     "label": "frames that can move (0 left, 1 right)",
+     "value": "[1]"
+    }
+   ]
+  },
+  "decision": "right",
+  "answer": "right"
+ },
+ "study_title": "Pinned-frame mobility",
+ "site_id": "b05"
+}

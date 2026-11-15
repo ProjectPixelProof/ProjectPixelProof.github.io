@@ -1,0 +1,886 @@
+{
+ "key": "097",
+ "title": "Border flood reveal",
+ "headline": "Flood from the gate, read what remains",
+ "question": "Starting at the magenta-gated black cell, erase every black grid cell reachable by side-sharing moves (up, down, left, or right; not diagonally). Which symbol remains: diamond, square, plus, or X?",
+ "generator": "Sol (high)",
+ "agent": "Codex",
+ "profile": "reveal-declared-transform",
+ "answer": "X",
+ "image": {
+  "w": 480,
+  "h": 480,
+  "src": "final.webp",
+  "sha256": "1edac205818f9f92637d4dae127b1afbfbaab5cddc23d718cd8f954e6dae1cdc"
+ },
+ "scene": "{\n \"cell_size\": 16,\n \"clutter_cells\": [\n  [15, 19],\n  [3, 4],\n  [10, 19],\n  [10, 1],\n  [5, 11],\n  \"… 165 more\"\n ],\n \"frame_rgb\": [16, 148, 196],\n \"gate_index\": 7,\n \"gate_rgb\": [210, 34, 151],\n \"gate_side\": 0,\n \"grid_x\": 75,\n \"grid_y\": 60,\n \"ink_rgb\": [24, 34, 27],\n \"symbol\": \"X\",\n \"symbol_cells\": [\n  [5, 6],\n  [5, 7],\n  [5, 13],\n  [5, 14],\n  [6, 6],\n  \"… 27 more\"\n ]\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    return scene[\"symbol\"]",
+  "decision": "X",
+  "answer": "X"
+ },
+ "render": {
+  "events": 242,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 10,
+    "box": [
+     0.1875,
+     0.15625,
+     0.8270833333333333,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 20,
+    "box": [
+     0.1875,
+     0.12291666666666666,
+     0.8270833333333333,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 30,
+    "box": [
+     0.3541666666666667,
+     0.22291666666666668,
+     0.8270833333333333,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 40,
+    "box": [
+     0.25416666666666665,
+     0.12291666666666666,
+     0.8270833333333333,
+     0.7625
+    ]
+   },
+   {
+    "src": "r004.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 50,
+    "box": [
+     0.15416666666666667,
+     0.12291666666666666,
+     0.8270833333333333,
+     0.7625
+    ]
+   },
+   {
+    "src": "r005.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 60,
+    "box": [
+     0.15416666666666667,
+     0.12291666666666666,
+     0.79375,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r006.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 70,
+    "box": [
+     0.15416666666666667,
+     0.15625,
+     0.6604166666666667,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r007.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 80,
+    "box": [
+     0.15416666666666667,
+     0.12291666666666666,
+     0.8270833333333333,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r008.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 90,
+    "box": [
+     0.15416666666666667,
+     0.12291666666666666,
+     0.8270833333333333,
+     0.5958333333333333
+    ]
+   },
+   {
+    "src": "r009.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 101,
+    "box": [
+     0.1875,
+     0.12291666666666666,
+     0.8270833333333333,
+     0.7625
+    ]
+   },
+   {
+    "src": "r010.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 111,
+    "box": [
+     0.1875,
+     0.15625,
+     0.79375,
+     0.6958333333333333
+    ]
+   },
+   {
+    "src": "r011.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 121,
+    "box": [
+     0.15416666666666667,
+     0.15625,
+     0.8270833333333333,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r012.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 131,
+    "box": [
+     0.22083333333333333,
+     0.15625,
+     0.8270833333333333,
+     0.7625
+    ]
+   },
+   {
+    "src": "r013.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 141,
+    "box": [
+     0.22083333333333333,
+     0.18958333333333333,
+     0.8270833333333333,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r014.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 151,
+    "box": [
+     0.15416666666666667,
+     0.12291666666666666,
+     0.7604166666666666,
+     0.7625
+    ]
+   },
+   {
+    "src": "r015.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 161,
+    "box": [
+     0.15416666666666667,
+     0.12291666666666666,
+     0.8270833333333333,
+     0.7958333333333333
+    ]
+   },
+   {
+    "src": "r016.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 171,
+    "box": [
+     0.25416666666666665,
+     0.15625,
+     0.79375,
+     0.6625
+    ]
+   },
+   {
+    "src": "r017.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 181,
+    "box": [
+     0.3541666666666667,
+     0.28958333333333336,
+     0.6604166666666667,
+     0.3958333333333333
+    ]
+   },
+   {
+    "src": "r018.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 191,
+    "box": [
+     0.3875,
+     0.35625,
+     0.6270833333333333,
+     0.5291666666666667
+    ]
+   },
+   {
+    "src": "r019.webp",
+    "code": "draw.rectangle((x0, y0, x + (c + 1) * s - 2, y + (r + 1) * s - 2), fill=ink)",
+    "line": 150,
+    "kind": "draw.rectangle",
+    "event": 202,
+    "box": [
+     0.3541666666666667,
+     0.4895833333333333,
+     0.6604166666666667,
+     0.5958333333333333
+    ]
+   },
+   {
+    "src": "r020.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 203,
+    "box": [
+     0.18333333333333332,
+     0.11875,
+     0.19791666666666666,
+     0.8
+    ]
+   },
+   {
+    "src": "r021.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 204,
+    "box": [
+     0.15,
+     0.15208333333333332,
+     0.83125,
+     0.16666666666666666
+    ]
+   },
+   {
+    "src": "r022.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 205,
+    "box": [
+     0.21666666666666667,
+     0.11875,
+     0.23125,
+     0.8
+    ]
+   },
+   {
+    "src": "r023.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 206,
+    "box": [
+     0.15,
+     0.18541666666666667,
+     0.83125,
+     0.2
+    ]
+   },
+   {
+    "src": "r024.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 207,
+    "box": [
+     0.25,
+     0.11875,
+     0.26458333333333334,
+     0.8
+    ]
+   },
+   {
+    "src": "r025.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 208,
+    "box": [
+     0.15,
+     0.21875,
+     0.83125,
+     0.23333333333333334
+    ]
+   },
+   {
+    "src": "r026.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 209,
+    "box": [
+     0.2833333333333333,
+     0.11875,
+     0.29791666666666666,
+     0.8
+    ]
+   },
+   {
+    "src": "r027.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 210,
+    "box": [
+     0.15,
+     0.2520833333333333,
+     0.83125,
+     0.26666666666666666
+    ]
+   },
+   {
+    "src": "r028.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 211,
+    "box": [
+     0.31666666666666665,
+     0.11875,
+     0.33125,
+     0.8
+    ]
+   },
+   {
+    "src": "r029.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 212,
+    "box": [
+     0.15,
+     0.28541666666666665,
+     0.83125,
+     0.3
+    ]
+   },
+   {
+    "src": "r030.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 213,
+    "box": [
+     0.35,
+     0.11875,
+     0.3645833333333333,
+     0.8
+    ]
+   },
+   {
+    "src": "r031.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 214,
+    "box": [
+     0.15,
+     0.31875,
+     0.83125,
+     0.3333333333333333
+    ]
+   },
+   {
+    "src": "r032.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 215,
+    "box": [
+     0.38333333333333336,
+     0.11875,
+     0.39791666666666664,
+     0.8
+    ]
+   },
+   {
+    "src": "r033.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 216,
+    "box": [
+     0.15,
+     0.35208333333333336,
+     0.83125,
+     0.36666666666666664
+    ]
+   },
+   {
+    "src": "r034.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 217,
+    "box": [
+     0.4166666666666667,
+     0.11875,
+     0.43125,
+     0.8
+    ]
+   },
+   {
+    "src": "r035.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 218,
+    "box": [
+     0.15,
+     0.3854166666666667,
+     0.83125,
+     0.4
+    ]
+   },
+   {
+    "src": "r036.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 219,
+    "box": [
+     0.45,
+     0.11875,
+     0.46458333333333335,
+     0.8
+    ]
+   },
+   {
+    "src": "r037.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 220,
+    "box": [
+     0.15,
+     0.41875,
+     0.83125,
+     0.43333333333333335
+    ]
+   },
+   {
+    "src": "r038.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 221,
+    "box": [
+     0.48333333333333334,
+     0.11875,
+     0.4979166666666667,
+     0.8
+    ]
+   },
+   {
+    "src": "r039.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 222,
+    "box": [
+     0.15,
+     0.45208333333333334,
+     0.83125,
+     0.4666666666666667
+    ]
+   },
+   {
+    "src": "r040.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 223,
+    "box": [
+     0.5166666666666667,
+     0.11875,
+     0.53125,
+     0.8
+    ]
+   },
+   {
+    "src": "r041.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 224,
+    "box": [
+     0.15,
+     0.48541666666666666,
+     0.83125,
+     0.5
+    ]
+   },
+   {
+    "src": "r042.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 225,
+    "box": [
+     0.55,
+     0.11875,
+     0.5645833333333333,
+     0.8
+    ]
+   },
+   {
+    "src": "r043.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 226,
+    "box": [
+     0.15,
+     0.51875,
+     0.83125,
+     0.5333333333333333
+    ]
+   },
+   {
+    "src": "r044.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 227,
+    "box": [
+     0.5833333333333334,
+     0.11875,
+     0.5979166666666667,
+     0.8
+    ]
+   },
+   {
+    "src": "r045.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 228,
+    "box": [
+     0.15,
+     0.5520833333333334,
+     0.83125,
+     0.5666666666666667
+    ]
+   },
+   {
+    "src": "r046.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 229,
+    "box": [
+     0.6166666666666667,
+     0.11875,
+     0.63125,
+     0.8
+    ]
+   },
+   {
+    "src": "r047.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 230,
+    "box": [
+     0.15,
+     0.5854166666666667,
+     0.83125,
+     0.6
+    ]
+   },
+   {
+    "src": "r048.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 231,
+    "box": [
+     0.65,
+     0.11875,
+     0.6645833333333333,
+     0.8
+    ]
+   },
+   {
+    "src": "r049.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 232,
+    "box": [
+     0.15,
+     0.61875,
+     0.83125,
+     0.6333333333333333
+    ]
+   },
+   {
+    "src": "r050.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 233,
+    "box": [
+     0.6833333333333333,
+     0.11875,
+     0.6979166666666666,
+     0.8
+    ]
+   },
+   {
+    "src": "r051.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 234,
+    "box": [
+     0.15,
+     0.6520833333333333,
+     0.83125,
+     0.6666666666666666
+    ]
+   },
+   {
+    "src": "r052.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 235,
+    "box": [
+     0.7166666666666667,
+     0.11875,
+     0.73125,
+     0.8
+    ]
+   },
+   {
+    "src": "r053.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 236,
+    "box": [
+     0.15,
+     0.6854166666666667,
+     0.83125,
+     0.7
+    ]
+   },
+   {
+    "src": "r054.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 237,
+    "box": [
+     0.75,
+     0.11875,
+     0.7645833333333333,
+     0.8
+    ]
+   },
+   {
+    "src": "r055.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 238,
+    "box": [
+     0.15,
+     0.71875,
+     0.83125,
+     0.7333333333333333
+    ]
+   },
+   {
+    "src": "r056.webp",
+    "code": "draw.line((x + k * s, y, x + k * s, y + GRID_N * s), fill=grid_color, width=1)",
+    "line": 153,
+    "kind": "draw.line",
+    "event": 239,
+    "box": [
+     0.7833333333333333,
+     0.11875,
+     0.7979166666666667,
+     0.8
+    ]
+   },
+   {
+    "src": "r057.webp",
+    "code": "draw.line((x, y + k * s, x + GRID_N * s, y + k * s), fill=grid_color, width=1)",
+    "line": 154,
+    "kind": "draw.line",
+    "event": 240,
+    "box": [
+     0.15,
+     0.7520833333333333,
+     0.83125,
+     0.7666666666666667
+    ]
+   },
+   {
+    "src": "r058.webp",
+    "code": "draw.rectangle((x, y, x + GRID_N * s, y + GRID_N * s), outline=frame, width=4)",
+    "line": 155,
+    "kind": "draw.rectangle",
+    "event": 241,
+    "box": [
+     0.15,
+     0.11875,
+     0.83125,
+     0.8
+    ]
+   },
+   {
+    "src": "r059.webp",
+    "code": "draw.polygon(poly, fill=gate)",
+    "line": 166,
+    "kind": "draw.polygon",
+    "event": 242,
+    "box": [
+     0.10833333333333334,
+     0.35208333333333336,
+     0.15208333333333332,
+     0.4
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": false,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Keep cyan pixels: the frame bounds the grid",
+    "fn": "decision_with_margin",
+    "value_of": "decision_with_margin",
+    "src": "cyan",
+    "code": "cyan = (r < 80) & (g > 110) & (b > 135) & (b - r > 80)",
+    "style": "mask",
+    "marks": [],
+    "note": "5,072 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Keep the exact gray of the grid lines",
+    "fn": "decision_with_margin",
+    "value_of": "decision_with_margin",
+    "src": "gridish",
+    "code": "gridish = (abs(r - 190) <= 3) & (abs(g - 203) <= 3) & (abs(b - 207) <= 3)",
+    "style": "mask",
+    "marks": [],
+    "note": "11,533 pixels kept",
+    "overlay": "b1.webp"
+   },
+   {
+    "title": "Magenta gate's nearest edge gives the start cell",
+    "fn": "decision_with_margin",
+    "value_of": "decision_with_margin",
+    "src": "start",
+    "code": "start = (row, 0 if side == 0 else 19)",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.33541666666666664,
+      "y": 0.32916666666666666,
+      "text": "start row 7, col 0",
+      "strong": true
+     }
+    ],
+    "note": "magenta centroid (64.55, 180) is nearest the left edge",
+    "overlay": "b2.webp"
+   },
+   {
+    "title": "Flood dark cells from the start; these are left over",
+    "fn": "decision_with_margin",
+    "value_of": "decision_with_margin",
+    "src": "scores",
+    "code": "residue = {(row, col) for row in range(20) for col in range(20) if occupied[row, col] and (row, col) not in seen}",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.50625,
+      "y": 0.6291666666666667,
+      "text": "X: IoU 1",
+      "strong": true
+     }
+    ],
+    "note": "32 unreached dark cells from row 5, col 6; X 1, square 0.2308, diamond 0.06667, plus 0.06667",
+    "overlay": "b3.webp"
+   }
+  ],
+  "final": {
+   "code": "return scores[0][0], round(margin, 6)",
+   "fn": "decision_with_margin",
+   "text": "Shift the leftover cells to the corner and compare with each template",
+   "values": [
+    {
+     "label": "template IoU",
+     "value": "[('X', 1), ('square', 0.2308), ('diamond', 0.06667), ('plus', 0.06667)]"
+    }
+   ]
+  },
+  "decision": "X",
+  "answer": "X"
+ },
+ "study_title": "Border Flood Reveal",
+ "site_id": "profile-conditioned-border-flood-reveal-e2c34e6425"
+}

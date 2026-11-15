@@ -1,0 +1,457 @@
+[
+ {
+  "slug": "rings",
+  "title": "Linked metal rings",
+  "kicker": "3D spatial relationships",
+  "question": "Are the two closed metal rings linked together?",
+  "choices": [
+   "yes",
+   "no"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/rings/1.jpg",
+    "overlay": "static/blender/rings/1-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "yes",
+    "readout": [
+     "Crossing 1: the brass ring is on top.",
+     "Crossing 2: the steel ring is on top.",
+     "Different rings on top at the two crossings: linked."
+    ]
+   },
+   {
+    "image": "static/blender/rings/2.jpg",
+    "overlay": "static/blender/rings/2-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "no",
+    "readout": [
+     "Crossing 1: the brass ring is on top.",
+     "Crossing 2: the brass ring is on top.",
+     "The same ring on top at both crossings: not linked."
+    ]
+   },
+   {
+    "image": "static/blender/rings/3.jpg",
+    "overlay": "static/blender/rings/3-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "yes",
+    "readout": [
+     "Crossing 1: the brass ring is on top.",
+     "Crossing 2: the steel ring is on top.",
+     "Different rings on top at the two crossings: linked."
+    ]
+   }
+  ],
+  "code": "static/blender/rings/inverse.py",
+  "code_lines": 81,
+  "animation": "b01"
+ },
+ {
+  "slug": "frame",
+  "title": "Pinned-frame mobility",
+  "kicker": "Mechanisms",
+  "question": "With ideal pin joints and the two lower pivots fixed, which four-sided frame can change shape without bending its bars?",
+  "choices": [
+   "left",
+   "right"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/frame/1.jpg",
+    "overlay": "static/blender/frame/1-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "right",
+    "readout": [
+     "Left frame: 5 bars between 4 pins; the bars lock its shape.",
+     "Right frame: 4 bars between 4 pins; it can still change shape.",
+     "Blue pins are the two fixed lower pivots."
+    ]
+   },
+   {
+    "image": "static/blender/frame/2.jpg",
+    "overlay": "static/blender/frame/2-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "left",
+    "readout": [
+     "Left frame: 4 bars between 4 pins; it can still change shape.",
+     "Right frame: 5 bars between 4 pins; the bars lock its shape.",
+     "Blue pins are the two fixed lower pivots."
+    ]
+   },
+   {
+    "image": "static/blender/frame/3.jpg",
+    "overlay": "static/blender/frame/3-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "right",
+    "readout": [
+     "Left frame: 5 bars between 4 pins; the bars lock its shape.",
+     "Right frame: 4 bars between 4 pins; it can still change shape.",
+     "Blue pins are the two fixed lower pivots."
+    ]
+   }
+  ],
+  "code": "static/blender/frame/inverse.py",
+  "code_lines": 69,
+  "animation": "b05"
+ },
+ {
+  "slug": "crank",
+  "title": "Full crank rotation",
+  "kicker": "Mechanisms",
+  "question": "Which linkage lets its left grounded crank complete a full turn? Assume ideal pin joints and ignore collisions between bars in separate layers.",
+  "choices": [
+   "Left linkage",
+   "Right linkage"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/crank/1.jpg",
+    "overlay": "static/blender/crank/1-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Right linkage",
+    "readout": [
+     "Left linkage: crank 124, coupler 160, output 208, ground 292 px; the crank cannot turn fully.",
+     "Right linkage: crank 95, coupler 246, output 165, ground 258 px; the crank can turn fully.",
+     "Pink is the left grounded crank."
+    ]
+   },
+   {
+    "image": "static/blender/crank/2.jpg",
+    "overlay": "static/blender/crank/2-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Left linkage",
+    "readout": [
+     "Left linkage: crank 129, coupler 243, output 209, ground 263 px; the crank can turn fully.",
+     "Right linkage: crank 122, coupler 158, output 176, ground 277 px; the crank cannot turn fully.",
+     "Pink is the left grounded crank."
+    ]
+   },
+   {
+    "image": "static/blender/crank/3.jpg",
+    "overlay": "static/blender/crank/3-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Right linkage",
+    "readout": [
+     "Left linkage: crank 129, coupler 169, output 187, ground 276 px; the crank cannot turn fully.",
+     "Right linkage: crank 111, coupler 241, output 205, ground 292 px; the crank can turn fully.",
+     "Pink is the left grounded crank."
+    ]
+   }
+  ],
+  "code": "static/blender/crank/inverse.py",
+  "code_lines": 61,
+  "animation": null
+ },
+ {
+  "slug": "springs",
+  "title": "Spring extension",
+  "kicker": "Mechanisms",
+  "question": "For equal added loads, which assembly extends farther? Assume identical linear springs and rigid crossbars.",
+  "choices": [
+   "Left assembly",
+   "Right assembly"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/springs/1.jpg",
+    "overlay": "static/blender/springs/1-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Right assembly",
+    "readout": [
+     "Left assembly: 2 then 3 springs side by side; stretch is proportional to 1/2 + 1/3 = 0.83.",
+     "Right assembly: 1 then 4 springs side by side; stretch is proportional to 1/1 + 1/4 = 1.25.",
+     "More springs side by side are stiffer; stages in a chain add their stretch."
+    ]
+   },
+   {
+    "image": "static/blender/springs/2.jpg",
+    "overlay": "static/blender/springs/2-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Left assembly",
+    "readout": [
+     "Left assembly: 1 then 4 springs side by side; stretch is proportional to 1/1 + 1/4 = 1.25.",
+     "Right assembly: 3 then 2 springs side by side; stretch is proportional to 1/3 + 1/2 = 0.83.",
+     "More springs side by side are stiffer; stages in a chain add their stretch."
+    ]
+   },
+   {
+    "image": "static/blender/springs/3.jpg",
+    "overlay": "static/blender/springs/3-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Right assembly",
+    "readout": [
+     "Left assembly: 2 then 3 then 3 springs side by side; stretch is proportional to 1/2 + 1/3 + 1/3 = 1.17.",
+     "Right assembly: 1 then 3 then 4 springs side by side; stretch is proportional to 1/1 + 1/3 + 1/4 = 1.58.",
+     "More springs side by side are stiffer; stages in a chain add their stretch."
+    ]
+   }
+  ],
+  "code": "static/blender/springs/inverse.py",
+  "code_lines": 73,
+  "animation": "b06"
+ },
+ {
+  "slug": "weave",
+  "title": "Strap-weave alternation",
+  "kicker": "Functional inspection",
+  "question": "Does the strap pass alternately over and under successive bars?",
+  "choices": [
+   "yes",
+   "no"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/weave/1.jpg",
+    "overlay": null,
+    "width": 1024,
+    "height": 1024,
+    "answer": "no",
+    "readout": [
+     "5 bars found. Strap at each bar, in order: over, under, under, under, over.",
+     "Two neighbouring bars have the same state, so it does not alternate."
+    ]
+   },
+   {
+    "image": "static/blender/weave/2.jpg",
+    "overlay": null,
+    "width": 1024,
+    "height": 1024,
+    "answer": "yes",
+    "readout": [
+     "7 bars found. Strap at each bar, in order: under, over, under, over, under, over, under.",
+     "It alternates all the way."
+    ]
+   },
+   {
+    "image": "static/blender/weave/3.jpg",
+    "overlay": null,
+    "width": 1024,
+    "height": 1024,
+    "answer": "no",
+    "readout": [
+     "6 bars found. Strap at each bar, in order: under, over, under, under, under, over.",
+     "Two neighbouring bars have the same state, so it does not alternate."
+    ]
+   }
+  ],
+  "code": "static/blender/weave/inverse.py",
+  "code_lines": 65,
+  "animation": null
+ },
+ {
+  "slug": "tripod",
+  "title": "Lamp support projection",
+  "kicker": "Functional inspection",
+  "question": "In this overhead view, is the lamp shade's center inside the triangle formed by the centers of the three rubber feet?",
+  "choices": [
+   "yes",
+   "no"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/tripod/1.jpg",
+    "overlay": "static/blender/tripod/1-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "no",
+    "readout": [
+     "Triangle through the three feet (blue); shade centre (pink).",
+     "Signed distance from the centre to each side: +182, +446, -114 px.",
+     "One is negative: the centre is outside."
+    ]
+   },
+   {
+    "image": "static/blender/tripod/2.jpg",
+    "overlay": "static/blender/tripod/2-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "yes",
+    "readout": [
+     "Triangle through the three feet (blue); shade centre (pink).",
+     "Signed distance from the centre to each side: +275, +73, +169 px.",
+     "All positive: the centre is inside."
+    ]
+   },
+   {
+    "image": "static/blender/tripod/3.jpg",
+    "overlay": "static/blender/tripod/3-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "no",
+    "readout": [
+     "Triangle through the three feet (blue); shade centre (pink).",
+     "Signed distance from the centre to each side: +343, +212, -62 px.",
+     "One is negative: the centre is outside."
+    ]
+   }
+  ],
+  "code": "static/blender/tripod/inverse.py",
+  "code_lines": 64,
+  "animation": null
+ },
+ {
+  "slug": "sockets",
+  "title": "Neighboring empty sockets",
+  "kicker": "Functional inspection",
+  "question": "Which power strip has two neighboring empty sockets?",
+  "choices": [
+   "Left power strip",
+   "Right power strip"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/sockets/1.jpg",
+    "overlay": null,
+    "width": 1024,
+    "height": 1024,
+    "answer": "Right power strip",
+    "readout": [
+     "Left strip, top to bottom: plug, plug, empty, plug, empty.",
+     "Right strip, top to bottom: plug, plug, empty, empty, plug. Two empty sockets are neighbours."
+    ]
+   },
+   {
+    "image": "static/blender/sockets/2.jpg",
+    "overlay": null,
+    "width": 1024,
+    "height": 1024,
+    "answer": "Left power strip",
+    "readout": [
+     "Left strip, top to bottom: plug, plug, empty, empty, plug. Two empty sockets are neighbours.",
+     "Right strip, top to bottom: plug, plug, empty, plug, empty."
+    ]
+   },
+   {
+    "image": "static/blender/sockets/3.jpg",
+    "overlay": null,
+    "width": 1024,
+    "height": 1024,
+    "answer": "Right power strip",
+    "readout": [
+     "Left strip, top to bottom: plug, empty, plug, empty, plug.",
+     "Right strip, top to bottom: plug, plug, plug, empty, empty. Two empty sockets are neighbours."
+    ]
+   }
+  ],
+  "code": "static/blender/sockets/inverse.py",
+  "code_lines": 74,
+  "animation": "b04"
+ },
+ {
+  "slug": "pulley",
+  "title": "Pulley supporting strands",
+  "kicker": "Mechanisms",
+  "question": "For ideal pulleys, how many times the rope tension is the upward force on the lower moving block?",
+  "choices": [
+   "2 times",
+   "3 times",
+   "4 times",
+   "5 times"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/pulley/1.jpg",
+    "overlay": "static/blender/pulley/1-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "4 times",
+    "readout": [
+     "5 vertical rope runs between the blocks.",
+     "The rightmost run continues down to the free end, so it is the pulled end (blue).",
+     "The other 4 runs hold up the lower block (pink)."
+    ]
+   },
+   {
+    "image": "static/blender/pulley/2.jpg",
+    "overlay": "static/blender/pulley/2-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "3 times",
+    "readout": [
+     "4 vertical rope runs between the blocks.",
+     "The rightmost run continues down to the free end, so it is the pulled end (blue).",
+     "The other 3 runs hold up the lower block (pink)."
+    ]
+   },
+   {
+    "image": "static/blender/pulley/3.jpg",
+    "overlay": "static/blender/pulley/3-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "5 times",
+    "readout": [
+     "6 vertical rope runs between the blocks.",
+     "The rightmost run continues down to the free end, so it is the pulled end (blue).",
+     "The other 5 runs hold up the lower block (pink)."
+    ]
+   }
+  ],
+  "code": "static/blender/pulley/inverse.py",
+  "code_lines": 63,
+  "animation": null
+ },
+ {
+  "slug": "roof",
+  "title": "Roof ridge or valley",
+  "kicker": "3D spatial relationships",
+  "question": "Is the central roof seam a ridge or a valley?",
+  "choices": [
+   "Ridge",
+   "Valley"
+  ],
+  "shots": [
+   {
+    "image": "static/blender/roof/1.jpg",
+    "overlay": "static/blender/roof/1-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Ridge",
+    "readout": [
+     "Fold found at x = 486 (pink).",
+     "Along the roof's far edge, the image height changes by -0.31 per pixel left of the fold and +0.26 right of it.",
+     "The edge peaks at the fold: a ridge."
+    ]
+   },
+   {
+    "image": "static/blender/roof/2.jpg",
+    "overlay": "static/blender/roof/2-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Valley",
+    "readout": [
+     "Fold found at x = 522 (pink).",
+     "Along the roof's far edge, the image height changes by +0.25 per pixel left of the fold and -0.34 right of it.",
+     "The edge dips at the fold: a valley."
+    ]
+   },
+   {
+    "image": "static/blender/roof/3.jpg",
+    "overlay": "static/blender/roof/3-measured.png",
+    "width": 1024,
+    "height": 1024,
+    "answer": "Ridge",
+    "readout": [
+     "Fold found at x = 508 (pink).",
+     "Along the roof's far edge, the image height changes by -0.30 per pixel left of the fold and +0.30 right of it.",
+     "The edge peaks at the fold: a ridge."
+    ]
+   }
+  ],
+  "code": "static/blender/roof/inverse.py",
+  "code_lines": 61,
+  "animation": null
+ }
+]

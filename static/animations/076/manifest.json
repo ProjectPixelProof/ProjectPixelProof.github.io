@@ -1,0 +1,659 @@
+{
+ "key": "076",
+ "title": "Network station correspondence",
+ "headline": "Match stations by their connections",
+ "question": "Both panels show the same seven-station network, but the station positions are rearranged. What fill color in the right panel belongs to the magenta-centered station in the left panel? Match stations using all connections. Answer red, green, or blue.",
+ "generator": "Sol (max)",
+ "agent": "Codex",
+ "profile": "correspondence",
+ "answer": "blue",
+ "image": {
+  "w": 900,
+  "h": 500,
+  "src": "final.webp",
+  "sha256": "be639fbb200bfc4da13db9e9a931948550d0fe7d9d98d1cc9c78cb7d1f358308"
+ },
+ "scene": "{\n \"edge_order\": [4, 2, 0, 1, 5, 3],\n \"left_layout\": [\n  [0, 0],\n  [47, 21],\n  [-6, -55],\n  [-7, -113],\n  [-45, 33],\n  \"… 2 more\"\n ],\n \"node_radius\": 18,\n \"right_colors\": [\"green\", \"green\", \"green\", \"blue\", \"blue\", \"… 2 more\"],\n \"right_layout\": [\n  [0, 0],\n  [52, 14],\n  [-14, -52],\n  [-33, -103],\n  [-37, 37],\n  \"… 2 more\"\n ],\n \"target\": 3\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    return str(scene[\"right_colors\"][int(scene[\"target\"])])",
+  "decision": "blue",
+  "answer": "blue"
+ },
+ "render": {
+  "events": 45,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "draw.rounded_rectangle(_scaled_box((18, 24, 438, 476)), radius=18 * SCALE, fill=(251, 252, 253), outline=(147, 155, 166), width=2 * SCALE)",
+    "line": 103,
+    "kind": "draw.rounded_rectangle",
+    "event": 1,
+    "box": [
+     0.014444444444444444,
+     0.038,
+     0.49333333333333335,
+     0.964
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "draw.rounded_rectangle(_scaled_box((462, 24, 882, 476)), radius=18 * SCALE, fill=(251, 252, 253), outline=(147, 155, 166), width=2 * SCALE)",
+    "line": 110,
+    "kind": "draw.rounded_rectangle",
+    "event": 2,
+    "box": [
+     0.5088888888888888,
+     0.04,
+     0.9855555555555555,
+     0.962
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "draw.line(_scaled_box((442, 250, 456, 250)), fill=(105, 112, 122), width=3 * SCALE)",
+    "line": 118,
+    "kind": "draw.line",
+    "event": 3,
+    "box": [
+     0.4866666666666667,
+     0.49,
+     0.5122222222222222,
+     0.512
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "draw.polygon([(456 * SCALE, 250 * SCALE), (449 * SCALE, 245 * SCALE), (449 * SCALE, 255 * SCALE)], fill=(105, 112, 122))",
+    "line": 119,
+    "kind": "draw.polygon",
+    "event": 4,
+    "box": [
+     0.49444444444444446,
+     0.484,
+     0.5088888888888888,
+     0.518
+    ]
+   },
+   {
+    "src": "r004.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 5,
+    "box": [
+     0.14666666666666667,
+     0.556,
+     0.2088888888888889,
+     0.65
+    ]
+   },
+   {
+    "src": "r005.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 6,
+    "box": [
+     0.2388888888888889,
+     0.266,
+     0.25333333333333335,
+     0.398
+    ]
+   },
+   {
+    "src": "r006.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 7,
+    "box": [
+     0.2477777777777778,
+     0.49,
+     0.3111111111111111,
+     0.554
+    ]
+   },
+   {
+    "src": "r007.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 8,
+    "box": [
+     0.24,
+     0.382,
+     0.26,
+     0.51
+    ]
+   },
+   {
+    "src": "r008.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 9,
+    "box": [
+     0.10333333333333333,
+     0.628,
+     0.15888888888888889,
+     0.724
+    ]
+   },
+   {
+    "src": "r009.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 10,
+    "box": [
+     0.1988888888888889,
+     0.49,
+     0.2577777777777778,
+     0.578
+    ]
+   },
+   {
+    "src": "r010.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 11,
+    "box": [
+     0.22555555555555556,
+     0.45,
+     0.2811111111111111,
+     0.55
+    ]
+   },
+   {
+    "src": "r011.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 12,
+    "box": [
+     0.2288888888888889,
+     0.456,
+     0.2788888888888889,
+     0.546
+    ]
+   },
+   {
+    "src": "r012.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 13,
+    "box": [
+     0.2777777777777778,
+     0.492,
+     0.3333333333333333,
+     0.592
+    ]
+   },
+   {
+    "src": "r013.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 14,
+    "box": [
+     0.2811111111111111,
+     0.498,
+     0.33111111111111113,
+     0.588
+    ]
+   },
+   {
+    "src": "r014.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 15,
+    "box": [
+     0.21888888888888888,
+     0.34,
+     0.27444444444444444,
+     0.442
+    ]
+   },
+   {
+    "src": "r015.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 16,
+    "box": [
+     0.2222222222222222,
+     0.346,
+     0.2722222222222222,
+     0.436
+    ]
+   },
+   {
+    "src": "r016.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 17,
+    "box": [
+     0.21777777777777776,
+     0.224,
+     0.2733333333333333,
+     0.326
+    ]
+   },
+   {
+    "src": "r017.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 18,
+    "box": [
+     0.22111111111111112,
+     0.23,
+     0.27111111111111114,
+     0.32
+    ]
+   },
+   {
+    "src": "r018.webp",
+    "code": "draw.ellipse((x - core, y - core, x + core, y + core), fill=(205, 48, 167))",
+    "line": 97,
+    "kind": "draw.ellipse",
+    "event": 19,
+    "box": [
+     0.23333333333333334,
+     0.252,
+     0.2588888888888889,
+     0.298
+    ]
+   },
+   {
+    "src": "r019.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 20,
+    "box": [
+     0.17555555555555555,
+     0.516,
+     0.2311111111111111,
+     0.616
+    ]
+   },
+   {
+    "src": "r020.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 21,
+    "box": [
+     0.17888888888888888,
+     0.522,
+     0.2288888888888889,
+     0.612
+    ]
+   },
+   {
+    "src": "r021.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 22,
+    "box": [
+     0.12444444444444444,
+     0.59,
+     0.18,
+     0.69
+    ]
+   },
+   {
+    "src": "r022.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 23,
+    "box": [
+     0.12777777777777777,
+     0.596,
+     0.17777777777777778,
+     0.686
+    ]
+   },
+   {
+    "src": "r023.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 24,
+    "box": [
+     0.0811111111111111,
+     0.664,
+     0.13666666666666666,
+     0.764
+    ]
+   },
+   {
+    "src": "r024.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 25,
+    "box": [
+     0.08444444444444445,
+     0.67,
+     0.13444444444444445,
+     0.76
+    ]
+   },
+   {
+    "src": "r025.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 26,
+    "box": [
+     0.6544444444444445,
+     0.564,
+     0.7122222222222222,
+     0.666
+    ]
+   },
+   {
+    "src": "r026.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 27,
+    "box": [
+     0.7033333333333334,
+     0.286,
+     0.7377777777777778,
+     0.404
+    ]
+   },
+   {
+    "src": "r027.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 28,
+    "box": [
+     0.7422222222222222,
+     0.49,
+     0.81,
+     0.54
+    ]
+   },
+   {
+    "src": "r028.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 29,
+    "box": [
+     0.7244444444444444,
+     0.388,
+     0.7533333333333333,
+     0.51
+    ]
+   },
+   {
+    "src": "r029.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 30,
+    "box": [
+     0.6088888888888889,
+     0.644,
+     0.6655555555555556,
+     0.75
+    ]
+   },
+   {
+    "src": "r030.webp",
+    "code": "draw.line([scaled[a], scaled[b]], fill=(34, 38, 43), width=5 * SCALE)",
+    "line": 85,
+    "kind": "draw.line",
+    "event": 31,
+    "box": [
+     0.7011111111111111,
+     0.492,
+     0.7511111111111111,
+     0.586
+    ]
+   },
+   {
+    "src": "r031.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 32,
+    "box": [
+     0.7188888888888889,
+     0.45,
+     0.7744444444444445,
+     0.55
+    ]
+   },
+   {
+    "src": "r032.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 33,
+    "box": [
+     0.7222222222222222,
+     0.456,
+     0.7722222222222223,
+     0.546
+    ]
+   },
+   {
+    "src": "r033.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 34,
+    "box": [
+     0.7766666666666666,
+     0.478,
+     0.8322222222222222,
+     0.578
+    ]
+   },
+   {
+    "src": "r034.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 35,
+    "box": [
+     0.78,
+     0.484,
+     0.83,
+     0.574
+    ]
+   },
+   {
+    "src": "r035.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 36,
+    "box": [
+     0.7033333333333334,
+     0.346,
+     0.7588888888888888,
+     0.448
+    ]
+   },
+   {
+    "src": "r036.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 37,
+    "box": [
+     0.7066666666666667,
+     0.352,
+     0.7566666666666667,
+     0.442
+    ]
+   },
+   {
+    "src": "r037.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 38,
+    "box": [
+     0.6822222222222222,
+     0.244,
+     0.7377777777777778,
+     0.346
+    ]
+   },
+   {
+    "src": "r038.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 39,
+    "box": [
+     0.6855555555555556,
+     0.25,
+     0.7355555555555555,
+     0.34
+    ]
+   },
+   {
+    "src": "r039.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 40,
+    "box": [
+     0.6777777777777778,
+     0.524,
+     0.7333333333333333,
+     0.624
+    ]
+   },
+   {
+    "src": "r040.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 41,
+    "box": [
+     0.6811111111111111,
+     0.53,
+     0.7311111111111112,
+     0.62
+    ]
+   },
+   {
+    "src": "r041.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 42,
+    "box": [
+     0.6322222222222222,
+     0.606,
+     0.6877777777777778,
+     0.706
+    ]
+   },
+   {
+    "src": "r042.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 43,
+    "box": [
+     0.6355555555555555,
+     0.612,
+     0.6855555555555556,
+     0.702
+    ]
+   },
+   {
+    "src": "r043.webp",
+    "code": "draw.ellipse((x - outer, y - outer, x + outer, y + outer), fill=(28, 31, 35))",
+    "line": 93,
+    "kind": "draw.ellipse",
+    "event": 44,
+    "box": [
+     0.5866666666666667,
+     0.69,
+     0.6422222222222222,
+     0.79
+    ]
+   },
+   {
+    "src": "r044.webp",
+    "code": "draw.ellipse((x - inner, y - inner, x + inner, y + inner), fill=fill)",
+    "line": 94,
+    "kind": "draw.ellipse",
+    "event": 45,
+    "box": [
+     0.59,
+     0.696,
+     0.64,
+     0.786
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Keep the neutral (left-panel) station fills",
+    "fn": "_mask_near",
+    "value_of": "_mask_near",
+    "src": "return",
+    "code": "return np.sqrt(np.sum(delta * delta, axis=2)) <= tolerance",
+    "style": "mask",
+    "marks": [],
+    "note": "8,380 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Keep the dark link pixels",
+    "fn": "_graph",
+    "value_of": "_graph",
+    "src": "dark",
+    "code": "dark = np.max(array, axis=2) < 92",
+    "style": "mask",
+    "marks": [],
+    "note": "5,196 pixels kept",
+    "overlay": "b1.webp"
+   }
+  ],
+  "final": {
+   "code": "return right_colors[mapping[target_index]]",
+   "fn": "decision_from_image",
+   "text": "Recover both graphs, find the one station mapping that preserves every link",
+   "values": [
+    {
+     "label": "left graph links",
+     "value": "{(0, 1), (1, 2), (3, 4), (4, 5), (5, 6), (2, 5)}"
+    },
+    {
+     "label": "target station",
+     "value": "3"
+    }
+   ]
+  },
+  "decision": "blue",
+  "answer": "blue"
+ },
+ "study_title": "Network Station Correspondence",
+ "site_id": "profile-conditioned-network-station-correspondence-214b1a3c55"
+}

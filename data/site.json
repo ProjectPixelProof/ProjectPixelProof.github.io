@@ -1,0 +1,13 @@
+{
+  "links": {
+    "paper": "",
+    "code": "https://github.com/ProjectPixelProof/PixelProof",
+    "data": "https://huggingface.co/collections/PixelProof/models-and-datasets-6ab5721714129252f17c21fd",
+    "arxiv": ""
+  },
+  "bibtex": "",
+  "name": "PixelProof",
+  "url": "https://projectpixelproof.github.io",
+  "repository": "https://github.com/ProjectPixelProof/ProjectPixelProof.github.io",
+  "title": "PixelProof: Visual Question Generation through Forward–Inverse Agreement"
+}

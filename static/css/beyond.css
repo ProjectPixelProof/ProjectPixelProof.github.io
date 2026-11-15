@@ -1,0 +1,5 @@
+/* Merged page: photographs and Blender scenes. */
+.beyond-page .beyond-part { border-top: 1px solid #d9e0e7; scroll-margin-top: 12px; }
+.beyond-page .beyond-part h2 { margin: 0 0 12px; font-size: 30px; line-height: 1.2; font-weight: 600; color: #1d2733; }
+@media (max-width: 520px) { .beyond-page .beyond-part h2 { font-size: 24px; } }
+.beyond-page .reading-page-intro p + p { margin-top: 12px; }

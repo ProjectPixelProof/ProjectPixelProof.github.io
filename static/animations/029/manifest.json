@@ -1,0 +1,186 @@
+{
+ "key": "029",
+ "title": "Path fold count",
+ "headline": "Count the folds",
+ "question": "A single winding blue path is drawn. It doubles back on itself several times, making sharp U-turn folds where the stroke reverses direction. How many U-turn folds does the blue path make? Answer 3, 4, or 5.",
+ "generator": "DS-V4-Flash",
+ "agent": "OpenCode",
+ "profile": "tracing",
+ "answer": "3",
+ "image": {
+  "w": 480,
+  "h": 480,
+  "src": "final.webp",
+  "sha256": "666edef5c6b5f6162f9a42d515bcdfdda76ba68c9fcd0fec213acc9122b74ce1"
+ },
+ "scene": "{\n \"path\": [\n  [64.0, 162.0],\n  [416.71, 162.0],\n  [416.71, 214.0],\n  [64.0, 214.0],\n  [64.0, 266.0],\n  \"… 3 more\"\n ]\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    \"\"\"Number of U-turn folds in the single blue path, as a string.\"\"\"\n    return str(_fold_count(scene))",
+  "decision": "3",
+  "answer": "3"
+ },
+ "render": {
+  "events": 7,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "draw.line([a, b], fill=color, width=width, joint=\"curve\")",
+    "line": 71,
+    "kind": "draw.line",
+    "event": 1,
+    "box": [
+     0.125,
+     0.3125,
+     0.875,
+     0.36666666666666664
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "draw.line([a, b], fill=color, width=width, joint=\"curve\")",
+    "line": 71,
+    "kind": "draw.line",
+    "event": 2,
+    "box": [
+     0.8416666666666667,
+     0.33125,
+     0.8958333333333334,
+     0.45416666666666666
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "draw.line([a, b], fill=color, width=width, joint=\"curve\")",
+    "line": 71,
+    "kind": "draw.line",
+    "event": 3,
+    "box": [
+     0.125,
+     0.41875,
+     0.875,
+     0.47291666666666665
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "draw.line([a, b], fill=color, width=width, joint=\"curve\")",
+    "line": 71,
+    "kind": "draw.line",
+    "event": 4,
+    "box": [
+     0.10625,
+     0.4395833333333333,
+     0.16041666666666668,
+     0.5625
+    ]
+   },
+   {
+    "src": "r004.webp",
+    "code": "draw.line([a, b], fill=color, width=width, joint=\"curve\")",
+    "line": 71,
+    "kind": "draw.line",
+    "event": 5,
+    "box": [
+     0.125,
+     0.5291666666666667,
+     0.875,
+     0.5833333333333334
+    ]
+   },
+   {
+    "src": "r005.webp",
+    "code": "draw.line([a, b], fill=color, width=width, joint=\"curve\")",
+    "line": 71,
+    "kind": "draw.line",
+    "event": 6,
+    "box": [
+     0.8416666666666667,
+     0.5479166666666667,
+     0.8958333333333334,
+     0.6708333333333333
+    ]
+   },
+   {
+    "src": "r006.webp",
+    "code": "draw.line([a, b], fill=color, width=width, joint=\"curve\")",
+    "line": 71,
+    "kind": "draw.line",
+    "event": 7,
+    "box": [
+     0.125,
+     0.6354166666666666,
+     0.875,
+     0.6895833333333333
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Keep the blue path pixels",
+    "fn": "decision_from_image",
+    "value_of": "decision_from_image",
+    "src": "blue",
+    "code": "blue = labels == idx[\"blue\"]",
+    "style": "mask",
+    "marks": [],
+    "note": "30,840 pixels kept",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "Mark rows dense with blue: the horizontal lanes",
+    "fn": "decision_from_image",
+    "value_of": "decision_from_image",
+    "src": "blue",
+    "code": "lane_rows = row_counts > _LANE_ROW_THRESH",
+    "style": "derive",
+    "marks": [
+     {
+      "x": 0.06,
+      "y": 0.33958333333333335,
+      "text": "lane 1"
+     },
+     {
+      "x": 0.06,
+      "y": 0.44583333333333336,
+      "text": "lane 2"
+     },
+     {
+      "x": 0.06,
+      "y": 0.55625,
+      "text": "lane 3"
+     },
+     {
+      "x": 0.06,
+      "y": 0.6625,
+      "text": "lane 4"
+     }
+    ],
+    "note": "4 lane bands (rows with more than 60 blue pixels)",
+    "overlay": "b1.webp"
+   }
+  ],
+  "final": {
+   "code": "folds = n_lanes - 1",
+   "fn": "decision_from_image",
+   "text": "Each fold joins two lanes, so folds = lanes − 1",
+   "values": [
+    {
+     "label": "n_lanes",
+     "value": "4"
+    },
+    {
+     "label": "folds",
+     "value": "3"
+    }
+   ]
+  },
+  "decision": "3",
+  "answer": "3"
+ },
+ "study_title": "Path Fold Count",
+ "site_id": "profile-conditioned-path-fold-count-e2f834fd71"
+}

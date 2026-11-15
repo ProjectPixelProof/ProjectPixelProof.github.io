@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Four short generated visual questions that a frontier vision-language model answered wrongly. Try them yourself." />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="Short questions a frontier model missed · PixelProof" />
+    <meta property="og:description" content="Four short generated visual questions that a frontier model answered wrongly." />
+    <meta property="og:type" content="website" />
+    <title>Short questions a frontier model missed · PixelProof</title>
+    <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="static/css/bulma.min.css?v=58b286592209" />
+    <link rel="stylesheet" href="static/css/nerfies.css?v=747bae5899d9" />
+    <link rel="stylesheet" href="static/css/site.css?v=87700d14492b" />
+    <link rel="stylesheet" href="static/css/paper.css?v=57286315c86b" />
+    <link rel="stylesheet" href="static/css/design.css?v=36d25e5bc946" />
+    <link rel="stylesheet" href="static/css/editorial.css?v=63efdf3c0bf3" />
+    <link rel="stylesheet" href="static/css/pp-anim.css?v=96b4fc9a292e" /><script src="static/js/pp-anim.js?v=9deeb3fc4ca9" defer></script>
+    <link rel="stylesheet" href="static/css/hard-questions.css?v=59fd7d3247e9" />
+  <link rel="stylesheet" href="static/css/navigation.css?v=f50120de8292"><link rel="stylesheet" href="static/css/reading.css?v=c8d4e1ae07b4"><meta property="og:url" content="https://projectpixelproof.github.io/hard-questions.html" />
+<link rel="canonical" href="https://projectpixelproof.github.io/hard-questions.html" />
+</head>
+  <body class="reading-page hard-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="site-nav" aria-label="Main navigation"><a class="wordmark" href="index.html" aria-label="PixelProof home">PixelProof</a><div class="nav-links"><a href="index.html">Overview</a><a href="questions.html">Questions</a><a href="programs.html">Programs</a><a href="animations.html">Animations</a><a href="steering.html">Spatial patterns</a><a href="results.html">Results</a><a href="index.html#updates">After submission</a></div></nav>
+    <main id="main">
+      <header class="reading-page-intro">
+        <div class="container site-width">
+          <a href="index.html">← Project overview</a>
+          <h1>Short questions a frontier model missed</h1>
+          <p>
+            Each question below is one sentence, and each image is one that at least one frontier vision-language model
+            answered wrongly. Try them before opening the answers.
+          </p>
+          <p class="hard-note">
+            These are development samples generated after submission, chosen because the model missed them; they are
+            not a benchmark and we report no accuracy. Each world passed the same automatic forward–inverse check as
+            the worlds in the paper; none has been through human review.
+          </p>
+        </div>
+      </header>
+      <section class="hard-section"><div class="container site-width">
+        <article class="hard-card" id="maze">
+          <a class="hard-image" href="static/hard/maze.png"><img src="static/hard/maze.png" width="664" height="664" loading="lazy" alt="Question image: Reach a dot through the maze" /></a>
+          <div class="hard-body">
+            <p class="hard-kicker">1 · Tracing</p>
+            <h2>Which colored dot can be reached from the red dot without crossing a wall?</h2>
+            <p class="hard-options" aria-label="Answer choices"><span>blue</span><span>green</span><span>orange</span><span>purple</span></p>
+            <details class="hard-answer"><summary>Show the answers</summary>
+              <p>Recorded answer: <b class="ok">orange</b></p>
+              <p>GPT-6.1 Sol (medium reasoning) answered: <b class="no">blue</b></p>
+            </details>
+          </div>
+          <details class="hard-anim"><summary>Watch the programs solve it, step by step</summary><div class="ppa" data-src="static/animations/h01/manifest.json"></div></details>
+        </article><article class="hard-card" id="route">
+          <a class="hard-image" href="static/hard/route.png"><img src="static/hard/route.png" width="560" height="560" loading="lazy" alt="Question image: Trace a route, then turn it" /></a>
+          <div class="hard-body">
+            <p class="hard-kicker">2 · Tracing and rotation</p>
+            <h2>After tracing from green, which letter matches its endpoint turned a quarter-turn clockwise about the cross?</h2>
+            <p class="hard-options" aria-label="Answer choices"><span>A</span><span>B</span><span>C</span><span>D</span></p>
+            <details class="hard-answer"><summary>Show the answers</summary>
+              <p>Recorded answer: <b class="ok">C</b></p>
+              <p>GPT-5.6 Sol (high reasoning) answered: <b class="no">A</b></p><p>Opus 5 (high reasoning) answered: <b class="no">D</b></p>
+            </details>
+          </div>
+          
+        </article><article class="hard-card" id="hole">
+          <a class="hard-image" href="static/hard/hole.png"><img src="static/hard/hole.png" width="1400" height="900" loading="lazy" alt="Question image: Fit a piece into the hole" /></a>
+          <div class="hard-body">
+            <p class="hard-kicker">3 · Shape matching</p>
+            <h2>Which piece fits the hole without being flipped?</h2>
+            <p class="hard-options" aria-label="Answer choices"><span>A</span><span>B</span><span>C</span><span>D</span></p>
+            <details class="hard-answer"><summary>Show the answers</summary>
+              <p>Recorded answer: <b class="ok">A</b></p>
+              <p>GPT-6.1 Sol (medium reasoning) answered: <b class="no">D</b></p>
+            </details>
+          </div>
+          <details class="hard-anim"><summary>Watch the programs solve it, step by step</summary><div class="ppa" data-src="static/animations/h03/manifest.json"></div></details>
+        </article>
+      </div></section>
+    </main>
+    <footer class="footer">
+      <div class="container reading-width has-text-centered">
+        <p><strong>PixelProof</strong> · Visual Question Generation through Forward–Inverse Agreement</p>
+        <p><a href="THIRD_PARTY_NOTICES.md">Credits &amp; asset notices</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

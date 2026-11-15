@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "maze",
+    "title": "Reach a dot through the maze",
+    "skill": "Tracing",
+    "image": "static/hard/maze.png",
+    "width": 664,
+    "height": 664,
+    "question": "Which colored dot can be reached from the red dot without crossing a wall?",
+    "choices": [
+      "blue",
+      "green",
+      "orange",
+      "purple"
+    ],
+    "answer": "orange",
+    "animation": "h01",
+    "models": [
+      {
+        "name": "GPT-6.1 Sol (medium reasoning)",
+        "answer": "blue"
+      }
+    ]
+  },
+  {
+    "slug": "route",
+    "title": "Trace a route, then turn it",
+    "skill": "Tracing and rotation",
+    "image": "static/hard/route.png",
+    "width": 560,
+    "height": 560,
+    "question": "After tracing from green, which letter matches its endpoint turned a quarter-turn clockwise about the cross?",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "C",
+    "models": [
+      {
+        "name": "GPT-5.6 Sol (high reasoning)",
+        "answer": "A"
+      },
+      {
+        "name": "Opus 5 (high reasoning)",
+        "answer": "D"
+      }
+    ]
+  },
+  {
+    "slug": "hole",
+    "title": "Fit a piece into the hole",
+    "skill": "Shape matching",
+    "image": "static/hard/hole.png",
+    "width": 1400,
+    "height": 900,
+    "question": "Which piece fits the hole without being flipped?",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "answer": "A",
+    "animation": "h03",
+    "models": [
+      {
+        "name": "GPT-6.1 Sol (medium reasoning)",
+        "answer": "D"
+      }
+    ]
+  }
+]

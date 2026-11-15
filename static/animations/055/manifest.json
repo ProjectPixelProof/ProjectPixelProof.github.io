@@ -1,0 +1,434 @@
+{
+ "key": "055",
+ "title": "State machine tape run",
+ "headline": "Run the tape through the table",
+ "question": "The picture shows a transition table, a marker and a tape. Down the left of the table are four coloured circles: these are the four states, one per table row, and no two of them share a colour. Along the top of the table are three coloured squares: these are the three input symbols, one per table column, and no two of them share a colour. Every cell of the table holds a square painted in one of the four state colours: that cell says which state you move to if you are currently in the state of that cell's row and you read the symbol of that cell's column. A cell painted in its own row's colour means you stay where you are. To the left of the circles is a black ring: the marker starts in the state whose circle centre is nearest to the centre of that black ring. Below the table is a tape of coloured squares, each painted in one of the three symbol colours. The tape is read one square at a time from left to right, in the direction of the arrow drawn beneath it, and each square is one step: look up the row of the state you are currently in and the column whose header square has that tape square's colour, and move to the state named by that cell. Nothing about the run is drawn: the path of the marker and the state it ends in appear nowhere in the picture. After every tape square has been read in order, which state is the marker in? Answer with the colour of that state: red, blue, green or orange.",
+ "generator": "Opus 5",
+ "agent": "Claude Code",
+ "profile": "state-tracking",
+ "answer": "blue",
+ "image": {
+  "w": 780,
+  "h": 560,
+  "src": "final.webp",
+  "sha256": "7767237227ada6fdd870f24721b24d9c3fc99572e2f96498e88760be018e687b"
+ },
+ "scene": "{\n \"canvas\": [780, 560],\n \"ring\": {\n  \"dx\": 2.98,\n  \"dy\": -23.58,\n  \"row\": 1\n },\n \"states\": [\n  {\n   \"colour\": \"orange\",\n   \"row\": 3\n  },\n  {\n   \"colour\": \"red\",\n   \"row\": 1\n  },\n  {\n   \"colour\": \"green\",\n   \"row\": 0\n  },\n  {\n   \"colour\": \"blue\",\n   \"row\": 2\n  }\n ],\n \"symbols\": [\n  {\n   \"col\": 1,\n   \"colour\": \"yellow\"\n  },\n  {\n   \"col\": 0,\n   \"colour\": \"violet\"\n  },\n  {\n   \"col\": 2,\n   \"colour\": \"teal\"\n  }\n ],\n \"table\": [\n  {\n   \"c\": 0,\n   \"r\": 2,\n   \"to\": 1\n  },\n  {\n   \"c\": 1,\n   \"r\": 0,\n   \"to\": 2\n  },\n  {\n   \"c\": 2,\n   \"r\": 3,\n   \"to\": 2\n  },\n  {\n   \"c\": 1,\n   \"r\": 1,\n   \"to\": 3\n  },\n  {\n   \"c\": 0,\n   \"r\": 1,\n   \"to\": 0\n  },\n  \"… 7 more\"\n ],\n \"tape\": [\n  {\n   \"slot\": 3,\n   \"sym\": 2\n  },\n  {\n   \"slot\": 0,\n   \"sym\": 0\n  },\n  {\n   \"slot\": 2,\n   \"sym\": 0\n  },\n  {\n   \"slot\": 4,\n   \"sym\": 1\n  },\n  {\n   \"slot\": 1,\n   \"sym\": 0\n  }\n ]\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    final, moves = _run(scene)\n    return f\"{_state_colour(scene, final)}|{moves}\"",
+  "decision": "blue|4",
+  "answer": "blue"
+ },
+ "render": {
+  "events": 28,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "d.rectangle([left, top, right, bot], outline=INK, width=3)",
+    "line": 234,
+    "kind": "draw.rectangle",
+    "event": 1,
+    "box": [
+     0.191025641025641,
+     0.19464285714285715,
+     0.5282051282051282,
+     0.7714285714285715
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "d.rectangle([cx - HEAD // 2, HEAD_Y - HEAD // 2, cx + HEAD // 2, HEAD_Y + HEAD // 2], fill=SYMBOL_PALETTE[s[\"colour\"]], outline=INK, width=2)",
+    "line": 239,
+    "kind": "draw.rectangle",
+    "event": 2,
+    "box": [
+     0.3294871794871795,
+     0.06607142857142857,
+     0.38974358974358975,
+     0.15
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "d.rectangle([cx - HEAD // 2, HEAD_Y - HEAD // 2, cx + HEAD // 2, HEAD_Y + HEAD // 2], fill=SYMBOL_PALETTE[s[\"colour\"]], outline=INK, width=2)",
+    "line": 239,
+    "kind": "draw.rectangle",
+    "event": 3,
+    "box": [
+     0.2141025641025641,
+     0.06607142857142857,
+     0.2743589743589744,
+     0.15
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "d.rectangle([cx - HEAD // 2, HEAD_Y - HEAD // 2, cx + HEAD // 2, HEAD_Y + HEAD // 2], fill=SYMBOL_PALETTE[s[\"colour\"]], outline=INK, width=2)",
+    "line": 239,
+    "kind": "draw.rectangle",
+    "event": 4,
+    "box": [
+     0.44487179487179485,
+     0.06607142857142857,
+     0.5051282051282051,
+     0.15
+    ]
+   },
+   {
+    "src": "r004.webp",
+    "code": "d.ellipse([cx - DISC_R, cy - DISC_R, cx + DISC_R, cy + DISC_R], fill=STATE_PALETTE[s[\"colour\"]], outline=INK, width=2)",
+    "line": 249,
+    "kind": "draw.ellipse",
+    "event": 5,
+    "box": [
+     0.0858974358974359,
+     0.6553571428571429,
+     0.14615384615384616,
+     0.7392857142857143
+    ]
+   },
+   {
+    "src": "r005.webp",
+    "code": "d.ellipse([cx - DISC_R, cy - DISC_R, cx + DISC_R, cy + DISC_R], fill=STATE_PALETTE[s[\"colour\"]], outline=INK, width=2)",
+    "line": 249,
+    "kind": "draw.ellipse",
+    "event": 6,
+    "box": [
+     0.0858974358974359,
+     0.36964285714285716,
+     0.14615384615384616,
+     0.45357142857142857
+    ]
+   },
+   {
+    "src": "r006.webp",
+    "code": "d.ellipse([cx - DISC_R, cy - DISC_R, cx + DISC_R, cy + DISC_R], fill=STATE_PALETTE[s[\"colour\"]], outline=INK, width=2)",
+    "line": 249,
+    "kind": "draw.ellipse",
+    "event": 7,
+    "box": [
+     0.0858974358974359,
+     0.22678571428571428,
+     0.14615384615384616,
+     0.3107142857142857
+    ]
+   },
+   {
+    "src": "r007.webp",
+    "code": "d.ellipse([cx - DISC_R, cy - DISC_R, cx + DISC_R, cy + DISC_R], fill=STATE_PALETTE[s[\"colour\"]], outline=INK, width=2)",
+    "line": 249,
+    "kind": "draw.ellipse",
+    "event": 8,
+    "box": [
+     0.0858974358974359,
+     0.5125,
+     0.14615384615384616,
+     0.5964285714285714
+    ]
+   },
+   {
+    "src": "r008.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 9,
+    "box": [
+     0.20897435897435898,
+     0.5053571428571428,
+     0.2794871794871795,
+     0.6035714285714285
+    ]
+   },
+   {
+    "src": "r009.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 10,
+    "box": [
+     0.3243589743589744,
+     0.21964285714285714,
+     0.39487179487179486,
+     0.31785714285714284
+    ]
+   },
+   {
+    "src": "r010.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 11,
+    "box": [
+     0.43974358974358974,
+     0.6482142857142857,
+     0.5102564102564102,
+     0.7464285714285714
+    ]
+   },
+   {
+    "src": "r011.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 12,
+    "box": [
+     0.3243589743589744,
+     0.3625,
+     0.39487179487179486,
+     0.4607142857142857
+    ]
+   },
+   {
+    "src": "r012.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 13,
+    "box": [
+     0.20897435897435898,
+     0.3625,
+     0.2794871794871795,
+     0.4607142857142857
+    ]
+   },
+   {
+    "src": "r013.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 14,
+    "box": [
+     0.20897435897435898,
+     0.6482142857142857,
+     0.2794871794871795,
+     0.7464285714285714
+    ]
+   },
+   {
+    "src": "r014.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 15,
+    "box": [
+     0.43974358974358974,
+     0.5053571428571428,
+     0.5102564102564102,
+     0.6035714285714285
+    ]
+   },
+   {
+    "src": "r015.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 16,
+    "box": [
+     0.43974358974358974,
+     0.21964285714285714,
+     0.5102564102564102,
+     0.31785714285714284
+    ]
+   },
+   {
+    "src": "r016.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 17,
+    "box": [
+     0.43974358974358974,
+     0.3625,
+     0.5102564102564102,
+     0.4607142857142857
+    ]
+   },
+   {
+    "src": "r017.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 18,
+    "box": [
+     0.3243589743589744,
+     0.6482142857142857,
+     0.39487179487179486,
+     0.7464285714285714
+    ]
+   },
+   {
+    "src": "r018.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 19,
+    "box": [
+     0.3243589743589744,
+     0.5053571428571428,
+     0.39487179487179486,
+     0.6035714285714285
+    ]
+   },
+   {
+    "src": "r019.webp",
+    "code": "d.rectangle([cx - CELL // 2, cy - CELL // 2, cx + CELL // 2, cy + CELL // 2], fill=STATE_PALETTE[_state_colour(scene, cell[\"to\"])], outline=INK, width=2)",
+    "line": 259,
+    "kind": "draw.rectangle",
+    "event": 20,
+    "box": [
+     0.20897435897435898,
+     0.21964285714285714,
+     0.2794871794871795,
+     0.31785714285714284
+    ]
+   },
+   {
+    "src": "r020.webp",
+    "code": "d.rectangle([cx - TAPE_SIDE // 2, TAPE_Y - TAPE_SIDE // 2, cx + TAPE_SIDE // 2, TAPE_Y + TAPE_SIDE // 2], fill=SYMBOL_PALETTE[ next(s[\"colour\"] for s in scene[\"symbols\"] if s[\"col\"] == t[\"sym\"]) ], outline=INK, width=2)",
+    "line": 269,
+    "kind": "draw.rectangle",
+    "event": 21,
+    "box": [
+     0.42948717948717946,
+     0.8303571428571429,
+     0.4948717948717949,
+     0.9214285714285714
+    ]
+   },
+   {
+    "src": "r021.webp",
+    "code": "d.rectangle([cx - TAPE_SIDE // 2, TAPE_Y - TAPE_SIDE // 2, cx + TAPE_SIDE // 2, TAPE_Y + TAPE_SIDE // 2], fill=SYMBOL_PALETTE[ next(s[\"colour\"] for s in scene[\"symbols\"] if s[\"col\"] == t[\"sym\"]) ], outline=INK, width=2)",
+    "line": 269,
+    "kind": "draw.rectangle",
+    "event": 22,
+    "box": [
+     0.12179487179487179,
+     0.8303571428571429,
+     0.18717948717948718,
+     0.9214285714285714
+    ]
+   },
+   {
+    "src": "r022.webp",
+    "code": "d.rectangle([cx - TAPE_SIDE // 2, TAPE_Y - TAPE_SIDE // 2, cx + TAPE_SIDE // 2, TAPE_Y + TAPE_SIDE // 2], fill=SYMBOL_PALETTE[ next(s[\"colour\"] for s in scene[\"symbols\"] if s[\"col\"] == t[\"sym\"]) ], outline=INK, width=2)",
+    "line": 269,
+    "kind": "draw.rectangle",
+    "event": 23,
+    "box": [
+     0.3269230769230769,
+     0.8303571428571429,
+     0.3923076923076923,
+     0.9214285714285714
+    ]
+   },
+   {
+    "src": "r023.webp",
+    "code": "d.rectangle([cx - TAPE_SIDE // 2, TAPE_Y - TAPE_SIDE // 2, cx + TAPE_SIDE // 2, TAPE_Y + TAPE_SIDE // 2], fill=SYMBOL_PALETTE[ next(s[\"colour\"] for s in scene[\"symbols\"] if s[\"col\"] == t[\"sym\"]) ], outline=INK, width=2)",
+    "line": 269,
+    "kind": "draw.rectangle",
+    "event": 24,
+    "box": [
+     0.532051282051282,
+     0.8303571428571429,
+     0.5974358974358974,
+     0.9214285714285714
+    ]
+   },
+   {
+    "src": "r024.webp",
+    "code": "d.rectangle([cx - TAPE_SIDE // 2, TAPE_Y - TAPE_SIDE // 2, cx + TAPE_SIDE // 2, TAPE_Y + TAPE_SIDE // 2], fill=SYMBOL_PALETTE[ next(s[\"colour\"] for s in scene[\"symbols\"] if s[\"col\"] == t[\"sym\"]) ], outline=INK, width=2)",
+    "line": 269,
+    "kind": "draw.rectangle",
+    "event": 25,
+    "box": [
+     0.22435897435897437,
+     0.8303571428571429,
+     0.28974358974358977,
+     0.9214285714285714
+    ]
+   },
+   {
+    "src": "r025.webp",
+    "code": "d.line([ax0, ay, ax1, ay], fill=INK, width=4)",
+    "line": 280,
+    "kind": "draw.line",
+    "event": 26,
+    "box": [
+     0.10897435897435898,
+     0.9464285714285714,
+     0.6102564102564103,
+     0.9642857142857143
+    ]
+   },
+   {
+    "src": "r026.webp",
+    "code": "d.polygon([(ax1 + 14, ay), (ax1 - 4, ay - 11), (ax1 - 4, ay + 11)], fill=INK)",
+    "line": 281,
+    "kind": "draw.polygon",
+    "event": 27,
+    "box": [
+     0.5961538461538461,
+     0.9285714285714286,
+     0.6282051282051282,
+     0.9803571428571428
+    ]
+   },
+   {
+    "src": "r027.webp",
+    "code": "d.ellipse([rx - RING_R, ry - RING_R, rx + RING_R, ry + RING_R], outline=RING, width=RING_WIDTH)",
+    "line": 285,
+    "kind": "draw.ellipse",
+    "event": 28,
+    "box": [
+     0.029487179487179487,
+     0.3339285714285714,
+     0.07948717948717948,
+     0.4035714285714286
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Assign each pixel to its nearest reference colour",
+    "fn": "_palette_masks",
+    "value_of": "_palette_masks",
+    "src": "lab",
+    "code": "best[bestd > _MATCH_TOL] = -1",
+    "style": "labels",
+    "marks": [],
+    "note": "7 labelled regions",
+    "overlay": "b0.webp"
+   },
+   {
+    "title": "One colour at a time (red shown): its state disc and table cells",
+    "fn": "_palette_masks",
+    "value_of": "_palette_masks",
+    "src": "return",
+    "code": "return {name: (lab == k) for k, (name, _) in enumerate(_REFS)}",
+    "style": "mask",
+    "marks": [],
+    "note": "9,185 pixels kept",
+    "overlay": "b1.webp"
+   }
+  ],
+  "final": {
+   "code": "table[r][c] = name",
+   "fn": "decision_from_image",
+   "text": "Rebuild the table from cell positions, then replay the tape",
+   "values": [
+    {
+     "label": "row_colour",
+     "value": "['green', 'red', 'blue', 'orange']"
+    }
+   ]
+  },
+  "decision": "blue|4",
+  "answer": "blue"
+ },
+ "study_title": "State Machine Tape Run",
+ "site_id": "profile-conditioned-state-machine-tape-run-b37bf168c6"
+}

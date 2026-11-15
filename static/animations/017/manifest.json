@@ -1,0 +1,106 @@
+{
+ "key": "017",
+ "title": "Pie sector fraction",
+ "headline": "Find the largest slice",
+ "question": "A filled circle (a pie chart) is cut into three colored sectors: red, blue, and green, which together cover the whole disk. Which colored sector has the largest central angle, meaning it is the biggest slice (covers the largest fraction of the pie)? Answer with only the color: red, blue, or green.",
+ "generator": "DS-V4-Flash",
+ "agent": "OpenCode",
+ "profile": "measurement",
+ "answer": "blue",
+ "image": {
+  "w": 480,
+  "h": 340,
+  "src": "final.webp",
+  "sha256": "2e9d3d2b4a660c316c843e1bc200fc271afd1beac07b448064099ddbb5641b82"
+ },
+ "scene": "{\n \"background\": \"light\",\n \"center\": [240, 170],\n \"height\": 340,\n \"hub_radius\": 10,\n \"radius\": 135,\n \"sectors\": [\n  {\n   \"color\": \"blue\",\n   \"start\": 246.23,\n   \"sweep\": 154.6\n  },\n  {\n   \"color\": \"red\",\n   \"start\": 400.84,\n   \"sweep\": 111.9\n  },\n  {\n   \"color\": \"green\",\n   \"start\": 512.74,\n   \"sweep\": 93.49\n  }\n ],\n \"width\": 480\n}",
+ "forward": {
+  "code": "def analytic_gold(scene: dict) -> str:\n    \"\"\"The color of the sector with the largest central angle (sweep).\"\"\"\n    sectors = scene[\"sectors\"]\n    largest, _gap = _largest_sector(sectors)\n    return largest[\"color\"]",
+  "decision": "blue",
+  "answer": "blue"
+ },
+ "render": {
+  "events": 4,
+  "frames": [
+   {
+    "src": "r000.webp",
+    "code": "draw.pieslice(bbox, start=sector[\"start\"], end=sector[\"start\"] + sector[\"sweep\"], fill=COLOR_RGB[sector[\"color\"]])",
+    "line": 90,
+    "kind": "draw.pieslice",
+    "event": 1,
+    "box": [
+     0.38125,
+     0.09411764705882353,
+     0.7895833333333333,
+     0.7705882352941177
+    ]
+   },
+   {
+    "src": "r001.webp",
+    "code": "draw.pieslice(bbox, start=sector[\"start\"], end=sector[\"start\"] + sector[\"sweep\"], fill=COLOR_RGB[sector[\"color\"]])",
+    "line": 90,
+    "kind": "draw.pieslice",
+    "event": 2,
+    "box": [
+     0.24375,
+     0.49117647058823527,
+     0.7208333333333333,
+     0.9088235294117647
+    ]
+   },
+   {
+    "src": "r002.webp",
+    "code": "draw.pieslice(bbox, start=sector[\"start\"], end=sector[\"start\"] + sector[\"sweep\"], fill=COLOR_RGB[sector[\"color\"]])",
+    "line": 90,
+    "kind": "draw.pieslice",
+    "event": 3,
+    "box": [
+     0.2125,
+     0.12941176470588237,
+     0.5083333333333333,
+     0.6911764705882353
+    ]
+   },
+   {
+    "src": "r003.webp",
+    "code": "draw.ellipse([cx - hr, cy - hr, cx + hr, cy + hr], fill=HUB_RGB)",
+    "line": 97,
+    "kind": "draw.ellipse",
+    "event": 4,
+    "box": [
+     0.47291666666666665,
+     0.46176470588235297,
+     0.5291666666666667,
+     0.5411764705882353
+    ]
+   }
+  ]
+ },
+ "hold_back": null,
+ "showcase": true,
+ "inverse": {
+  "beats": [
+   {
+    "title": "Give every pixel its nearest palette colour",
+    "fn": "_nearest_color",
+    "value_of": "_nearest_color",
+    "src": "return",
+    "code": "return np.linalg.norm(diffs, axis=-1).argmin(axis=-1)",
+    "style": "labels",
+    "marks": [],
+    "note": "3 labelled regions",
+    "overlay": "b0.webp"
+   }
+  ],
+  "final": {
+   "code": "counts.sort(key=lambda item: item[0], reverse=True)",
+   "fn": "decision_from_image",
+   "text": "The colour with the most pixels is the biggest slice",
+   "values": []
+  },
+  "decision": "blue",
+  "answer": "blue"
+ },
+ "study_title": "Pie Sector Fraction",
+ "site_id": "profile-conditioned-pie-sector-fraction-7461cca9d4"
+}
